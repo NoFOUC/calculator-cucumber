@@ -9,6 +9,12 @@ import java.util.List;
  * @see Minus
  * @see Plus
  * @see Divides
+ * @see Factorial
+ * @see General_Exponential
+ * @see Modulo
+ * @see PrimeNumbers
+ * @see BiggerThan
+ * @see LessThan
  */
 public final class Times extends Operation
  {
