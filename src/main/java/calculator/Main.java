@@ -54,6 +54,20 @@ public class Main {
 		e = new Divides(params4,Notation.POSTFIX);
 		c.print(e);
 		c.eval(e);
+
+		List<Expression> params5 = new ArrayList<>();
+		Collections.addAll(params5, new MyNumber(2, 3), new Minus(params2));
+		e = new Times(params5,Notation.POSTFIX);
+		c.print(e);
+		c.eval(e);
+
+		List<Expression> params6 = new ArrayList<>();
+		Collections.addAll(params6, new MyNumber(42, 69), new MyNumber(5, 3));
+		e = new Divides(params6,Notation.INFIX);
+		System.out.println("coucou");
+		c.print(e);
+		c.eval(e);
+
 	}
 
 	catch(IllegalConstruction exception) {

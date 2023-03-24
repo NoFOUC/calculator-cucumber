@@ -46,7 +46,17 @@ public final class Minus extends Operation
      * @param r The second integer that should be subtracted from the first
      * @return The integer that is the result of the subtraction
      */
-  public int op(int l, int r) {
-  	return (l-r);
+  public MyNumber op(MyNumber l, MyNumber r)
+  {
+  	int real = l.getValue() - r.getValue();
+
+    int imaginary = l.getImaginary() - r.getImaginary();
+    return new MyNumber(real, imaginary);
+
   }
-}
+
+     @Override
+     public MyNumber op(MyNumber l) {
+         return l;
+     }
+ }

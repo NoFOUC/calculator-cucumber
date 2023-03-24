@@ -46,6 +46,19 @@ public final class Divides extends Operation
      * @param r The second integer that should divide the first
      * @return The integer that is the result of the division
      */
-  public int op(int l, int r)
-    { return (l/r); }
+  public MyNumber op(MyNumber l, MyNumber r)
+    { int a1 = l.getValue();
+      int b1 = l.getImaginary();
+      int a2 = r.getValue();
+      int b2 = r.getImaginary();
+
+      int a = (int) ((a1*a2 + b1*b2)/(a2*a2 + b2*b2));
+      int b = (int) ((b1*a2 - a1*b2)/(a2*a2 + b2*b2));
+      return new MyNumber(a,b);
+    }
+
+    @Override
+    public MyNumber op(MyNumber l) {
+        return l;
+    }
 }

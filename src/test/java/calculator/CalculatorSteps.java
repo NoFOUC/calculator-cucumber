@@ -60,6 +60,17 @@ public class CalculatorSteps {
 		op = null;
 	}
 
+
+	@Given("the following list of complex numbers")
+	public void givenTheFollowingListOfComplexNumbers(List<List<String>> numbers) {
+		params = new ArrayList<>();
+		// Since we only use one line of input, we use get(0) to take the first line of the list,
+		// which is a list of strings, that we will manually convert to integers:
+		numbers.get(0).forEach(n -> params.add(new MyNumber(Integer.parseInt(n.split("\\+")[0]), Integer.parseInt(n.split("\\+")[1].split("i")[0]))));
+		params.forEach(n -> System.out.println("value ="+ n));
+		op = null;
+	}
+
 	// The string in the Given annotation shows how to use regular expressions...
 	// In this example, the notation d+ is used to represent numbers, i.e. nonempty sequences of digits
 	@Given("^the sum of two numbers (\\d+) and (\\d+)$")
@@ -91,17 +102,26 @@ public class CalculatorSteps {
 		op.addMoreParams(params);
 	}
 
-	@Then("^the (.*) is (\\d+)$")
-	public void thenTheOperationIs(String s, int val) {
+	@Then("^the (.*) is (.*)")
+	public void thenTheOperationIs(String s, String val) {
 		try {
 			switch (s) {
-				case "sum"			->	op = new Plus(params);
-				case "product"		->	op = new Times(params);
-				case "quotient"		->	op = new Divides(params);
-				case "difference"	->	op = new Minus(params);
-				default -> fail();
+				case "sum" : op = new Plus(params);
+							System.out.println("blabla" + new Plus(params));
+							break;
+				case "product"	:	op = new Times(params);
+					break;
+				case "quotient"		:	op = new Divides(params);
+				break;
+				case "difference"	:	op = new Minus(params);
+				break;
+				default : fail();
 			}
-			assertEquals(val, c.eval(op));
+			val = val.replaceAll("\\s+","");
+			System.out.println(Integer.parseInt(val.split("\\+")[0]) +"  " +Integer.parseInt(val.split("\\+")[1].split("i")[0]));
+			MyNumber a = new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0]));
+			System.out.println(a);
+			assertEquals(a, c.eval(op));
 		} catch (IllegalConstruction e) {
 			fail();
 		}
@@ -109,7 +129,7 @@ public class CalculatorSteps {
 
 	@Then("the operation evaluates to {int}")
 	public void thenTheOperationEvaluatesTo(int val) {
-		assertEquals(val, c.eval(op));
+		assertEquals(new MyNumber(val), c.eval(op));
 	}
 
 }

@@ -45,6 +45,20 @@ public final class Times extends Operation
    * @param r The second integer that should be multiplied with the first
    * @return The integer that is the result of the multiplication
    */
-  public int op(int l, int r)
-    { return (l*r); }
-}
+  public MyNumber op(MyNumber l, MyNumber r)
+    {
+        int a1 = l.getValue();
+        int b1 = l.getImaginary();
+        int a2 = r.getValue();
+        int b2 = r.getImaginary();
+
+        int a = a1*a2 - b1*b2;
+        int b = a1*b2 + b1*a2;
+        return new MyNumber(a,b);
+    }
+
+     @Override
+     public MyNumber op(MyNumber l) {
+         return l;
+     }
+ }
