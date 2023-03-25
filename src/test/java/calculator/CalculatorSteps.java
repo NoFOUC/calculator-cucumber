@@ -46,6 +46,23 @@ public class CalculatorSteps {
 		}
 	}
 
+	@Given("a complex operation {string}")
+	public void givenAComplexOperation(String s) {
+		// Write code here that turns the phrase above into concrete actions
+		params = new ArrayList<>(); // create an empty set of parameters to be filled in
+		try {
+			switch (s) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
 	// The following example shows how to use a DataTable provided as input.
 	// The example looks slightly complex, since DataTables can take as input
 	//  tables in two dimensions, i.e. rows and lines. This is why the input
@@ -85,6 +102,16 @@ public class CalculatorSteps {
 		catch(IllegalConstruction e) { fail(); }
 	}
 
+	@Given("^the sum of two complex numbers (.+) and (.+)$")
+	public void givenTheComplexSum(String n1, String n2) {
+		try {
+			params = new ArrayList<>();
+			params.add(new MyNumber(Integer.parseInt(n1.split("\\+")[0]), Integer.parseInt(n1.split("\\+")[1].split("i")[0])));
+			params.add(new MyNumber(Integer.parseInt(n2.split("\\+")[0]), Integer.parseInt(n2.split("\\+")[1].split("i")[0])));
+			op = new Plus(params);}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
 	@Then("^its (.*) notation is (.*)$")
 	public void thenItsNotationIs(String notation, String s) {
 		if (notation.equals("PREFIX")||notation.equals("POSTFIX")||notation.equals("INFIX")) {
@@ -102,34 +129,49 @@ public class CalculatorSteps {
 		op.addMoreParams(params);
 	}
 
+	@When("^I provide a (.*) complex number (.+)$")
+	public void whenIProvideAComplexNumber(String s, String val) {
+		//add extra parameter to the operation
+		params = new ArrayList<>();
+		params.add(new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0])));
+		op.addMoreParams(params);
+	}
+
 	@Then("^the (.*) is (.*)")
 	public void thenTheOperationIs(String s, String val) {
 		try {
 			switch (s) {
-				case "sum" : op = new Plus(params);
-							System.out.println("blabla" + new Plus(params));
-							break;
-				case "product"	:	op = new Times(params);
-					break;
-				case "quotient"		:	op = new Divides(params);
-				break;
-				case "difference"	:	op = new Minus(params);
-				break;
-				default : fail();
+				case "sum" -> op = new Plus(params);
+				case "product" -> op = new Times(params);
+				case "quotient" -> op = new Divides(params);
+				case "difference" -> op = new Minus(params);
+				default -> fail();
 			}
+			System.out.println(op);
 			val = val.replaceAll("\\s+","");
-			System.out.println(Integer.parseInt(val.split("\\+")[0]) +"  " +Integer.parseInt(val.split("\\+")[1].split("i")[0]));
-			MyNumber a = new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0]));
-			System.out.println(a);
-			assertEquals(a, c.eval(op));
+			if (val.split("\\+").length>1) {
+				MyNumber a = new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0]));
+				System.out.println(a);
+				assertEquals(a, c.eval(op));
+			}
+			else {
+				MyNumber a = new MyNumber(Integer.parseInt(val));
+				System.out.println(a);
+				assertEquals(a, c.eval(op));
+			}
+
 		} catch (IllegalConstruction e) {
 			fail();
 		}
 	}
 
-	@Then("the operation evaluates to {int}")
+	@Then("the operation evaluates to (\\d+)$")
 	public void thenTheOperationEvaluatesTo(int val) {
 		assertEquals(new MyNumber(val), c.eval(op));
+	}
+	@Then("the complex operation evaluates to (.+)$")
+	public void thenTheComplexOperationEvaluatesTo(String val) {
+		assertEquals(new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0])), c.eval(op));
 	}
 
 }

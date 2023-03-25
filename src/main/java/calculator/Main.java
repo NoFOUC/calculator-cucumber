@@ -64,7 +64,6 @@ public class Main {
 		List<Expression> params6 = new ArrayList<>();
 		Collections.addAll(params6, new MyNumber(42, 69), new MyNumber(5, 3));
 		e = new Divides(params6,Notation.INFIX);
-		System.out.println("coucou");
 		c.print(e);
 		c.eval(e);
 

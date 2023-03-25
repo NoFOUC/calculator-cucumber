@@ -18,11 +18,23 @@ Feature: Integer Arithmetic Expressions
     And I provide a second number 5
     Then the operation evaluates to 9
 
+  Scenario: Adding two complex numbers
+    Given a complex operation '+'
+    When I provide a first complex number 4+2i
+    And I provide a second complex number 5+2i
+    Then the complex operation evaluates to 9+4i
+
   Scenario: Subtracting two integer numbers
     Given an integer operation '-'
     When I provide a first number 7
     And I provide a second number 5
     Then the operation evaluates to 2
+
+  Scenario: Subtracting two complex numbers
+    Given an integer operation '-'
+    When I provide a first complex number 7+3i
+    And I provide a second complex number 5+5i
+    Then the complex operation evaluates to 2+-2i
 
   Scenario: Multiplying two integer numbers
     Given an integer operation '*'
@@ -30,17 +42,36 @@ Feature: Integer Arithmetic Expressions
     And I provide a second number 5
     Then the operation evaluates to 35
 
+  Scenario: Multiplying two complex numbers
+    Given an integer operation '*'
+    When I provide a first complex number 7+3i
+    And I provide a second complex number 5+5i
+    Then the complex operation evaluates to 20+50i
+
   Scenario: Dividing two integer numbers
     Given an integer operation '/'
     When I provide a first number 7
     And I provide a second number 5
     Then the operation evaluates to 1
 
+    Scenario: Dividing two complex numbers
+    Given an integer operation '/'
+    When I provide a first complex number 7+3i
+    And I provide a second complex number 5+5i
+    Then the complex operation evaluates to 1+0i
+
   Scenario: Printing the sum of two integer numbers
     Given the sum of two numbers 8 and 6
     Then its INFIX notation is ( 8 + 6 )
     And its PREFIX notation is + (8, 6)
     And its POSTFIX notation is (8, 6) +
+
+  Scenario: Printing the sum of two complex numbers
+    Given the sum of two complex numbers 8+2i and 6+3i
+    Then its INFIX notation is ( 8 + 2i + 6 + 3i )
+    And its PREFIX notation is + (8 + 2i, 6 + 3i)
+    And its POSTFIX notation is (8 + 2i, 6 + 3i) +
+
 
   # This is an example of a scenario in which we provide a list of numbers as input.
   # (In fact, this is not entirely true, since what is given as input is a table of
