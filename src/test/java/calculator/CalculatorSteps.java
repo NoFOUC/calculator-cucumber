@@ -147,16 +147,13 @@ public class CalculatorSteps {
 				case "difference" -> op = new Minus(params);
 				default -> fail();
 			}
-			System.out.println(op);
 			val = val.replaceAll("\\s+","");
 			if (val.split("\\+").length>1) {
 				MyNumber a = new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0]));
-				System.out.println(a);
 				assertEquals(a, c.eval(op));
 			}
 			else {
 				MyNumber a = new MyNumber(Integer.parseInt(val));
-				System.out.println(a);
 				assertEquals(a, c.eval(op));
 			}
 

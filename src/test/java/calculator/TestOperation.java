@@ -17,6 +17,9 @@ class TestOperation {
 		List<Expression> params1 = Arrays.asList(new MyNumber(3), new MyNumber(4), new MyNumber(5));
 		List<Expression> params2 = Arrays.asList(new MyNumber(5), new MyNumber(4));
 		List<Expression> params3 = Arrays.asList(new Plus(params1), new Minus(params2), new MyNumber(7));
+		List<Expression> params4 = Arrays.asList(new MyNumber(3, 2), new MyNumber(4, 5), new MyNumber(5));
+		List<Expression> params5 = Arrays.asList(new MyNumber(5), new MyNumber(4, 3));
+		List<Expression> params6 = Arrays.asList(new Plus(params4), new Minus(params5), new MyNumber(7));
 		o = new Divides(params3);
 		o2 = new Divides(params3);
 	}

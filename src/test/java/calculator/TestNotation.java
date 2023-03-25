@@ -30,6 +30,14 @@ class TestNotation {
 		testNotation("(" + value1 + ", " + value2 + ") " + symbol, op, Notation.POSTFIX);
 	}
 
+	void testComplexNotations(String symbol,int value1, int imaginary1, int value2, int imaginary2, Operation op) {
+		//prefix notation:
+		testNotation(symbol +" (" + value1 +" + " + imaginary1 +"i" + ", " + value2 + " + " + imaginary2 + "i" + ")", op, Notation.PREFIX);
+		//infix notation:
+		testNotation("( " + value1 +" + " + imaginary1 +"i" + " " + symbol + " " + value2 + " + " + imaginary2 + "i" + " )", op, Notation.INFIX);
+		//postfix notation:
+		testNotation("(" + value1 +" + " + imaginary1 +"i" + ", " + value2 + " + " + imaginary2 + "i" + ") " + symbol, op, Notation.POSTFIX);
+	}
 	@ParameterizedTest
 	@ValueSource(strings = {"*", "+", "/", "-"})
 	void testOutput(String symbol) {
@@ -52,6 +60,33 @@ class TestNotation {
 			fail();
 		}
 		testNotations(symbol, value1, value2, op);
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"*", "+", "/", "-"})
+	void testComplexOutput(String symbol) {
+		int value1 = 8;
+		int imaginary1 = 6;
+		int value2 = 6;
+		int imaginary2 = 4;
+
+		Operation op = null;
+		//List<Expression> params = new ArrayList<>(Arrays.asList(new MyNumber(value1),new MyNumber(value2)));
+		List<Expression> params = Arrays.asList(new MyNumber(value1, imaginary1),new MyNumber(value2, imaginary2));
+		try {
+			//construct another type of operation depending on the input value
+			//of the parameterised test
+			switch (symbol) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+		testComplexNotations(symbol, value1, value2, imaginary1, imaginary2, op);
 	}
 
 }

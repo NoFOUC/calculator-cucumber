@@ -40,16 +40,20 @@ class TestEvaluator {
     @ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
     void testEvaluateOperations(String symbol) {
         List<Expression> params = Arrays.asList(new MyNumber(value1),new MyNumber(value2));
+        List<Expression> params2 = Arrays.asList(new MyNumber(value1));
+
         try {
             //construct another type of operation depending on the input value
             //of the parameterised test
+
             switch (symbol) {
+
                 case "+"	->	assertEquals( new MyNumber(value1+ value2), calc.eval(new Plus(params)));
                 case "-"	->	assertEquals( new MyNumber(value1-value2), calc.eval(new Minus(params)));
                 case "*"	->	assertEquals( new MyNumber(value1 * value2), calc.eval(new Times(params)));
                 case "/"	->	assertEquals( new MyNumber(value1 / value2), calc.eval(new Divides(params)));
-                case "sqrt" ->  assertEquals( new MyNumber((int) sqrt (value1)), calc.eval(new Sqrt(params)));
-                case "||"   ->  assertEquals(new MyNumber((int) sqrt(value1*value1)), calc.eval(new Modulus(params)));
+                case "sqrt" ->  assertEquals( new MyNumber((int) sqrt (value1)), calc.eval(new Sqrt(params2)));
+                case "||"   ->  assertEquals(new MyNumber((int) sqrt (value1*value1)), calc.eval(new Modulus(params2)));
                 default		->	fail();
             }
         } catch (IllegalConstruction e) {

@@ -42,11 +42,17 @@ public class Evaluator extends Visitor {
         //second loop to accumulate all the evaluated subresults
         MyNumber temp = evaluatedArgs.get(0);
         int max = evaluatedArgs.size();
-        for(int counter=1; counter<max; counter++) {
-            temp = o.op(temp,evaluatedArgs.get(counter));
+        if (max == 1) {
+            computedValue = o.op(temp);
+        }
+        else {
+            for (int counter = 1; counter < max; counter++) {
+                temp = o.op(temp, evaluatedArgs.get(counter));
+            }
+            computedValue = temp;
         }
         // store the accumulated result
-        computedValue = temp;
+
     }
 
 }
