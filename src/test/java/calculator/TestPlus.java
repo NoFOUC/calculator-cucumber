@@ -31,9 +31,17 @@ class TestPlus {
 	@SuppressWarnings("AssertBetweenInconvertibleTypes")
 	@Test
 	void testConstructor2() {
-		// A Times expression should not be the same as a Plus expression
+		// An other expression than Plus should not be the same as a Plus expression
 		try {
+			assertNotSame(op, new PrimeNumbers(new ArrayList<>()));
+			assertNotSame(op, new LessThan(new ArrayList<>()));
+			assertNotSame(op, new General_Exponential(new ArrayList<>()));
+			assertNotSame(op, new Factorial(new ArrayList<>()));
+			assertNotSame(op, new BiggerThan(new ArrayList<>()));
+			assertNotSame(op, new Modulo(new ArrayList<>()));
+			assertNotSame(op, new Minus(new ArrayList<>()));
 			assertNotSame(op, new Times(new ArrayList<>()));
+			assertNotSame(op, new Divides(new ArrayList<>()));
 		} catch (IllegalConstruction e) {
 			fail();
 		}
