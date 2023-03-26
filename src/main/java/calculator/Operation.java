@@ -5,6 +5,7 @@ import visitor.Visitor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
+import java.math.BigDecimal;
 
 /**
  * Operation is an abstract class that represents arithmetic operations,
@@ -77,11 +78,12 @@ public abstract class Operation implements Expression
 
 	/**
 	 * Abstract method representing the actual binary arithmetic operation to compute
-	 * @param l	 first argument of the binary operation
-	 * @param r	second argument of the binary operation
-	 * @return	result of computing the binary operation
+	 *
+	 * @param l first argument of the binary operation
+	 * @param r second argument of the binary operation
+	 * @return result of computing the binary operation
 	 */
-   public abstract int op(int l, int r);
+   public abstract RealNumber op(BigDecimal l, BigDecimal r);
     // the operation itself is specified in the subclasses
 
 	/** Add more parameters to the existing list of parameters

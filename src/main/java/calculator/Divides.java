@@ -1,7 +1,7 @@
 package calculator;
 
 import java.util.List;
-
+import java.math.BigDecimal;
 /** This class represents the arithmetic division operation "/".
  * The class extends an abstract superclass Operation.
  * Other subclasses of Operation represent other arithmetic operations.
@@ -41,11 +41,12 @@ public final class Divides extends Operation
   }
 
     /**
-     * The actual computation of the (binary) arithmetic division of two integers
-     * @param l The first integer
-     * @param r The second integer that should divide the first
-     * @return The integer that is the result of the division
+     * The actual computation of the (binary) arithmetic division of two numbers
+     * @param l The first numbers
+     * @param r The second numbers that should divide the first
+     * @return The numbers that is the result of the division
      */
-  public int op(int l, int r)
-    { return (l/r); }
+  public RealNumber op(BigDecimal l, BigDecimal r) {
+      return (new RealNumber(l.divide(r)));
+  }
 }

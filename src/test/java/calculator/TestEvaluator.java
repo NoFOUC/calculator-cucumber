@@ -22,14 +22,14 @@ class TestEvaluator {
     }
 
     @Test
-    void testEvaluatorMyNumber() {
-        assertEquals( value1, calc.eval(new MyNumber(value1)));
+    void RealNumber() {
+        assertEquals( value1, calc.eval(new RealNumber(value1)));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"*", "+", "/", "-"})
     void testEvaluateOperations(String symbol) {
-        List<Expression> params = Arrays.asList(new MyNumber(value1),new MyNumber(value2));
+        List<Expression> params = Arrays.asList(new RealNumber(value1),new RealNumber(value2));
         try {
             //construct another type of operation depending on the input value
             //of the parameterised test
