@@ -44,44 +44,6 @@ public class RationalValue extends AbstractValue {
         return denominator;
     }
 
-    /**
-     * accept method to implement the visitor design pattern to traverse arithmetic expressions.
-     * Each number will pass itself to the visitor object to get processed by the visitor.
-     *
-     * @param v The visitor object
-     */
-    public void accept(Visitor v) {
-        v.visit(this);
-    }
-
-
-    /**
-     * The depth of a number expression is always 0
-     *
-     * @return The depth of a number expression
-     */
-    public int countDepth() {
-        return 0;
-    }
-
-    /**
-     * The number of operations contained in a number expression is always 0
-     *
-     * @return The number of operations contained in a number expression
-     */
-    public int countOps() {
-        return 0;
-    }
-
-    /**
-     * The number of numbers contained in a number expression is always 1
-     *
-     * @return The number of numbers contained in  a number expression
-     */
-    public int countNbs() {
-        return 1;
-    }
-
     // TODO: Minor code duplication, dunno is it's worthwhile to try to fix
     @Override
     public AbstractValue add(AbstractValue other) {
