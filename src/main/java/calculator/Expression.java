@@ -7,7 +7,7 @@ import visitor.Visitor;
  * It has two concrete subclasses Operation and MyNumber.
  *
  * @see Operation
- * @see MyNumber
+ * @see IntegerValue
  */
 public interface Expression {
 

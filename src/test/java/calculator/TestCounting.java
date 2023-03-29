@@ -25,7 +25,7 @@ class TestCounting {
 
     @Test
     void testNumberCounting() {
-        e = new MyNumber(value1);
+        e = new IntegerValue(value1);
         //test whether a number has zero depth (i.e. no nested expressions)
         assertEquals( 0, e.countDepth());
         //test whether a number contains zero operations
@@ -37,7 +37,7 @@ class TestCounting {
     @ParameterizedTest
     @ValueSource(strings = {"*", "+", "/", "-"})
     void testOperationCounting(String symbol) {
-        List<Expression> params = Arrays.asList(new MyNumber(value1),new MyNumber(value2));
+        List<Expression> params = Arrays.asList(new IntegerValue(value1),new IntegerValue(value2));
         //Operation op = null;
         try {
             //construct another type of operation depending on the input value
