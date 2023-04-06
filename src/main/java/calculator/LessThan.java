@@ -2,7 +2,7 @@ package calculator;
 
 import java.util.List;
 
-/** This class represents the arithmetic operation "<=".
+/** This class represents the arithmetic operation <=.
  * The class extends an abstract superclass Operation.
  * Other subclasses of Operation represent other arithmetic operations.
  * @see Operation
