@@ -50,13 +50,20 @@ public final class PrimeNumbers extends Operation {
      * @param l The integer
      * @return The integer that is the result of the PRIME
      */
-    public int op(int l) {
-        for (int i = 2; i *i <= l; i++) {
-            if (l % i == 0) {
-                return 0;
-            }
+    public MyNumber op(MyNumber l) {
+
+        if (l.isComplex()) {
+            throw new IllegalArgumentException("PRIME of complex numbers is not defined");
         }
-        return 1;
+        else {
+
+            for (int i = 2; i * i <= l.getValue(); i++) {
+                if (l.getValue() % i == 0) {
+                    return new MyNumber(0);
+                }
+            }
+            return new MyNumber(1);
+        }
     }
 
     /**
@@ -64,7 +71,7 @@ public final class PrimeNumbers extends Operation {
      * @param l The integer
      * @param r The integer
      */
-    public int op(int l, int r) {
+    public MyNumber op(MyNumber l, MyNumber r) {
         throw new UnsupportedOperationException("PRIME operation does not support two arguments");
     }
 }

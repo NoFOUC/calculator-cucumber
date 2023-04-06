@@ -31,7 +31,7 @@ class TestPlus {
 	@Test
 	void testConstructor1() {
 		// It should not be possible to create a Plus expression without null parameter list
-		assertThrows(IllegalConstruction.class, () -> op1 = new Plus(null));
+		assertThrows(IllegalConstruction.class, () -> op = new Plus(null));
 	}
 
 	@SuppressWarnings("AssertBetweenInconvertibleTypes")

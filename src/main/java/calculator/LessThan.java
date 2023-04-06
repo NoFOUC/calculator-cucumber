@@ -51,10 +51,27 @@ public final class LessThan extends Operation {
      * @param r The second integer
      * @return 1 if the first integer is less than the second integer, 0 otherwise
      */
-    public int op(int l, int r) {
-        if (l <= r) {
-            return 1;
+    @Override
+    public MyNumber op(MyNumber l, MyNumber r) {
+
+        //same as BiggerThan
+        if (l.isComplex() || r.isComplex()) {
+            throw new IllegalArgumentException("Comparison of complex numbers is not defined");
         }
-        return 0;
+        else{
+
+            if (l.getValue() <= r.getValue()) {
+                return new MyNumber(1);
+            }
+            return new MyNumber(0);
+        }
+
+
+
+    }
+
+    @Override
+    public MyNumber op(MyNumber l) {
+        throw new IllegalArgumentException("Comparison of one number is not defined");
     }
 }

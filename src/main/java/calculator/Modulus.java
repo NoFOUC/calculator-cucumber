@@ -25,6 +25,6 @@ public class Modulus extends Operation{
 
     @Override
     public MyNumber op(MyNumber l, MyNumber r) {
-        return op(l, new MyNumber(0,0));
+        return op(l);
     }
 }

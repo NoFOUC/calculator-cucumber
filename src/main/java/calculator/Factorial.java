@@ -50,13 +50,20 @@ public final class Factorial extends Operation {
      * @param l The integer
      * @return The integer that is the result of the factorial
      */
-    public int op(int l) {
-        if (l == 0) {
-            return 1;
-        } else if (l == 1) {
-            return 1;
-        } else {
-            return l * op(l - 1);
+    @Override
+    public MyNumber op(MyNumber l) {
+        if (l.isComplex()) {
+            throw new IllegalArgumentException("Factorial of complex numbers is not defined");
+        }
+        else{
+
+            if (l.getValue() == 0) {
+                return new MyNumber(1);
+            } else if (l.getValue() == 1) {
+                return new MyNumber(1);
+            } else {
+                return new MyNumber(l.getValue() * op(new MyNumber( l.getValue() - 1)).getValue());
+            }
         }
     }
 
@@ -65,7 +72,7 @@ public final class Factorial extends Operation {
      * @param l The integer
      * @param r The integer
      * */
-    public int op(int l, int r) {
+    public MyNumber op(MyNumber l, MyNumber r) {
         throw new UnsupportedOperationException("Factorial operation does not support two arguments");
     }
 }

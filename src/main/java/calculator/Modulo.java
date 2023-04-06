@@ -2,9 +2,11 @@ package calculator;
 
 import java.util.List;
 
-/** This class represents the modulo operation "%".
+/**
+ * This class represents the modulo operation "%".
  * The class extends an abstract superclass Operation.
  * Other subclasses of Operation represent other arithmetic operations.
+ *
  * @see Operation
  * @see Minus
  * @see Times
@@ -22,7 +24,7 @@ public final class Modulo extends Operation {
      * Class constructor specifying a number of Expressions to modulo.
      *
      * @param elist The list of Expressions to modulo
-     * @throws IllegalConstruction    If an empty list of expressions if passed as parameter
+     * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #Modulo(List<Expression>,Notation)
      */
     public Modulo(List<Expression> elist) throws IllegalConstruction {
@@ -34,8 +36,8 @@ public final class Modulo extends Operation {
      * as well as the Notation used to represent the operation.
      *
      * @param elist The list of Expressions to modulo
-     * @param n The Notation to be used to represent the operation
-     * @throws IllegalConstruction    If an empty list of expressions if passed as parameter
+     * @param n     The Notation to be used to represent the operation
+     * @throws IllegalConstruction If an empty list of expressions if passed as parameter
      * @see #Modulo(List<Expression>)
      * @see Operation#Operation(List<Expression>,Notation)
      */
@@ -47,19 +49,27 @@ public final class Modulo extends Operation {
 
     /**
      * The actual computation of the modulo of two integers
+     *
      * @param l The first integer
      * @param r The second integer that should be modulo from the first
      * @return The integer that is the result of the modulo
      */
-    public int op(int l, int r) {
-        return (l % r);
+    public MyNumber op(MyNumber l, MyNumber r) {
+        boolean b = l.isComplex() || r.isComplex();
+        if (b) {
+            throw new IllegalArgumentException("Modulo of complex numbers is not defined");
+        }
+        else {
+            return new MyNumber(l.getValue() % r.getValue());
+        }
     }
 
     /**
      * The actual computation of the modulo of one integer
+     *
      * @param l The integer
      */
-    public int op(int l) {
+    public MyNumber op(MyNumber l) {
         throw new IllegalArgumentException("Modulo of one number is not defined");
     }
 

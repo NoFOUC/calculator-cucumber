@@ -52,8 +52,14 @@ public final class General_Exponential extends Operation {
      * @param r The second integer that should be exponential with the first
      * @return The integer that is the result of the exponential
      */
-    public int op(int l, int r) {
-        return (int) Math.pow(l, r);
+    @Override
+    public MyNumber op(MyNumber l, MyNumber r) {
+        if (l.isComplex() || r.isComplex()) {
+            throw new IllegalArgumentException("Exponential of complex numbers is not defined");
+        }
+        else {
+            return new MyNumber ((int) Math.pow(l.getValue(), r.getValue()));
+        }
     }
 
     /**
@@ -61,8 +67,15 @@ public final class General_Exponential extends Operation {
      * @param l The integer
      * @return The integer that is the result of the exponential
      */
-    public int op(int l) {
-        return (int) Math.pow(Math.E, l);
+    @Override
+    public MyNumber op(MyNumber l) {
+        if (l.isComplex()) {
+            throw new IllegalArgumentException("Exponential of complex numbers is not defined");
+        }
+        else {
+            return new MyNumber((int) Math.pow(Math.E, l.getValue()));
+        }
+
     }
 }
 
