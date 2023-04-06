@@ -1,8 +1,15 @@
 package calculator;
 
+/**
+ * Exponential expression of a complex number
+ */
 public class MyExp extends MyPolar{
 
-        public MyExp(int r, int theta) {
+    /**
+     * @param r radius
+     * @param theta angle
+     */
+    public MyExp(int r, int theta) {
             super(r, theta);
         }
 }

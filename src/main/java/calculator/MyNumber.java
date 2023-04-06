@@ -22,6 +22,10 @@ public class MyNumber implements Expression
      */
     public Integer getValue() { return value; }
 
+    /** getter method to obtain the imaginary part of the number
+     *
+     * @return The imaginary part of the number
+     */
     public Integer getImaginary() { return imaginary; }
 
     /**
@@ -39,12 +43,17 @@ public class MyNumber implements Expression
      * Each number will pass itself to the visitor object to get processed by the visitor.
      *
      * @param v	The visitor object
+     * @param i The imaginary part of the number
      */
-
     public MyNumber(int v, int i) {
         value = v;
         imaginary = i;
     }
+
+    /**
+     * Constructor method for a complex number in exponential form
+     * @param exp The exponential form of the number
+     */
     public MyNumber (MyExp exp) {
         MyNumber val = ComplexConverter.exponentialToCartesian(exp);
 
@@ -52,12 +61,17 @@ public class MyNumber implements Expression
         imaginary = val.getImaginary();
     }
 
+    /**
+     * Constructor method for a complex number in polar form
+     * @param pol The polar form of the number
+     */
     public MyNumber (MyPolar pol) {
         MyNumber val = ComplexConverter.polarToCartesian(pol);
 
         value = val.getValue();
         imaginary = val.getImaginary();
     }
+
 
     public void accept(Visitor v) {
       v.visit(this);
@@ -88,6 +102,10 @@ public class MyNumber implements Expression
       return 1;
     }
 
+    /**
+     * Check if the number is complex
+     * @return True if the number is complex, false otherwise
+     */
     public boolean isComplex (){
         return imaginary != 0;
     }
