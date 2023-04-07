@@ -59,8 +59,13 @@ public final class Modulo extends Operation {
         if (b) {
             throw new IllegalArgumentException("Modulo of complex numbers is not defined");
         }
+        else if (!(l.getValue() instanceof IntegerValue) ) {
+            throw new IllegalArgumentException("Modulo of non integer values is not defined");
+        }
         else {
-            return new MyNumber(l.getValue() % r.getValue());
+            int left = ((IntegerValue) l.getValue()).getValue();
+            int right = ((IntegerValue) r.getValue()).getValue();
+            return new MyNumber(left % right);
         }
     }
 

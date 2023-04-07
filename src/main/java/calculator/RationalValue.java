@@ -1,6 +1,6 @@
 package calculator;
 
-import visitor.Visitor;
+import java.math.BigDecimal;
 
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
@@ -14,6 +14,13 @@ public class RationalValue extends AbstractValue {
     private final IntegerValue denominator;
 
     // TODO Manage division by zero and zero at the numerator
+
+    public BigDecimal getRawValue() {
+        BigDecimal rawNum = numerator.getRawValue();
+        BigDecimal rawDen = denominator.getRawValue();
+        return rawNum.divide(rawDen); //TODO: Rounding mode and scale for the division
+    }
+
 
     public /*constructor*/ RationalValue(IntegerValue numerator, IntegerValue denominator) {
         int gcd = euclidAlgorithm(numerator.getValue(), denominator.getValue());

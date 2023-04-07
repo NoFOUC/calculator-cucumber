@@ -2,6 +2,8 @@ package calculator;
 
 import visitor.Visitor;
 
+import java.math.BigDecimal;
+
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
  * which are a special kind of Expressions, just like operations are.
@@ -21,6 +23,11 @@ public class IntegerValue extends AbstractValue {
         return value;
     }
 
+    public BigDecimal getRawValue() {
+        return new BigDecimal(value);
+    }
+
+
     /**
      * Constructor method
      *
@@ -30,7 +37,6 @@ public class IntegerValue extends AbstractValue {
         value = v;
     }
 
-    // TODO: Ideally, some kind of priority order over different sets of numbers would be nice, but that's a lot of work
     // TODO: Need to add error handling, maybe implement a new exception for unsupported operations or something ?
     @Override
     public AbstractValue add(AbstractValue other) {

@@ -1,6 +1,7 @@
 package visitor;
 
 import calculator.AbstractValue;
+import calculator.MyNumber;
 import calculator.Operation;
 
 /**
@@ -13,7 +14,7 @@ public abstract class Visitor {
      *
      * @param n The number being visited
      */
-    public abstract void visit(AbstractValue n);
+    public abstract void visit(MyNumber n);
 
     /**
      * The Visitor can traverse an operation (a subtype of Expression)

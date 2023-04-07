@@ -12,21 +12,22 @@ import visitor.Visitor;
  */
 public class MyNumber implements Expression
 {
-    private final int value;
+    private final AbstractValue value;
 
-    private final int imaginary;
+    private final AbstractValue imaginary;
 
     /** getter method to obtain the value contained in the object
      *
      * @return The integer number contained in the object
      */
-    public Integer getValue() { return value; }
+    public AbstractValue getValue() { return value; }
 
     /** getter method to obtain the imaginary part of the number
      *
      * @return The imaginary part of the number
      */
-    public Integer getImaginary() { return imaginary; }
+    public AbstractValue getImaginary() { return imaginary; }
+
 
     /**
      * Constructor method
@@ -34,9 +35,9 @@ public class MyNumber implements Expression
      * @param v The integer value to be contained in the object
      */
     public /*constructor*/ MyNumber(int v) {
-      value=v;
-      imaginary = 0;
-      }
+        value= new IntegerValue(v);
+        imaginary = new IntegerValue(0);
+    }
 
     /**
      * accept method to implement the visitor design pattern to traverse arithmetic expressions.
@@ -46,6 +47,28 @@ public class MyNumber implements Expression
      * @param i The imaginary part of the number
      */
     public MyNumber(int v, int i) {
+        value= new IntegerValue(v);
+        imaginary = new IntegerValue(i);
+    }
+
+    /**
+     * Constructor method
+     *
+     * @param v The integer value to be contained in the object
+     */
+    public /*constructor*/ MyNumber(AbstractValue v) {
+      value=v;
+      imaginary = new IntegerValue(0);
+      }
+
+    /**
+     * accept method to implement the visitor design pattern to traverse arithmetic expressions.
+     * Each number will pass itself to the visitor object to get processed by the visitor.
+     *
+     * @param v	The visitor object
+     * @param i The imaginary part of the number
+     */
+    public MyNumber(AbstractValue v, AbstractValue i) {
         value = v;
         imaginary = i;
     }
@@ -107,7 +130,7 @@ public class MyNumber implements Expression
      * @return True if the number is complex, false otherwise
      */
     public boolean isComplex (){
-        return imaginary != 0;
+        return !imaginary.equals(new IntegerValue(0));
     }
 
     /**
@@ -117,11 +140,11 @@ public class MyNumber implements Expression
      */
     @Override
     public String toString() {
-        if (imaginary != 0) {
+        if (isComplex()) {
             return value + " + " + imaginary + "i";
         }
         else {
-            return Integer.toString(value);
+            return value.toString();
         }
     }
 
@@ -144,7 +167,7 @@ public class MyNumber implements Expression
       if (!(o instanceof MyNumber)) {
             return false;
       }
-      return this.value == ((MyNumber)o).value && this.imaginary == ((MyNumber)o).imaginary;
+      return this.value.equals(((MyNumber)o).value) && this.imaginary.equals(((MyNumber)o).imaginary);
       // Used == since the contained value is a primitive value
       // If it had been a Java object, .equals() would be needed
     }
@@ -157,7 +180,7 @@ public class MyNumber implements Expression
      */
     @Override
     public int hashCode() {
-        return value;
+        return value.hashCode(); //TODO Hashing for floats and rationals
     }
 
 }

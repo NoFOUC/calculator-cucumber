@@ -57,8 +57,8 @@ public final class PrimeNumbers extends Operation {
         }
         else {
 
-            for (int i = 2; i * i <= l.getValue(); i++) {
-                if (l.getValue() % i == 0) {
+            for (int i = 2; l.getValue().comp(new IntegerValue(i*i)) >= 0; i++) {
+                if (l.getValue().getRawValue().doubleValue() % i == 0) {
                     return new MyNumber(0);
                 }
             }

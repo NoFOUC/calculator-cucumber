@@ -48,21 +48,25 @@ public class Sqrt extends Operation {
      */
     public MyNumber op(MyNumber l)
     {
-        int a1 = l.getValue();
-        int b1 = l.getImaginary();
+        AbstractValue a1 = l.getValue();
+        AbstractValue b1 = l.getImaginary();
 
         if (l.isComplex()){
-            int a = (int) Math.sqrt(((a1*a1 + b1*b1)+a1)/2);
-            int b = (int) Math.sqrt(((a1*a1 + b1*b1)-a1)/2)* b1/Math.abs(b1);
-            return new MyNumber(a,b);
+//            int a = (int) Math.sqrt(((a1*a1 + b1*b1)+a1)/2)
+            AbstractValue a = a1.mul(a1).add(b1.mul(b1)).add(a1).div(new IntegerValue(2));
+            int aRaw = (int) Math.sqrt(a.getRawValue().doubleValue());
+//            int b = (int) Math.sqrt(((a1*a1 + b1*b1)-a1)/2)* b1/Math.abs(b1);
+            AbstractValue b = a1.mul(a1).add(b1.mul(b1)).sub(a1).div(new IntegerValue(2)).mul(b1);
+            int bRaw = (int) (Math.sqrt(b.getRawValue().doubleValue()/Math.abs(b1.getRawValue().doubleValue())));
+            return new MyNumber(aRaw,bRaw);
         }
         else {
-            if (a1<0){
-                int b = (int) Math.sqrt(-a1);
+            if (a1.comp(new IntegerValue(0)) <0){
+                int b = (int) Math.sqrt(-a1.getRawValue().doubleValue());
                 return new MyNumber(0,b);
             }
             else {
-                int a = (int) Math.sqrt(a1);
+                int a = (int) Math.sqrt(a1.getRawValue().doubleValue());
                 return new MyNumber(a,0);
             }
         }

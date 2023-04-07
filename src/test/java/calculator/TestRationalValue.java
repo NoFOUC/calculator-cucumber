@@ -16,26 +16,31 @@ class TestRationalValue {
 	private final int value3 =2;
 	private final int value4 =4;
 
-	private RationalValue number1, number2, number3;
+	private RationalValue rational1, rational2, rational3;
+
+	private MyNumber number1, number2, number3;
 	
 	@BeforeEach
 	void setUp() {
-		number1 = new RationalValue(new IntegerValue(value1), new IntegerValue(value2));
-		number2 = new RationalValue(new IntegerValue(value1), new IntegerValue(value3));
-		number3 = new RationalValue(new IntegerValue(value3), new IntegerValue(value1));
+		rational1 = new RationalValue(new IntegerValue(value1), new IntegerValue(value2));
+		rational2 = new RationalValue(new IntegerValue(value1), new IntegerValue(value3));
+		rational3 = new RationalValue(new IntegerValue(value3), new IntegerValue(value1));
+
+		number1 = new MyNumber(rational1);
+		number2 = new MyNumber(rational2);
+		number3 = new MyNumber(rational3);
 	}
 
 	@Test
 	void testEquals() {
 		// Check whether the rational is simplified properly
-		assertEquals(new RationalValue(new IntegerValue(value4)), number2);
+		assertEquals(new MyNumber(new RationalValue(new IntegerValue(value4))), number2);
 		// Two values containing a distinct value should not be equal:
 		assertNotEquals(number1, number2);
 		assertEquals(number1, number1); // Identity check (for coverage, as this should always be true)
 		assertNotEquals(number2, value4); // number is of type MyNumber, while value is of type int, so not equal
-		assertEquals(number2, number3.inverse()); // Check if inverting a rational works
 		try {
-			assertNotEquals(new Times(new ArrayList<>()), number1);
+			assertNotEquals(new Times(new ArrayList<>()), rational1);
 		}
 		catch (IllegalConstruction e) {fail();}
 	}

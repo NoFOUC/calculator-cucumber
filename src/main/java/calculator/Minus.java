@@ -54,9 +54,9 @@ public final class Minus extends Operation
      */
   public MyNumber op(MyNumber l, MyNumber r)
   {
-  	int real = l.getValue() - r.getValue();
+  	AbstractValue real = l.getValue().sub(r.getValue());
 
-    int imaginary = l.getImaginary() - r.getImaginary();
+    AbstractValue imaginary = l.getImaginary().sub(r.getImaginary());
     return new MyNumber(real, imaginary);
 
   }

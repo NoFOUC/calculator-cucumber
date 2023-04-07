@@ -2,6 +2,8 @@ package calculator;
 
 import visitor.Visitor;
 
+import java.math.BigDecimal;
+
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
  * which are a special kind of Expressions, just like operations are.
@@ -9,47 +11,9 @@ import visitor.Visitor;
  * @see Expression
  * @see Operation
  */
-public abstract class AbstractValue implements Expression {
+public abstract class AbstractValue {
 
-  /**
-   * accept method to implement the visitor design pattern to traverse arithmetic expressions.
-   * Each number will pass itself to the visitor object to get processed by the visitor.
-   *
-   * @param v The visitor object
-   */
-  public void accept(Visitor v) {
-    v.visit(this);
-  }
-
-
-  /**
-   * The depth of a number expression is always 0
-   *
-   * @return The depth of a number expression
-   */
-  public int countDepth() {
-    return 0;
-  }
-
-  /**
-   * The number of operations contained in a number expression is always 0
-   *
-   * @return The number of operations contained in a number expression
-   */
-  public int countOps() {
-    return 0;
-  }
-
-  /**
-   * The number of numbers contained in a number expression is always 1
-   *
-   * @return The number of numbers contained in  a number expression
-   */
-  public int countNbs() {
-    return 1;
-  }
-
-  // TODO: This may be too bulky in a long term, but as of now I really don't see a prettier solution for this mess
+  public abstract BigDecimal getRawValue();
 
   /**
    * Method for individualized configuration of the addition operation
@@ -82,4 +46,9 @@ public abstract class AbstractValue implements Expression {
    * @return The result of the operation
    */
   public abstract AbstractValue div(AbstractValue other);
+
+  public int comp(AbstractValue other) {
+    return this.sub(other).getRawValue().compareTo(BigDecimal.ZERO);
+  }
+
 }

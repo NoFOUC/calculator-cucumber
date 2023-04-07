@@ -55,14 +55,17 @@ public final class Factorial extends Operation {
         if (l.isComplex()) {
             throw new IllegalArgumentException("Factorial of complex numbers is not defined");
         }
+        else if (!(l.getValue() instanceof IntegerValue) ) {
+            throw new IllegalArgumentException("Factorial of non integer values is not defined");
+        }
         else{
 
-            if (l.getValue() == 0) {
+            if (l.getValue().equals(new IntegerValue(0))) {
                 return new MyNumber(1);
-            } else if (l.getValue() == 1) {
+            } else if (l.getValue().equals(new IntegerValue(1))) {
                 return new MyNumber(1);
             } else {
-                return new MyNumber(l.getValue() * op(new MyNumber( l.getValue() - 1)).getValue());
+                return new MyNumber(l.getValue().mul(l.getValue().sub(new IntegerValue(1))));
             }
         }
     }
