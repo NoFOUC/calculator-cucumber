@@ -53,13 +53,13 @@ public final class Divides extends Operation
      * @return The integer that is the result of the division
      */
   public MyNumber op(MyNumber l, MyNumber r)
-    { int a1 = l.getValue();
-      int b1 = l.getImaginary();
-      int a2 = r.getValue();
-      int b2 = r.getImaginary();
+    { AbstractValue a1 = l.getValue();
+      AbstractValue b1 = l.getImaginary();
+      AbstractValue a2 = r.getValue();
+      AbstractValue b2 = r.getImaginary();
 
-      int a = (int) ((a1*a2 + b1*b2)/(a2*a2 + b2*b2));
-      int b = (int) ((b1*a2 - a1*b2)/(a2*a2 + b2*b2));
+      AbstractValue a = a1.mul(a2).add(b1.mul(b2)).div(a2.mul(a2).add(b2.mul(b2)));
+      AbstractValue b = b1.mul(a2).sub(a1.mul(b2)).div(a2.mul(a2).add(b2.mul(b2)));
       return new MyNumber(a,b);
     }
 

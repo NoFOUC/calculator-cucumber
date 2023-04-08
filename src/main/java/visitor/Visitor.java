@@ -1,5 +1,6 @@
 package visitor;
 
+import calculator.AbstractValue;
 import calculator.MyNumber;
 import calculator.Operation;
 

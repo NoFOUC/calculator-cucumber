@@ -53,8 +53,8 @@ public final class Plus extends Operation
    * @return The integer that is the result of the addition
    */
       public MyNumber op(MyNumber l, MyNumber r) {
-        int real = l.getValue() + r.getValue();
-        int imaginary = l.getImaginary() + r.getImaginary();
+        AbstractValue real = l.getValue().add(r.getValue());
+        AbstractValue imaginary = l.getImaginary().add(r.getImaginary());
         return new MyNumber(real, imaginary);
       }
 

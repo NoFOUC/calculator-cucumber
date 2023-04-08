@@ -58,7 +58,7 @@ public final class General_Exponential extends Operation {
             throw new IllegalArgumentException("Exponential of complex numbers is not defined");
         }
         else {
-            return new MyNumber ((int) Math.pow(l.getValue(), r.getValue()));
+            return new MyNumber ((int) Math.pow(l.getValue().getRawValue().doubleValue(), r.getValue().getRawValue().doubleValue()));
         }
     }
 
@@ -73,7 +73,7 @@ public final class General_Exponential extends Operation {
             throw new IllegalArgumentException("Exponential of complex numbers is not defined");
         }
         else {
-            return new MyNumber((int) Math.pow(Math.E, l.getValue()));
+            return new MyNumber((int) Math.pow(Math.E, l.getValue().getRawValue().doubleValue()));
         }
 
     }

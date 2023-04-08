@@ -37,10 +37,10 @@ public class Modulus extends Operation{
      * @return the modulus of the complex number
      */
     public MyNumber op(MyNumber l) {
-        int a1 = l.getValue();
-        int b1 = l.getImaginary();
+        AbstractValue a1 = l.getValue();
+        AbstractValue b1 = l.getImaginary();
 
-        int val = (int) Math.sqrt(a1*a1 + b1*b1);
+        int val = (int) Math.sqrt(a1.mul(a1).add(b1.mul(b1)).getRawValue().doubleValue());
         return new MyNumber(val, 0);
     }
 

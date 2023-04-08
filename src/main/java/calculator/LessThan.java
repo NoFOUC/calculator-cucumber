@@ -60,10 +60,10 @@ public final class LessThan extends Operation {
         }
         else{
 
-            if (l.getValue() <= r.getValue()) {
-                return new MyNumber(1);
+            if (l.getValue().comp(r.getValue()) <= 0) {
+                return new MyNumber(new IntegerValue(1));
             }
-            return new MyNumber(0);
+            return new MyNumber(new IntegerValue(0));
         }
 
 

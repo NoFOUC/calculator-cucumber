@@ -53,13 +53,13 @@ public final class Times extends Operation
    */
   public MyNumber op(MyNumber l, MyNumber r)
     {
-        int a1 = l.getValue();
-        int b1 = l.getImaginary();
-        int a2 = r.getValue();
-        int b2 = r.getImaginary();
+        AbstractValue a1 = l.getValue();
+        AbstractValue b1 = l.getImaginary();
+        AbstractValue a2 = r.getValue();
+        AbstractValue b2 = r.getImaginary();
 
-        int a = a1*a2 - b1*b2;
-        int b = a1*b2 + b1*a2;
+        AbstractValue a = a1.mul(a2).sub(b1.mul(b2));
+        AbstractValue b = a1.mul(b2).add(b1.mul(a2));
         return new MyNumber(a,b);
     }
 
