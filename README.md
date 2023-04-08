@@ -1,5 +1,5 @@
 Code quality: ![Maven Build](https://github.com/NoFouc/calculator-cucumber/actions/workflows/maven.yml/badge.svg)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6856a0f94d25446ca346cbc15a701d43)](https://www.codacy.com/gh/tommens/calculator-cucumber/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tommens/calculator-cucumber&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/81e28bce892d48e3a906d82f6f141452)](https://app.codacy.com/gh/NoFOUC/calculator-cucumber/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NoFOUC_calculator-cucumber&metric=alert_status)](https://sonarcloud.io/project/overview?id=NoFOUC_calculator-cucumber)
 
 Test coverage: ![Coverage](.github/badges/jacoco.svg)
