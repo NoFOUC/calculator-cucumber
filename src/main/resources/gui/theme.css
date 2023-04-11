@@ -1,0 +1,424 @@
+/* The login screen being fairly distinct from the main application,
+   for clarity reasons it was decided to separate the stylesheet in two*/
+
+{
+    -fx-primary-light : linear-gradient(to bottom, #262c3ff0, #2b3448b0);
+    -fx-primary-dark : linear-gradient(to top, rgba(79, 91, 112, 0.75), rgba(45, 54, 79, 0.55));
+    /*-fx-primary-dark : linear-gradient(to top, #3c4556f0, #2d364fb0);*/
+    -fx-primary-dark-border : linear-gradient(to bottom right, #707d91 -50%, #3a4056, #707d91 150%);
+
+    -fx-gradient:  linear-gradient(to bottom, #373b49, #202634);
+    /*-fx-accent: rgba(207, 208, 226, 0.4);*/
+    -fx-accent: radial-gradient(center 50% 50%, radius 40%, rgba(207, 208, 226, 0.4), transparent);
+    -fx-accent-small: radial-gradient(center 50% 50%, radius 40% , rgba(207, 208, 226, 0.15), transparent);
+    -fx-accept: #85dba9;
+    -fx-error: #ff235f;
+}
+
+.root
+{
+    -fx-background-color: -fx-primary-light;
+}
+
+.login_root
+{
+    -fx-background-color: -fx-gradient;
+}
+
+.surface_light_flat
+{
+    -fx-background-color: -fx-primary-light;
+    -fx-background-radius: 15;
+    -fx-border-radius: 1;
+    -fx-border-color: -fx-primary-dark;
+    -fx-effect: innershadow(gaussian, rgba(1, 1, 1, 0.3), 65, 0.1, 2, 2);
+
+}
+
+.surface_dark_flat
+{
+    -fx-background-color: -fx-primary-dark;
+    -fx-background-radius: 0;
+    -fx-border-radius: 1;
+    -fx-border-color: -fx-primary-light;
+}
+
+.surface_light_floating
+{
+    -fx-background-color: -fx-primary-light;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.1, 2, 2);
+    -fx-border-radius: 15;
+    -fx-border-width: 1;
+    -fx-border-color: -fx-primary-dark-border;
+}
+
+.surface_dark_floating
+{
+    -fx-background-color: -fx-primary-dark;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.1, 2, 2);
+    -fx-border-radius: 15;
+    -fx-border-width: 1;
+    -fx-border-color: -fx-primary-dark-border;
+}
+
+/*Button-related css*/
+
+.button
+{
+    -fx-highlight-color: -fx-accent;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-font-size: 38;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+}
+
+.button:hover
+{
+    -fx-background-color: -fx-accent-small;
+}
+
+.button:pressed
+{
+    -fx-background-color: -fx-accent;
+}
+
+.button:disabled
+{
+    -fx-opacity: 0.3;
+}
+
+.button > .ikonli-font-icon
+{
+    -fx-icon-color: -fx-highlight-color;
+}
+
+.button_smaller
+{
+    -fx-font-size: 30;
+}
+
+.button_tiny
+{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.button_accept
+{
+    -fx-highlight-color: -fx-accept
+}
+
+.button_decline
+{
+    -fx-highlight-color: -fx-error
+}
+
+.button_big:hover
+{
+    -fx-border-color: -fx-highlight-color;
+    -fx-background-color: -fx-highlight-color;
+    -fx-text-fill: -fx-primary-dark;
+}
+
+.button:hover > .ikonli-font-icon
+{
+    -fx-icon-color: -fx-primary-dark;
+}
+
+/*Text related css*/
+
+.text-field
+{
+    -fx-prompt-text-fill: -fx-primary-light;
+    -fx-background-color: transparent;
+    -fx-font-size : 14pt;
+    -fx-text-fill: -fx-accent;
+    -fx-border-color: transparent transparent -fx-accent transparent, transparent;
+    -fx-border-insets: 0px 0px 2px 0px, 0px 0px 4px 0px ;
+}
+
+.text-area
+{
+    -fx-background-color: transparent;
+    -fx-prompt-text-fill: -fx-primary-light;
+    -fx-font-size : 14pt;
+    -fx-text-fill: -fx-accent;
+}
+
+.text-area .content
+{
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-accent;
+    -fx-border-radius: 15px;
+}
+
+.label
+{
+    -fx-text-fill: -fx-accent;
+    -fx-wrap-text: true;
+}
+
+.label-error
+{
+    -fx-text-fill: -fx-error;
+}
+
+.label-success
+{
+    -fx-text-fill: -fx-accept;
+}
+
+
+.choice-box
+{
+    -fx-text-alignment: center;
+    -fx-background-color: -fx-primary-dark;
+    -fx-mark-color: -fx-accent;
+    -fx-background-radius: 15px;
+    -fx-padding: 0px 0px 0px 10px;
+}
+
+.choice-box:disabled
+{
+    -fx-opacity: 0.3;
+}
+
+.choice-box-alt
+{
+    -fx-text-alignment: center;
+    -fx-background-color: -fx-primary-dark;
+    -fx-mark-color: -fx-accent;
+    -fx-padding: 0px 0px 0px 10px;
+    -fx-border-color: transparent transparent -fx-accent transparent, transparent;
+    -fx-border-insets: 0px 0px 2px 0px, 0px 0px 4px 0px ;
+}
+.choice-box .label
+{
+    -fx-font-weight: bold;
+}
+.choice-box .context-menu
+{
+    -fx-background-color: -fx-primary-dark;
+}
+.choice-box .menu-item > .label
+{
+    -fx-font-weight: bold;
+}
+.choice-box .menu-item:focused > .label
+{
+    -fx-text-fill: -fx-primary-dark;
+}
+
+.tab-pane
+{
+    -fx-background-color: -fx-primary-dark;
+}
+
+.progress-bar{
+    -fx-indeterminate-bar-length: 150px;
+
+}
+
+.progress-bar > .track {
+    -fx-background-color: transparent;
+    -fx-text-box-border: transparent;
+    -fx-control-inner-background: transparent;
+}
+
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: linear-gradient(to left, transparent, -fx-accept);
+    -fx-background-radius: 15px;
+}
+
+/*Icon related css*/
+
+.ikonli-font-icon
+{
+    -fx-icon-color: -fx-primary-light;
+}
+
+.ikonli-font-icon-dark
+{
+    -fx-icon-color: -fx-primary-dark;
+}
+
+.icon-item
+{
+    -fx-icon-size: 64px;
+    -fx-text-alignment: center;
+}
+
+.icon-water
+{
+    -fx-icon-color: -fx-water;
+    -fx-icon-code: fa-tint;
+}
+
+.icon-gas
+{
+    -fx-icon-color: -fx-gas;
+    -fx-icon-code: fa-fire;
+}
+
+.icon-electricity
+{
+    -fx-icon-color: -fx-electricity;
+    -fx-icon-code: fa-bolt;
+}
+
+.icon-plus
+{
+    -fx-icon-code: fa-plus;
+}
+
+.wallet-icon
+{
+    -fx-icon-code: fa-folder-open
+}
+
+.member-icon
+{
+    -fx-icon-code: fa-user;
+}
+
+.invitation-icon
+{
+    -fx-icon-code: fa-send;
+}
+
+.notification-icon
+{
+    -fx-icon-code: fa-exclamation-triangle;
+}
+
+.contract-icon
+{
+    -fx-icon-code: fa-address-card;
+    -fx-icon-color: -fx-accent;
+}
+
+.icon-closed
+{
+    -fx-icon-color: -fx-primary-light;
+}
+
+/*Scroll pane related css*/
+
+.scroll-pane, .scroll-pane > .corner
+{
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical
+{
+    -fx-background-color:transparent;
+    /*Quite bizarrely, font size is used to change the overall size of the thing*/
+    -fx-font-size: 6pt;
+}
+
+.increment-button, .decrement-button
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb
+{
+    -fx-background-color: -fx-accent;
+    -fx-opacity: 0.2;
+    -fx-background-radius: 5em;
+}
+
+/*Chart and table related CSS*/
+
+.chart
+{
+    -fx-background-color: -fx-primary-dark;
+}
+
+.axis
+{
+    -fx-tick-label-fill: -fx-accent;
+}
+
+.axis-label
+{
+    -fx-text-fill: -fx-accent;
+}
+
+.chart-plot-background
+{
+    -fx-background-color: transparent;
+}
+.chart-horizontal-grid-lines, .chart-vertical-grid-lines
+{
+    -fx-stroke: -fx-primary-light;
+}
+.chart-legend
+{
+    -fx-background-color:  transparent;
+}
+.default-color0.chart-series-line
+{
+    -fx-stroke: -fx-electricity;
+}
+.default-color0.chart-line-symbol, .default-color0.chart-bar
+{
+    -fx-background-color: -fx-electricity;
+}
+.default-color1.chart-series-line
+{
+    -fx-stroke: -fx-water;
+}
+.default-color1.chart-line-symbol, .default-color1.chart-bar
+{
+    -fx-background-color: -fx-water;
+}
+/* Tables */
+.table-view,
+.table-view .column-header-background,
+.table-view .column-header-background .filler,
+.table-view .column-header,
+.table-view .corner
+{
+    -fx-background-color: -fx-primary-dark;
+    -fx-font-size: 14pt;
+}
+.table-view .column-header
+{
+    -fx-font-size: 10pt;
+}
+.table-view .table-cell
+{
+    -fx-border-color: transparent;
+}
+.table-row-cell
+{
+    -fx-background-color: -fx-primary-light, -fx-primary-dark;
+}
+.table-row-cell:hover
+{
+    -fx-background-color: -fx-accent;
+}
+.table-row-cell:hover .table-cell
+{
+    -fx-text-fill: -fx-primary-dark;
+}
+.table-view .table-cell
+{
+    -fx-text-fill: -fx-accent;
+    -fx-alignment: center;
+}
