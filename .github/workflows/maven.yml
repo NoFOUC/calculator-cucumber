@@ -67,7 +67,8 @@ jobs:
       continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
+        
+        
 #    - name: Build and analyze with Sonar Cloud
 #      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=tommens_calculator-cucumber
 #      env:
