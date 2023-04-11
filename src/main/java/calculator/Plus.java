@@ -1,7 +1,6 @@
 package calculator;
 
 import java.util.List;
-import java.math.BigDecimal;
 
 /** This class represents the arithmetic sum operation "+".
  * The class extends an abstract superclass Operation.
@@ -10,6 +9,12 @@ import java.math.BigDecimal;
  * @see Minus
  * @see Times
  * @see Divides
+ * @see Factorial
+ * @see General_Exponential
+ * @see Modulo
+ * @see PrimeNumbers
+ * @see BiggerThan
+ * @see LessThan
  */
 public final class Plus extends Operation
  {
@@ -42,12 +47,19 @@ public final class Plus extends Operation
   }
 
   /**
-   * The actual computation of the (binary) arithmetic addition of two numbers
-   * @param l The first number
-   * @param r The second number that should be added to the first
-   * @return The number that is the result of the addition
+   * The actual computation of the (binary) arithmetic addition of two integers
+   * @param l The first integer
+   * @param r The second integer that should be added to the first
+   * @return The integer that is the result of the addition
    */
-  public RealNumber op(BigDecimal l, BigDecimal r) {
-      return (new RealNumber(l.add(r)));
-  }
-}
+      public MyNumber op(MyNumber l, MyNumber r) {
+        AbstractValue real = l.getValue().add(r.getValue());
+        AbstractValue imaginary = l.getImaginary().add(r.getImaginary());
+        return new MyNumber(real, imaginary);
+      }
+
+     @Override
+     public MyNumber op(MyNumber l) {
+         return l;
+     }
+ }

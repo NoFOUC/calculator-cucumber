@@ -1,7 +1,7 @@
 package calculator;
 
 import java.util.List;
-import java.math.BigDecimal;
+
 /** This class represents the arithmetic operation "-".
  * The class extends an abstract superclass Operation.
  * Other subclasses of Operation represent other arithmetic operations.
@@ -9,6 +9,12 @@ import java.math.BigDecimal;
  * @see Plus
  * @see Times
  * @see Divides
+ * @see Factorial
+ * @see General_Exponential
+ * @see Modulo
+ * @see PrimeNumbers
+ * @see BiggerThan
+ * @see LessThan
  */
 public final class Minus extends Operation
  {
@@ -41,12 +47,22 @@ public final class Minus extends Operation
   }
 
     /**
-     * The actual computation of the (binary) arithmetic subtraction of two numbers
-     * @param l The first numbers
-     * @param r The second numbers that should be subtracted from the first
-     * @return The numbers that is the result of the subtraction
+     * The actual computation of the (binary) arithmetic subtraction of two integers
+     * @param l The first integer
+     * @param r The second integer that should be subtracted from the first
+     * @return The integer that is the result of the subtraction
      */
-  public RealNumber op(BigDecimal l, BigDecimal r) {
-      return (new RealNumber(l.subtract(r)));
+  public MyNumber op(MyNumber l, MyNumber r)
+  {
+  	AbstractValue real = l.getValue().sub(r.getValue());
+
+    AbstractValue imaginary = l.getImaginary().sub(r.getImaginary());
+    return new MyNumber(real, imaginary);
+
   }
-}
+
+     @Override
+     public MyNumber op(MyNumber l) {
+         return l;
+     }
+ }

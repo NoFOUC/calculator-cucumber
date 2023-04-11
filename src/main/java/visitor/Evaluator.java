@@ -1,8 +1,8 @@
 package visitor;
 
 import calculator.Expression;
+import calculator.MyNumber;
 import calculator.Operation;
-import calculator.RealNumber;
 
 import java.util.ArrayList;
 
@@ -12,19 +12,19 @@ import java.util.ArrayList;
 public class Evaluator extends Visitor {
 
     /** The result of the evaluation will be stored in this private variable */
-    private RealNumber computedValue;
+    private MyNumber computedValue;
 
     /** getter method to obtain the result of the evaluation
      *
      * @return an Integer object containing the result of the evaluation
      */
-    public RealNumber getResult() { return computedValue; }
+    public MyNumber getResult() { return computedValue; }
 
     /** Use the visitor design pattern to visit a number.
      *
      * @param n The number being visited
      */
-    public void visit(RealNumber n) {
+    public void visit(MyNumber n) {
         computedValue = n;
     }
 
@@ -33,20 +33,26 @@ public class Evaluator extends Visitor {
      * @param o The operation being visited
      */
     public void visit(Operation o) {
-        ArrayList<RealNumber> evaluatedArgs = new ArrayList<>();
+        ArrayList<MyNumber> evaluatedArgs = new ArrayList<>();
         //first loop to recursively evaluate each subexpression
         for(Expression a:o.args) {
             a.accept(this);
             evaluatedArgs.add(computedValue);
         }
         //second loop to accumulate all the evaluated subresults
-        RealNumber temp = evaluatedArgs.get(0);
+        MyNumber temp = evaluatedArgs.get(0);
         int max = evaluatedArgs.size();
-        for(int counter=1; counter<max; counter++) {
-            temp = o.op(temp.getValue(),evaluatedArgs.get(counter).getValue());
+        if (max == 1) {
+            computedValue = o.op(temp);
+        }
+        else {
+            for (int counter = 1; counter < max; counter++) {
+                temp = o.op(temp, evaluatedArgs.get(counter));
+            }
+            computedValue = temp;
         }
         // store the accumulated result
-        computedValue = temp;
+
     }
 
 }

@@ -1,7 +1,7 @@
 package calculator;
 
 import java.util.List;
-import java.math.BigDecimal;
+
 /** This class represents the arithmetic division operation "/".
  * The class extends an abstract superclass Operation.
  * Other subclasses of Operation represent other arithmetic operations.
@@ -9,6 +9,12 @@ import java.math.BigDecimal;
  * @see Minus
  * @see Times
  * @see Plus
+ * @see Factorial
+ * @see General_Exponential
+ * @see Modulo
+ * @see PrimeNumbers
+ * @see BiggerThan
+ * @see LessThan
  */
 public final class Divides extends Operation
 {
@@ -41,12 +47,24 @@ public final class Divides extends Operation
   }
 
     /**
-     * The actual computation of the (binary) arithmetic division of two numbers
-     * @param l The first numbers
-     * @param r The second numbers that should divide the first
-     * @return The numbers that is the result of the division
+     * The actual computation of the (binary) arithmetic division of two integers
+     * @param l The first integer
+     * @param r The second integer that should divide the first
+     * @return The integer that is the result of the division
      */
-  public RealNumber op(BigDecimal l, BigDecimal r) {
-      return (new RealNumber(l.divide(r)));
-  }
+  public MyNumber op(MyNumber l, MyNumber r)
+    { AbstractValue a1 = l.getValue();
+      AbstractValue b1 = l.getImaginary();
+      AbstractValue a2 = r.getValue();
+      AbstractValue b2 = r.getImaginary();
+
+      AbstractValue a = a1.mul(a2).add(b1.mul(b2)).div(a2.mul(a2).add(b2.mul(b2)));
+      AbstractValue b = b1.mul(a2).sub(a1.mul(b2)).div(a2.mul(a2).add(b2.mul(b2)));
+      return new MyNumber(a,b);
+    }
+
+    @Override
+    public MyNumber op(MyNumber l) {
+        return l;
+    }
 }
