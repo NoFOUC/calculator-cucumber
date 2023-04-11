@@ -307,40 +307,40 @@
 
 /*Scroll pane related css*/
 
-.scroll-pane, .scroll-pane > .corner
-{
-    -fx-background: transparent;
-    -fx-background-color: transparent;
-}
+/*.scroll-pane, .scroll-pane > .corner*/
+/*{*/
+/*    -fx-background: transparent;*/
+/*    -fx-background-color: transparent;*/
+/*}*/
 
-.scroll-bar:horizontal, .scroll-bar:vertical
-{
-    -fx-background-color:transparent;
-    /*Quite bizarrely, font size is used to change the overall size of the thing*/
-    -fx-font-size: 6pt;
-}
+/*.scroll-bar:horizontal, .scroll-bar:vertical*/
+/*{*/
+/*    -fx-background-color:transparent;*/
+/*    !*Quite bizarrely, font size is used to change the overall size of the thing*!*/
+/*    -fx-font-size: 6pt;*/
+/*}*/
 
-.increment-button, .decrement-button
-{
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
+/*.increment-button, .decrement-button*/
+/*{*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-border-color: transparent;*/
+/*}*/
 
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track
-{
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0em;
-}
+/*.scroll-bar:horizontal .track,*/
+/*.scroll-bar:vertical .track*/
+/*{*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-border-color: transparent;*/
+/*    -fx-background-radius: 0em;*/
+/*}*/
 
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb
-{
-    -fx-background-color: -fx-accent;
-    -fx-opacity: 0.2;
-    -fx-background-radius: 5em;
-}
+/*.scroll-bar:horizontal .thumb,*/
+/*.scroll-bar:vertical .thumb*/
+/*{*/
+/*    -fx-background-color: -fx-accent;*/
+/*    -fx-opacity: 0.2;*/
+/*    -fx-background-radius: 5em;*/
+/*}*/
 
 /*Chart and table related CSS*/
 
@@ -386,39 +386,4 @@
 .default-color1.chart-line-symbol, .default-color1.chart-bar
 {
     -fx-background-color: -fx-water;
-}
-/* Tables */
-.table-view,
-.table-view .column-header-background,
-.table-view .column-header-background .filler,
-.table-view .column-header,
-.table-view .corner
-{
-    -fx-background-color: -fx-primary-dark;
-    -fx-font-size: 14pt;
-}
-.table-view .column-header
-{
-    -fx-font-size: 10pt;
-}
-.table-view .table-cell
-{
-    -fx-border-color: transparent;
-}
-.table-row-cell
-{
-    -fx-background-color: -fx-primary-light, -fx-primary-dark;
-}
-.table-row-cell:hover
-{
-    -fx-background-color: -fx-accent;
-}
-.table-row-cell:hover .table-cell
-{
-    -fx-text-fill: -fx-primary-dark;
-}
-.table-view .table-cell
-{
-    -fx-text-fill: -fx-accent;
-    -fx-alignment: center;
 }
