@@ -16,6 +16,9 @@ class TestEvaluator {
     private int value1, value2;
 
     private int imaginary1, imaginary2;
+
+    private int denominator1, denominator2, denominator3, denominator4;
+
     @BeforeEach
     void setUp() {
         calc = new Calculator();
@@ -23,6 +26,10 @@ class TestEvaluator {
         value2 = 6;
         imaginary1 = 2;
         imaginary2 = 3;
+        denominator1 = 3;
+        denominator2 = 4;
+        denominator3 = 5;
+        denominator4 = 6;
 
     }
 
@@ -34,6 +41,20 @@ class TestEvaluator {
     @Test
     void testEvaluatorMyComplexNumber() {
         assertEquals( new MyNumber(value1, imaginary1), calc.eval(new MyNumber(value1, imaginary1)));
+    }
+
+    @Test
+    void testEvaluatorMyRationalNumber() {
+        assertEquals( new MyNumber(new RationalValue (new IntegerValue(value1), new IntegerValue(denominator1))),
+                calc.eval(new MyNumber(new RationalValue (new IntegerValue(value1), new IntegerValue(denominator1)))));
+    }
+
+    @Test
+    void testEvaluatorMyComplexRationalNumber() {
+        assertEquals( new MyNumber(new RationalValue (new IntegerValue(value1), new IntegerValue(denominator1)),
+                new RationalValue (new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+                calc.eval(new MyNumber(new RationalValue (new IntegerValue(value1), new IntegerValue(denominator1)),
+                        new RationalValue (new IntegerValue(imaginary1), new IntegerValue(denominator2)))));
     }
 
     @ParameterizedTest
@@ -76,6 +97,57 @@ class TestEvaluator {
                 case "sqrt" ->  assertEquals( new MyNumber((int) Math.sqrt(((value1*value1 + imaginary1*imaginary1)+value1)/2), (int) Math.sqrt(((value1*value1 + imaginary1*imaginary1)-value1)/2)* imaginary1/Math.abs(imaginary1)) , calc.eval(new Sqrt(params)));
                 case "||"   ->  assertEquals(new MyNumber((int) sqrt(value1*value1+ imaginary1*imaginary1)), calc.eval(new Modulus(params)));
                 default		->	fail();
+            }
+        } catch (IllegalConstruction e) {
+            fail();
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"*", "+", "/", "-"})
+    void testEvaluateOperationOnRational(String symbol){
+        List<Expression> params = Arrays.asList(
+                new MyNumber(new RationalValue (new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(new RationalValue (new IntegerValue(value2), new IntegerValue(denominator2))));
+        try {
+            //construct another type of operation depending on the input value
+            //of the parameterised test
+            switch (symbol) {
+                case "+"	->	assertEquals( new MyNumber(new RationalValue (new IntegerValue(value1*denominator2 + value2*denominator1), new IntegerValue(denominator1*denominator2))), calc.eval(new Plus(params)));
+                case "-"	->	assertEquals( new MyNumber(new RationalValue (new IntegerValue(value1*denominator2 - value2*denominator1), new IntegerValue(denominator1*denominator2))), calc.eval(new Minus(params)));
+                case "*"	->	assertEquals( new MyNumber(new RationalValue (new IntegerValue(value1*value2), new IntegerValue(denominator1*denominator2))), calc.eval(new Times(params)));
+                case "/"	->	assertEquals( new MyNumber(new RationalValue (new IntegerValue(value1*denominator2), new IntegerValue(denominator1*value2))), calc.eval(new Divides(params)));
+                // case "sqrt" ->  assertEquals( new MyNumber(new RationalValue (new IntegerValue(Math.sqrt(value1)), new IntegerValue((int) Math.sqrt(denominator1)))), calc.eval(new Sqrt(params)));
+                // case "||"   ->  assertEquals(new MyNumber(new RationalValue (new IntegerValue((int) Math.sqrt(value1*value1)), new IntegerValue((int) Math.sqrt(denominator1*denominator1)))), calc.eval(new Modulus(params)));
+                default		->	fail();
+            }
+        } catch (IllegalConstruction e) {
+            fail();
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"*", "+", "/", "-"})
+    void testEvaluateOperationOnComplexRational (String symbol){
+        List<Expression> params = Arrays.asList(
+                new MyNumber(new RationalValue (new IntegerValue(value1), new IntegerValue(denominator1)), new RationalValue (new IntegerValue(imaginary1), new IntegerValue(denominator3))),
+                new MyNumber(new RationalValue (new IntegerValue(value2), new IntegerValue(denominator2)), new RationalValue (new IntegerValue(imaginary2), new IntegerValue(denominator4))));
+
+        try {
+            // construct another type of operation depending on the input value
+            // of the parameterised test
+            switch (symbol){
+
+                case "+" -> assertEquals(new MyNumber(new RationalValue(new IntegerValue(value1 * denominator2 + value2 * denominator1), new IntegerValue(denominator1 * denominator2)), new RationalValue(new IntegerValue(imaginary1 * denominator4 + imaginary2 * denominator3), new IntegerValue(denominator3 * denominator4))), calc.eval(new Plus(params)));
+                case "-" -> assertEquals(new MyNumber(new RationalValue(new IntegerValue(value1 * denominator2 - value2 * denominator1), new IntegerValue(denominator1 * denominator2)), new RationalValue(new IntegerValue(imaginary1 * denominator4 - imaginary2 * denominator3), new IntegerValue(denominator3 * denominator4))), calc.eval(new Minus(params)));
+                case "*" -> assertEquals(new MyNumber(new RationalValue(new IntegerValue(value1 * value2 * denominator3 * denominator4 - imaginary1 * imaginary2 * denominator1 * denominator2), new IntegerValue(denominator1 * denominator2 * denominator3 * denominator4)), new RationalValue(new IntegerValue(value1 * imaginary2 * denominator3 * denominator2 + value2 * imaginary1 * denominator1 * denominator4), new IntegerValue(denominator1 * denominator2 * denominator3 * denominator4))), calc.eval(new Times(params)));
+                case "/" -> assertEquals(new MyNumber(new RationalValue(
+                        new IntegerValue(((value1 * denominator3 *value2 *denominator4 + imaginary1 * denominator1 *imaginary2 *denominator2)*(denominator2* denominator2* denominator4*denominator4))),
+                        new IntegerValue(denominator1 * denominator2 * denominator3 * denominator4* ((value2 *value2 *denominator4*denominator4) + (imaginary2 * imaginary2 * denominator2 * denominator2)))),
+                                                        new RationalValue(
+                        new IntegerValue(((imaginary1 * denominator1 *value2 *denominator4 - value1 * denominator3 *imaginary2 *denominator2)*(denominator2* denominator2* denominator4*denominator4))),
+                        new IntegerValue(denominator1 * denominator2 * denominator3 * denominator4* ((value2 *value2 *denominator4*denominator4) + (imaginary2 * imaginary2 * denominator2 * denominator2))))), calc.eval(new Divides(params)));
+                default -> fail();
             }
         } catch (IllegalConstruction e) {
             fail();

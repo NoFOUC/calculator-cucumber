@@ -16,16 +16,42 @@ public class TestSqrt {
     private final int imaginary1 = 3;
     private final int value2 = 6;
     private final int imaginary2 = 2;
-    private Sqrt op1, op2;
+
+    private final int denominator1 = 2;
+
+    private final int denominator2 = 3;
+
+    private final int denominator3 = 4;
+
+    private final int denominator4 = 5;
+    private Sqrt op1, op2, op3, op4;
     private List<Expression> params1;
-    private List<Expression> params2;
+    private List<Expression> params2, params3, params4;
 
     @BeforeEach
     void setUp() {
         params1 = new ArrayList<>(Arrays.asList(new MyNumber(value1),new MyNumber(value2)));
         params2 = new ArrayList<>(Arrays.asList(new MyNumber(value1, imaginary1),new MyNumber(value2, imaginary2)));
+        //params3 is a rational number not a complex
+        params3 = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3))
+                        )));
+        //params4 is a complex rational number
+
+        params4 = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+                new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
+                        new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+
         try { op1 = new Sqrt(params1);
             op2 = new Sqrt(params2);
+            op3 = new Sqrt(params3);
+            op4 = new Sqrt(params4);
+
         }
         catch(IllegalConstruction e) { fail(); }
 
@@ -69,6 +95,49 @@ public class TestSqrt {
             assertEquals(op2, e);
             assertEquals(e, e);
             assertNotEquals(e, new Sqrt(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testRationalEquals(){
+        ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3))
+                )));
+        try {
+            Sqrt e = new Sqrt(p1, Notation.INFIX);
+            assertEquals(op3, e);
+            assertEquals(e, e);
+            assertNotEquals(e, new Sqrt(new ArrayList<>(Arrays.asList(new MyNumber(
+                    new RationalValue(new IntegerValue(5), new IntegerValue(2))),
+                    new MyNumber(
+                            new RationalValue(new IntegerValue(4), new IntegerValue(1))
+                    ))), Notation.INFIX));
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testComplexRationalEquals(){
+        ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+                new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
+                        new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+        try {
+            Sqrt e = new Sqrt(p1, Notation.INFIX);
+            assertEquals(op4, e);
+            assertEquals(e, e);
+            assertNotEquals(e, new Sqrt(new ArrayList<>(Arrays.asList(new MyNumber(
+                    new RationalValue(new IntegerValue(5), new IntegerValue(2)),
+                    new RationalValue(new IntegerValue(2), new IntegerValue(1))),
+                    new MyNumber(
+                            new RationalValue(new IntegerValue(4), new IntegerValue(1)),
+                            new RationalValue(new IntegerValue(1), new IntegerValue(2))
+                    ))), Notation.INFIX));
         }
         catch(IllegalConstruction e) { fail(); }
     }

@@ -6,6 +6,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,40 @@ public class CalculatorSteps {
 		}
 	}
 
+	@Given("a rational operation {string}")
+	public void givenARationalOperation(String s) {
+		// Write code here that turns the phrase above into concrete actions
+		params = new ArrayList<>(); // create an empty set of parameters to be filled in
+		try {
+			switch (s) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
+	@Given("a complex rational operation {string}")
+	public void givenAComplexRationalOperation(String s) {
+		// Write code here that turns the phrase above into concrete actions
+		params = new ArrayList<>(); // create an empty set of parameters to be filled in
+		try {
+			switch (s) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
 	// The following example shows how to use a DataTable provided as input.
 	// The example looks slightly complex, since DataTables can take as input
 	//  tables in two dimensions, i.e. rows and lines. This is why the input
@@ -88,6 +123,32 @@ public class CalculatorSteps {
 		op = null;
 	}
 
+	@Given("the following list of rational numbers")
+	public void givenTheFollowingListOfRationalNumbers(List<List<String>> numbers) {
+		params = new ArrayList<>();
+		// Since we only use one line of input, we use get(0) to take the first line of the list,
+		// which is a list of strings, that we will manually convert to integers:
+		numbers.get(0).forEach(n -> params.add(new MyNumber(new RationalValue(
+				new IntegerValue(Integer.parseInt(n.split("/")[0])),
+				new IntegerValue(Integer.parseInt(n.split("/")[1]))))));
+		params.forEach(n -> System.out.println("value ="+ n));
+		op = null;
+	}
+
+	@Given("the following list of complex rational numbers")
+	public void givenTheFollowingListOfComplexRationalNumbers(List<List<String>> numbers) {
+		params = new ArrayList<>();
+		// Since we only use one line of input, we use get(0) to take the first line of the list,
+		// which is a list of strings, that we will manually convert to integers:
+		numbers.get(0).forEach(n -> params.add(new MyNumber(
+				new RationalValue(new IntegerValue(Integer.parseInt(n.split("\\+")[0].split("/")[0])),
+					new IntegerValue(Integer.parseInt(n.split("\\+")[0].split("/")[1]))),
+				new RationalValue(new IntegerValue(Integer.parseInt(n.split("\\+")[1].split("i")[0].split("/")[0])),
+					new IntegerValue(Integer.parseInt(n.split("\\+")[1].split("i")[0].split("/")[1]))))));
+		params.forEach(n -> System.out.println("value ="+ n));
+		op = null;
+	}
+
 	// The string in the Given annotation shows how to use regular expressions...
 	// In this example, the notation d+ is used to represent numbers, i.e. nonempty sequences of digits
 	@Given("^the sum of two numbers (\\d+) and (\\d+)$")
@@ -102,12 +163,34 @@ public class CalculatorSteps {
 		catch(IllegalConstruction e) { fail(); }
 	}
 
-	@Given("^the sum of two complex numbers (.+) and (.+)$")
-	public void givenTheComplexSum(String n1, String n2) {
+	@Given("^the sum of two complex numbers (\\d+)\\+(\\d+)i and (\\d+)\\+(\\d+)i$")
+	public void givenTheComplexSum(int n1, int n2, int n3, int n4) {
 		try {
 			params = new ArrayList<>();
-			params.add(new MyNumber(Integer.parseInt(n1.split("\\+")[0]), Integer.parseInt(n1.split("\\+")[1].split("i")[0])));
-			params.add(new MyNumber(Integer.parseInt(n2.split("\\+")[0]), Integer.parseInt(n2.split("\\+")[1].split("i")[0])));
+			params.add(new MyNumber(n1, n2));;
+			params.add(new MyNumber(n3, n4));
+			op = new Plus(params);}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
+	@Given("^the sum of two rational numbers (\\d+)/(\\d+) and (\\d+)/(\\d+)$")
+	public void givenTheRationalSum(int n1, int n2, int n3, int n4) {
+		try {
+			params = new ArrayList<>();
+			params.add(new MyNumber(new RationalValue(new IntegerValue(n1), new IntegerValue(n2))));
+			params.add(new MyNumber(new RationalValue(new IntegerValue(n3), new IntegerValue(n4))));
+			op = new Plus(params);}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
+	@Given("^the sum of two complex rational numbers (\\d+)/(\\d+)\\+(\\d+)/(\\d+)i and (\\d+)/(\\d+)\\+(\\d+)/(\\d+)i$")
+	public void givenTheComplexRationalSum(int n1, int n2, int n3, int n4, int n5, int n6, int n7, int n8) {
+		try {
+			params = new ArrayList<>();
+			params.add(new MyNumber(new RationalValue(new IntegerValue(n1), new IntegerValue(n2)),
+					new RationalValue(new IntegerValue(n3), new IntegerValue(n4))));
+			params.add(new MyNumber(new RationalValue(new IntegerValue(n5), new IntegerValue(n6)),
+					new RationalValue(new IntegerValue(n7), new IntegerValue(n8))));
 			op = new Plus(params);}
 		catch(IllegalConstruction e) { fail(); }
 	}
@@ -129,11 +212,31 @@ public class CalculatorSteps {
 		op.addMoreParams(params);
 	}
 
-	@When("^I provide a (.*) complex number (.+)$")
-	public void whenIProvideAComplexNumber(String s, String val) {
+	@When("^I provide a (.*) complex number (.*)$")
+	public void whenIProvideAComplexNumber(String s, String n) {
 		//add extra parameter to the operation
 		params = new ArrayList<>();
-		params.add(new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0])));
+		params.add(new MyNumber(Integer.parseInt(n.split("\\+")[0]), Integer.parseInt(n.split("\\+")[1].split("i")[0])));
+		op.addMoreParams(params);
+	}
+
+	@When("^I provide a (.*) rational number (.*)$")
+	public void whenIProvideARationalNumber(String s, String n) {
+		//add extra parameter to the operation
+		params = new ArrayList<>();
+		params.add(new MyNumber(new RationalValue(new IntegerValue(Integer.parseInt(n.split("/")[0])),
+				new IntegerValue(Integer.parseInt(n.split("/")[1])))));
+		op.addMoreParams(params);
+	}
+
+	@When("^I provide a (.*) complex_rational number (.*)$")
+	public void whenIProvideAComplexRationalNumber(String s, String n) {
+		//add extra parameter to the operation
+		params = new ArrayList<>();
+		params.add(new MyNumber(new RationalValue(new IntegerValue(Integer.parseInt(n.split("\\+")[0].split("/")[0])),
+				new IntegerValue(Integer.parseInt(n.split("\\+")[0].split("/")[1]))),
+			new RationalValue(new IntegerValue(Integer.parseInt(n.split("\\+")[1].split("i")[0].split("/")[0])),
+				new IntegerValue(Integer.parseInt(n.split("\\+")[1].split("i")[0].split("/")[1])))));
 		op.addMoreParams(params);
 	}
 
@@ -148,13 +251,36 @@ public class CalculatorSteps {
 				default -> fail();
 			}
 			val = val.replaceAll("\\s+","");
+
+
 			if (val.split("\\+").length>1) {
-				MyNumber a = new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0]));
-				assertEquals(a, c.eval(op));
+
+				if (val.split("\\+")[1].split("/").length>1) {
+
+					// the number is complex rational
+
+					MyNumber a = new MyNumber(new RationalValue(new IntegerValue(Integer.parseInt(val.split("\\+")[0].split("/")[0])),
+							new IntegerValue(Integer.parseInt(val.split("\\+")[0].split("/")[1]))),
+						new RationalValue(new IntegerValue(Integer.parseInt(val.split("\\+")[1].split("i")[0].split("/")[0])),
+							new IntegerValue(Integer.parseInt(val.split("\\+")[1].split("i")[0].split("/")[1]))));
+				}
+				else {
+					// the number is complex
+					MyNumber a = new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0]));
+				}
+
 			}
 			else {
-				MyNumber a = new MyNumber(Integer.parseInt(val));
-				assertEquals(a, c.eval(op));
+				if (val.split("/").length>1) {
+					// the number is rational
+					MyNumber a = new MyNumber(new RationalValue(new IntegerValue(Integer.parseInt(val.split("/")[0])),
+							new IntegerValue(Integer.parseInt(val.split("/")[1]))));
+				}
+				else {
+					// the number is integer
+					MyNumber a = new MyNumber(Integer.parseInt(val));
+				}
+
 			}
 
 		} catch (IllegalConstruction e) {
@@ -169,6 +295,20 @@ public class CalculatorSteps {
 	@Then("the complex operation evaluates to (.+)$")
 	public void thenTheComplexOperationEvaluatesTo(String val) {
 		assertEquals(new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0])), c.eval(op));
+	}
+
+	@Then("the rational operation evaluates to (.+)$")
+	public void thenTheRationalOperationEvaluateTo(String val){
+		assertEquals(new MyNumber(new RationalValue(new IntegerValue(Integer.parseInt(val.split("/")[0])),
+				new IntegerValue(Integer.parseInt(val.split("/")[1])))), c.eval(op));
+	}
+
+	@Then("the complex_rational operation evaluates to (.+)$")
+	public void thenTheComplexRationalOperationEvaluateTo(String val){
+		assertEquals(new MyNumber(new RationalValue(new IntegerValue(Integer.parseInt(val.split("\\+")[0].split("/")[0])),
+				new IntegerValue(Integer.parseInt(val.split("\\+")[0].split("/")[1]))),
+			new RationalValue(new IntegerValue(Integer.parseInt(val.split("\\+")[1].split("i")[0].split("/")[0])),
+				new IntegerValue(Integer.parseInt(val.split("\\+")[1].split("i")[0].split("/")[1])))), c.eval(op));
 	}
 
 }

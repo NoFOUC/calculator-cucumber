@@ -10,15 +10,26 @@ import java.util.List;
 public class TestBiggerThan {
     private final int value1 = 8;
     private final int value2 = 6;
-    private BiggerThan op;
-    private List<Expression> params;
+    private final int denominator1 = 2;
+
+    private final int denominator2 = 3;
+
+    private BiggerThan op, op2;
+    private List<Expression> params, params2;
 
     @BeforeEach
     void setUp() {
         params = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
+        params2 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
         try {
             op = new BiggerThan(params);
             op.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
+
+            op2 = new BiggerThan(params2);
+            op2.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
+
+
         }
         catch(IllegalConstruction e) { fail(); }
     }
@@ -27,6 +38,8 @@ public class TestBiggerThan {
     void testConstructor1() {
         // It should not be possible to create an expression without null parameter list
         assertThrows(IllegalConstruction.class, () -> op = new BiggerThan(null));
+
+
     }
 
     @SuppressWarnings("AssertBetweenInconvertibleTypes")
@@ -49,12 +62,24 @@ public class TestBiggerThan {
     }
 
     @Test
-    void testEquals() {
+    void testEqualsString() {
         // Two similar expressions, constructed separately (and using different constructors) should be equal
         List<Expression> p = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
         try {
             BiggerThan d = new BiggerThan(p, Notation.INFIX);
             assertEquals(op, d);
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testEqualsString2() {
+        // Two similar expressions, constructed separately (and using different constructors) should be equal
+        List<Expression> p = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
+        try {
+            BiggerThan d = new BiggerThan(p, Notation.INFIX);
+            assertEquals(op2, d);
         }
         catch(IllegalConstruction e) { fail(); }
     }
@@ -72,6 +97,18 @@ public class TestBiggerThan {
         try {
             BiggerThan e = new BiggerThan(p, Notation.INFIX);
             assertEquals(e.hashCode(), op.hashCode());
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testHashCode2() {
+        // Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
+        List<Expression> p = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
+        try {
+            BiggerThan e = new BiggerThan(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op2.hashCode());
         }
         catch(IllegalConstruction e) { fail(); }
     }

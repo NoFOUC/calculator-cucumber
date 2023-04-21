@@ -17,16 +17,36 @@ public class TestModulus {
     private final int imaginary1 = 3;
     private final int value2 = 6;
     private final int imaginary2 = 2;
-    private Modulus op1, op2;
+
+    private final int denominator1 = 2;
+
+    private final int denominator2 = 3;
+
+    private final int denominator3 = 4;
+
+    private final int denominator4 = 5;
+    private Modulus op1, op2, op3, op4;
     private List<Expression> params1;
-    private List<Expression> params2;
+    private List<Expression> params2, params3, params4;
 
     @BeforeEach
     void setUp() {
         params1 = new ArrayList<>(Arrays.asList(new MyNumber(value1),new MyNumber(value2)));
         params2 = new ArrayList<>(Arrays.asList(new MyNumber(value1, imaginary1),new MyNumber(value2, imaginary2)));
+        params3 = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)))));
+        params4 = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+                new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
+                        new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
         try { op1 = new Modulus(params1);
             op2 = new Modulus(params2);
+            op3 = new Modulus(params3);
+            op4 = new Modulus(params4);
         }
         catch(IllegalConstruction e) { fail(); }
 
@@ -74,6 +94,38 @@ public class TestModulus {
         catch(IllegalConstruction e) { fail(); }
     }
 
+    @Test
+    void testRationalEquals(){
+        ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)))));
+        try {
+            Modulus e = new Modulus(p1, Notation.INFIX);
+            assertEquals(op3, e);
+            assertEquals(e, e);
+            assertNotEquals(e, new Modulus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testRationalComplexEquals(){
+        ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+                new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
+                        new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+        try {
+            Modulus e = new Modulus(p1, Notation.INFIX);
+            assertEquals(op4, e);
+            assertEquals(e, e);
+            assertNotEquals(e, new Modulus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
     @SuppressWarnings("ConstantConditions")
     @Test
     void testNull() {
@@ -103,6 +155,35 @@ public class TestModulus {
         }
         catch(IllegalConstruction e) { fail(); }
     }
+
+    @Test
+    void testRationalHashCode() {
+        ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)))));
+        try {
+            Modulus e = new Modulus(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op3.hashCode());
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testRationalComplexHashCode() {
+        ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(
+                new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+                new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+                new MyNumber(
+                        new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
+                        new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+        try {
+            Modulus e = new Modulus(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op4.hashCode());
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
     @Test
     void testNullParamList() {
         params1 = null;

@@ -12,6 +12,11 @@ class TestOperation {
 	private Operation o;
 	private Operation o2;
 
+	private Operation o3;
+
+	private Operation o4;
+
+
 	@BeforeEach
 	void setUp() throws Exception {
 		List<Expression> params1 = Arrays.asList(new MyNumber(3), new MyNumber(4), new MyNumber(5));
@@ -22,26 +27,32 @@ class TestOperation {
 		List<Expression> params6 = Arrays.asList(new Plus(params4), new Minus(params5), new MyNumber(7));
 		o = new Divides(params3);
 		o2 = new Divides(params3);
+		o3 = new Divides(params6);
+		o4 = new Divides(params6);
 	}
 
 	@Test
 	void testEquals() {
 		assertEquals(o,o2);
+		assertEquals(o3,o4);
 	}
 
 	@Test
 	void testCountDepth() {
 		assertEquals(2, o.countDepth());
+		assertEquals(2, o3.countDepth());
 	}
 
 	@Test
 	void testCountOps() {
 		assertEquals(3, o.countOps());
+		assertEquals(3, o3.countOps());
 	}
 
 	@Test
 	void testCountNbs() {
 		assertEquals(Integer.valueOf(6), o.countNbs());
+		assertEquals(Integer.valueOf(6), o3.countNbs());
 	}
 
 }

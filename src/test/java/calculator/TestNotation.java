@@ -39,7 +39,7 @@ class TestNotation {
 		testNotation("(" + value1 +" + " + imaginary1 +"i" + ", " + value2 + " + " + imaginary2 + "i" + ") " + symbol, op, Notation.POSTFIX);
 	}
 	@ParameterizedTest
-	@ValueSource(strings = {"*", "+", "/", "-"})
+	@ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
 	void testOutput(String symbol) {
 		int value1 = 8;
 		int value2 = 6;
@@ -54,6 +54,8 @@ class TestNotation {
 				case "-"	->	op = new Minus(params);
 				case "*"	->	op = new Times(params);
 				case "/"	->	op = new Divides(params);
+				case "sqrt"	->	op = new Sqrt(params);
+				case "||"	->	op = new Modulus(params);
 				default		->	fail();
 			}
 		} catch (IllegalConstruction e) {
@@ -63,7 +65,7 @@ class TestNotation {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = {"*", "+", "/", "-"})
+	@ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
 	void testComplexOutput(String symbol) {
 		int value1 = 8;
 		int imaginary1 = 6;
@@ -81,12 +83,70 @@ class TestNotation {
 				case "-"	->	op = new Minus(params);
 				case "*"	->	op = new Times(params);
 				case "/"	->	op = new Divides(params);
+				case "sqrt"	->	op = new Sqrt(params);
+				case "||"	->	op = new Modulus(params);
 				default		->	fail();
 			}
 		} catch (IllegalConstruction e) {
 			fail();
 		}
 		testComplexNotations(symbol, value1, value2, imaginary1, imaginary2, op);
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
+	void testRationalOutput(String symbol) {
+		int value1 = 8;
+		int value2 = 6;
+		int denominator1 = 2;
+		int denominator2 = 3;
+		Operation op = null;
+		List<Expression> params = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+				new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
+		try {
+			//construct another type of operation depending on the input value
+			//of the parameterised test
+			switch (symbol) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				case "sqrt"	->	op = new Sqrt(params);
+				case "||"	->	op = new Modulus(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
+	void testComplexRationalOutput (String symbol) {
+		int value1 = 8;
+		int imaginary1 = 6;
+		int value2 = 6;
+		int imaginary2 = 4;
+		int denominator1 = 2;
+		int denominator2 = 3;
+		Operation op = null;
+		List<Expression> params = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)), new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator1))),
+				new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2)), new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator2))));
+		try {
+			//construct another type of operation depending on the input value
+			//of the parameterised test
+			switch (symbol) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				case "sqrt"	->	op = new Sqrt(params);
+				case "||"	->	op = new Modulus(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
 	}
 
 }

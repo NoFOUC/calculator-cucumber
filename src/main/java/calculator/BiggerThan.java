@@ -60,7 +60,7 @@ public final class BiggerThan extends Operation {
             if (l.getValue().comp(r.getValue()) >= 0) {
                 return new MyNumber(new IntegerValue(1));
             }
-            return new MyNumber(new IntegerValue(1));
+            return new MyNumber(new IntegerValue(0));
         }
     }
 

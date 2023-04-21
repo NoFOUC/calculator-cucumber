@@ -14,16 +14,32 @@ class TestPlus {
 	private final int imaginary1 = 3;
 	private final int value2 = 6;
 	private final int imaginary2 = 2;
-	private Plus op, op2;
-	private List<Expression> params1;
-	private List<Expression> params2;
+
+	private final int denominator1 = 2;
+
+	private final int denominator2 = 3;
+
+	private final int denominator3 = 4;
+
+	private final int denominator4 = 5;
+	private Plus op, op2, op3, op4;
+	private List<Expression> params1, params2, params3, params4;
 
 	@BeforeEach
 	void setUp() {
 		  params1 = new ArrayList<>(Arrays.asList(new MyNumber(value1),new MyNumber(value2)));
 		  params2 = new ArrayList<>(Arrays.asList(new MyNumber(value1, imaginary1),new MyNumber(value2, imaginary2)));
+		  params3 = new ArrayList<>(Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+				  new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)))));
+		  params4 = new ArrayList<>(Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+				  new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+				  new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
+						  new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+
 		  try { op = new Plus(params1);
 			  op2 = new Plus(params2);
+			  op3 = new Plus(params3);
+			  op4 = new Plus(params4);
 		  }
 		  catch(IllegalConstruction e) { fail(); }
 	}
@@ -73,6 +89,34 @@ class TestPlus {
 		try {
 			Plus e = new Plus(p1, Notation.INFIX);
 			assertEquals(op2, e);
+			assertEquals(e, e);
+			assertNotEquals(e, new Plus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+		}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
+	@Test
+	void testRationalEquals() {
+		ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+				new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)))));
+		try {
+			Plus e = new Plus(p1, Notation.INFIX);
+			assertEquals(op3, e);
+			assertEquals(e, e);
+			assertNotEquals(e, new Plus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+		}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
+	@Test
+	void testComplexRationalEquals() {
+		ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+						new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+				new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
+						new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+		try {
+			Plus e = new Plus(p1, Notation.INFIX);
+			assertEquals(op4, e);
 			assertEquals(e, e);
 			assertNotEquals(e, new Plus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
 		}

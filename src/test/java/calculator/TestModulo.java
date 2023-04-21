@@ -9,6 +9,7 @@ import java.util.List;
 public class TestModulo {
     private final int value1 = 8;
     private final int value2 = 6;
+
     private Modulo op;
     private List<Expression> params;
 

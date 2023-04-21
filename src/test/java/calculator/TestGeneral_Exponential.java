@@ -10,15 +10,23 @@ import java.util.List;
 public class TestGeneral_Exponential {
     private final int value1 = 8;
     private final int value2 = 6;
-    private General_Exponential op;
-    private List<Expression> params;
+
+    private final int denominator1 = 2;
+
+    private final int denominator2 = 3;
+
+    private General_Exponential op, op2;
+    private List<Expression> params, params2;
 
     @BeforeEach
     void setUp() {
         params = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
+        params2 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
         try {
             op = new General_Exponential(params);
             op.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
+            op2 = new General_Exponential(params2);
         }
         catch(IllegalConstruction e) { fail(); }
     }
@@ -59,6 +67,19 @@ public class TestGeneral_Exponential {
         catch(IllegalConstruction e) { fail(); }
     }
 
+    @Test
+    void testRationnalEquals(){
+        // Two similar expressions, constructed separately (and using different constructors) should be equal
+        List<Expression> p = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
+        try {
+            General_Exponential d = new General_Exponential(p, Notation.INFIX);
+            assertEquals(op2, d);
+        } catch (IllegalConstruction e) {
+            fail();
+        }
+    }
+
     @SuppressWarnings("ConstantConditions")
     @Test
     void testNull() {
@@ -74,6 +95,19 @@ public class TestGeneral_Exponential {
             assertEquals(e.hashCode(), op.hashCode());
         }
         catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testRationalHashCode(){
+        // Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
+        List<Expression> p = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+                new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
+        try {
+            General_Exponential e = new General_Exponential(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op2.hashCode());
+        } catch (IllegalConstruction e) {
+            fail();
+        }
     }
 
     @Test
