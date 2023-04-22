@@ -157,7 +157,7 @@
 
 .label
 {
-    -fx-text-fill: -fx-accent;
+    -fx-text-fill: white;
     -fx-wrap-text: true;
 }
 
@@ -209,7 +209,7 @@
 }
 .choice-box .menu-item:focused > .label
 {
-    -fx-text-fill: -fx-primary-dark;
+    -fx-text-fill: white;
 }
 
 .tab-pane
@@ -307,40 +307,40 @@
 
 /*Scroll pane related css*/
 
-/*.scroll-pane, .scroll-pane > .corner*/
-/*{*/
-/*    -fx-background: transparent;*/
-/*    -fx-background-color: transparent;*/
-/*}*/
+.scroll-pane, .scroll-pane > .corner
+{
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
 
-/*.scroll-bar:horizontal, .scroll-bar:vertical*/
-/*{*/
-/*    -fx-background-color:transparent;*/
-/*    !*Quite bizarrely, font size is used to change the overall size of the thing*!*/
-/*    -fx-font-size: 6pt;*/
-/*}*/
+.scroll-bar:horizontal, .scroll-bar:vertical
+{
+    -fx-background-color:transparent;
+    /*Quite bizarrely, font size is used to change the overall size of the thing*/
+    -fx-font-size: 6pt;
+}
 
-/*.increment-button, .decrement-button*/
-/*{*/
-/*    -fx-background-color: transparent;*/
-/*    -fx-border-color: transparent;*/
-/*}*/
+.increment-button, .decrement-button
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
 
-/*.scroll-bar:horizontal .track,*/
-/*.scroll-bar:vertical .track*/
-/*{*/
-/*    -fx-background-color: transparent;*/
-/*    -fx-border-color: transparent;*/
-/*    -fx-background-radius: 0em;*/
-/*}*/
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track
+{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
 
-/*.scroll-bar:horizontal .thumb,*/
-/*.scroll-bar:vertical .thumb*/
-/*{*/
-/*    -fx-background-color: -fx-accent;*/
-/*    -fx-opacity: 0.2;*/
-/*    -fx-background-radius: 5em;*/
-/*}*/
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb
+{
+    -fx-background-color: white;
+    /*-fx-opacity: 0.2;*/
+    -fx-background-radius: 5em;
+}
 
 /*Chart and table related CSS*/
 

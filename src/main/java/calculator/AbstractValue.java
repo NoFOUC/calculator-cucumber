@@ -56,6 +56,12 @@ public abstract class AbstractValue {
    * @return The result of the operation
    */
 
+  /**
+   * Method for individualized configuration of the comparison operation
+   *
+   * @param other The other member of the operation
+   * @return The result of the comparison in the same format as java's compare() methods
+   */
   public int comp(AbstractValue other) {
     return this.sub(other).getRawValue().compareTo(BigDecimal.ZERO);
   }

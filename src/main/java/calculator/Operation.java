@@ -76,6 +76,15 @@ public abstract class Operation implements Expression
 	}
 
 	/**
+	 * Setter method for updating the arguments of an arithmetic operation.
+	 *
+	 * @param args The new arguments of the arithmetic operation.
+	 */
+	public void setArgs(List<Expression> args) {
+		this.args = args;
+	}
+
+	/**
 	 * Abstract method representing the actual binary arithmetic operation to compute
 	 * @param l	 first argument of the binary operation
 	 * @param r	second argument of the binary operation

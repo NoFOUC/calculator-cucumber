@@ -1,6 +1,5 @@
 package calculator;
 
-import Converter.ComplexConverter;
 import visitor.Visitor;
 
 import java.math.BigDecimal;
@@ -17,6 +16,10 @@ public class MyNumber implements Expression
     private final AbstractValue value;
 
     private final AbstractValue imaginary;
+
+    private double theta;
+
+    private double r;
 
     /** getter method to obtain the value contained in the object
      *
@@ -39,6 +42,7 @@ public class MyNumber implements Expression
     public /*constructor*/ MyNumber(int v) {
         value= new IntegerValue(v);
         imaginary = new IntegerValue(0);
+        initCartesian();
     }
 
     /**
@@ -51,6 +55,7 @@ public class MyNumber implements Expression
     public MyNumber(int v, int i) {
         value= new IntegerValue(v);
         imaginary = new IntegerValue(i);
+        initCartesian();
     }
 
     /**
@@ -68,6 +73,7 @@ public class MyNumber implements Expression
             value = v;
             imaginary = new IntegerValue(0);
         }
+        initCartesian();
       }
 
     /**
@@ -80,30 +86,36 @@ public class MyNumber implements Expression
     public MyNumber(AbstractValue v, AbstractValue i) {
         value = v;
         imaginary = i;
+        initCartesian();
     }
 
-    /**
-     * Constructor method for a complex number in exponential form
-     * @param exp The exponential form of the number
-     */
-    public MyNumber (MyExp exp) {
-        MyNumber val = ComplexConverter.exponentialToCartesian(exp);
+//    /**
+//     * Constructor method for a complex number in exponential form
+//     * @param exp The exponential form of the number
+//     */
+//    public MyNumber (MyExp exp) {
+//        MyNumber val = ComplexConverter.exponentialToCartesian(exp);
+//
+//        value = val.getValue();
+//        imaginary = val.getImaginary();
+//
+//    }
+//
+//    /**
+//     * Constructor method for a complex number in polar form
+//     * @param pol The polar form of the number
+//     */
+//    public MyNumber (MyPolar pol) {
+//        MyNumber val = ComplexConverter.polarToCartesian(pol);
+//
+//        value = val.getValue();
+//        imaginary = val.getImaginary();
+//    }
 
-        value = val.getValue();
-        imaginary = val.getImaginary();
+    private void initCartesian() {
+        r = Math.sqrt(value.mul(value).add(imaginary.mul(imaginary)).getRawValue().doubleValue());
+        theta = Math.atan2(value.getRawValue().doubleValue(), imaginary.getRawValue().doubleValue());
     }
-
-    /**
-     * Constructor method for a complex number in polar form
-     * @param pol The polar form of the number
-     */
-    public MyNumber (MyPolar pol) {
-        MyNumber val = ComplexConverter.polarToCartesian(pol);
-
-        value = val.getValue();
-        imaginary = val.getImaginary();
-    }
-
 
     public void accept(Visitor v) {
       v.visit(this);
