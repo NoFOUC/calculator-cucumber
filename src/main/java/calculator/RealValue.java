@@ -17,50 +17,94 @@ public class RealValue extends AbstractValue {
         return value;
     }
 
+    /**
+     * Constructor method
+     * @param value
+     * @param precision
+     */
     public RealValue(BigDecimal value, int precision) {
         this.value = value;
         this.precision = precision;
     }
 
+    /**
+     * Constructor method
+     * @param value
+     */
     public RealValue(BigDecimal value) {
         this.value = value;
         this.precision = 10;
     }
 
+    /**
+     * Constructor method
+     * @param value
+     * @param precision
+     */
     public RealValue(double value, int precision) {
-        this.value = new BigDecimal(value);
+        this.value = BigDecimal.valueOf(value);
         this.precision = precision;
     }
 
+    /**
+     * Constructor method
+     * @param value
+     */
     public RealValue(double value) {
-        this.value = new BigDecimal(value);
+        this.value = BigDecimal.valueOf(value);
         this.precision = 10;
     }
 
+    /**
+     * Constructor method
+     * @param value
+     * @param precision
+     */
     public RealValue(int value, int precision) {
         this.value = new BigDecimal(value);
         this.precision = precision;
     }
 
+    /**
+     * Constructor method
+     * @param value
+     */
     public RealValue(int value) {
         this.value = new BigDecimal(value);
         this.precision = 10;
     }
 
+    /**
+     * Constructor method
+     * @param value
+     * @param precision
+     */
     public RealValue(IntegerValue value, int precision) {
         this.value = new BigDecimal(value.getValue());
         this.precision = precision;
     }
 
+    /**
+     * Constructor method
+     * @param value
+     */
     public RealValue(IntegerValue value) {
         this.value = new BigDecimal(value.getValue());
         this.precision = 10;
     }
 
+    /**
+     * Getter method to obtain the precision of the value
+     * @return The precision of the value
+     */
     public int getPrecision() {
         return precision;
     }
 
+    /**
+     * Setter method to set the precision of the value
+     * @param precision The precision of the value
+     */
     public void setPrecision(int precision) {
         this.precision = precision;
     }

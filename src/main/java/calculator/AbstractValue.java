@@ -11,6 +11,10 @@ import java.math.BigDecimal;
  */
 public abstract class AbstractValue {
 
+  /**
+   * Method for returning the raw value of the number
+   * @return The raw value of the number
+   */
   public abstract BigDecimal getRawValue();
 
   /**
@@ -44,6 +48,13 @@ public abstract class AbstractValue {
    * @return The result of the operation
    */
   public abstract AbstractValue div(AbstractValue other);
+
+  /**
+   * Method for individualized configuration of the comparison operation
+   *
+   * @param other The other member of the operation
+   * @return The result of the operation
+   */
 
   public int comp(AbstractValue other) {
     return this.sub(other).getRawValue().compareTo(BigDecimal.ZERO);

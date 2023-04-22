@@ -61,9 +61,9 @@ public class TestRealValue {
         assertNotEquals(number2, number5);
         assertNotEquals(number2, number6);
 
-        assertEquals(number3, number5); //equal because of the simplification of the real value
+        assertEquals(number3, number5);
         assertNotEquals(number3, number4);
-        assertEquals(number3, number6); //equal because of the simplification of the real value
+        assertNotEquals(number3, number6);
 
 
         assertNotEquals(number4, number5);

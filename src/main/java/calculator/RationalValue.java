@@ -15,19 +15,34 @@ public class RationalValue extends AbstractValue {
 
     // TODO Manage division by zero and zero at the numerator
 
+    /**
+     * Method for returning the raw value of the number
+     *
+     * @return The raw value of the number
+     */
     public BigDecimal getRawValue() {
         BigDecimal rawNum = numerator.getRawValue();
         BigDecimal rawDen = denominator.getRawValue();
         return rawNum.divide(rawDen); //TODO: Rounding mode and scale for the division
     }
 
-
+    /**
+     * Constructor method
+     *
+     * @param numerator The integer value to be contained in the object
+     * @param denominator The integer value to be contained in the object
+     */
     public /*constructor*/ RationalValue(IntegerValue numerator, IntegerValue denominator) {
         int gcd = euclidAlgorithm(numerator.getValue(), denominator.getValue());
         this.numerator = new IntegerValue(numerator.getValue() / gcd);
         this.denominator = new IntegerValue(denominator.getValue() / gcd);
     }
 
+    /**
+     * Constructor method
+     *
+     * @param numerator The integer value to be contained in the object
+     */
     public /*constructor*/ RationalValue(IntegerValue numerator) {
         this.numerator = new IntegerValue(numerator.getValue());
         this.denominator = new IntegerValue(1);
@@ -43,10 +58,18 @@ public class RationalValue extends AbstractValue {
         return euclidAlgorithm(b, a % b);
     }
 
+    /**
+     * Getter method for the numerator
+     * @return The numerator
+     */
     public IntegerValue getNumerator() {
         return numerator;
     }
 
+    /**
+     * Getter method for the denominator
+     * @return The denominator
+     */
     public IntegerValue getDenominator() {
         return denominator;
     }
@@ -91,6 +114,7 @@ public class RationalValue extends AbstractValue {
         return new RationalValue(new IntegerValue(n1 * n2), new IntegerValue(d1 * d2));
     }
 
+
     @Override
     public AbstractValue div(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -100,6 +124,11 @@ public class RationalValue extends AbstractValue {
     }
 
 
+    /**
+     * Returns the inverse of the rational number
+     *
+     * @return The inverse of the rational number
+     */
     public RationalValue inverse() {
         return new RationalValue(denominator, numerator);
     }
