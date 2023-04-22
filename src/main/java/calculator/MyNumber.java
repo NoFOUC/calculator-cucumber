@@ -4,7 +4,6 @@ import Converter.ComplexConverter;
 import visitor.Visitor;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
