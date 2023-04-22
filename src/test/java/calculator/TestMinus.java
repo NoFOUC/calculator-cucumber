@@ -4,6 +4,7 @@ package calculator;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,8 +23,12 @@ class TestMinus {
 	private final int denominator3 = 4;
 	private final int denominator4 = 5;
 
-	private Minus op, op2, op3, op4;
-	private List<Expression> params, params2, params3, params4;
+	private final BigDecimal value3BD = new BigDecimal("8.278397");
+
+	private final BigDecimal value4BD = new BigDecimal("6.187802");
+
+	private Minus op, op2, op3, op4, op5;
+	private List<Expression> params, params2, params3, params4, params5;
 
 	@BeforeEach
 	void setUp() {
@@ -39,10 +44,12 @@ class TestMinus {
 				  new MyNumber(
 						  new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
 						  new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4))));
+		  params5 = Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD)));
 		  try { op = new Minus(params);
 		  op2 = new Minus(params2);
 		  op3 = new Minus(params3);
-		  op4 = new Minus(params4);}
+		  op4 = new Minus(params4);
+		  op5 = new Minus(params5);}
 		  catch(IllegalConstruction e) { fail(); }
 	}
 
@@ -126,6 +133,18 @@ class TestMinus {
 
 	}
 
+	@Test
+	void testRealEquals() {
+		// Two similar expressions, constructed separately (and using different constructors) should not be equal
+		List<Expression> p = Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD)));
+		try {
+			Minus e = new Minus(p, Notation.INFIX);
+			assertEquals(op5, e);
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
 	@SuppressWarnings("ConstantConditions")
 	@Test
 	void testNull() {
@@ -181,6 +200,18 @@ class TestMinus {
 		try {
 			Minus e = new Minus(p, Notation.INFIX);
 			assertEquals(e.hashCode(), op4.hashCode());
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
+	@Test
+	void testRealHashCode() {
+		// Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
+		List<Expression> p = Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD)));
+		try {
+			Minus e = new Minus(p, Notation.INFIX);
+			assertEquals(e.hashCode(), op5.hashCode());
 		} catch (IllegalConstruction e) {
 			fail();
 		}

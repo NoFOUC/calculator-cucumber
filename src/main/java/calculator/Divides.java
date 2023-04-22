@@ -1,5 +1,6 @@
 package calculator;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /** This class represents the arithmetic division operation "/".
@@ -57,9 +58,14 @@ public final class Divides extends Operation
       AbstractValue b1 = l.getImaginary();
       AbstractValue a2 = r.getValue();
       AbstractValue b2 = r.getImaginary();
-
       AbstractValue a = a1.mul(a2).add(b1.mul(b2)).div(a2.mul(a2).add(b2.mul(b2)));
       AbstractValue b = b1.mul(a2).sub(a1.mul(b2)).div(a2.mul(a2).add(b2.mul(b2)));
+
+      if (b.equals(new RealValue(0))) {
+          return new MyNumber(a);
+      }
+
+
       return new MyNumber(a,b);
     }
 

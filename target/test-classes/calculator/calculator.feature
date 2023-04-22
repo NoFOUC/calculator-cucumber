@@ -108,6 +108,42 @@ Feature: Integer Arithmetic Expressions
     And I provide a second complex_rational number 5/2+2/2i
     Then the complex_rational operation evaluates to 68/87+4/-87i
 
+  Scenario: Modulo of two integer numbers
+    Given an integer operation '%'
+    When I provide a first number 7
+    And I provide a second number 5
+    Then the operation evaluates to 2
+
+  Scenario: Exponentiation of a integer numbers
+    Given an integer operation '^'
+    When I provide a first number 7
+    Then the operation evaluates to 1096
+
+  Scenario: Factorial of an integer number
+    Given an integer operation '!'
+    When I provide a first number 5
+    Then the operation evaluates to 120
+
+  Scenario: Factorial of 0 is 1
+    Given an integer operation '!'
+    When I provide a first number 0
+    Then the operation evaluates to 1
+
+  Scenario: Factorial of 1 is 1
+    Given an integer operation '!'
+    When I provide a first number 1
+    Then the operation evaluates to 1
+
+  Scenario: Check if a number is prime
+    Given an integer operation 'PRIME'
+    When I provide a first number 5
+    Then the operation evaluates to 1
+
+  Scenario: Check if a number is not prime
+    Given an integer operation 'PRIME'
+    When I provide a first number 6
+    Then the operation evaluates to 0
+
   Scenario: Printing the sum of two integer numbers
     Given the sum of two numbers 8 and 6
     Then its INFIX notation is ( 8 + 6 )

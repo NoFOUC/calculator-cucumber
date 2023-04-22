@@ -4,6 +4,7 @@ package calculator;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,8 +26,12 @@ class TestDivides {
 
     private final int denominator4 = 5;
 
-    private Divides op, op2, op3, op4;
-    private List<Expression> params, params2, params3, params4;
+    private final BigDecimal value3BD = new BigDecimal("8.278397");
+
+    private final BigDecimal value4BD = new BigDecimal("6.187802");
+
+    private Divides op, op2, op3, op4, op5;
+    private List<Expression> params, params2, params3, params4, params5;
 
     @BeforeEach
     void setUp() {
@@ -38,13 +43,14 @@ class TestDivides {
                 new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
                 new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
                         new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4))));
-
+        params5 = Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD)));
         try {
             op = new Divides(params);
             op.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
             op2 = new Divides(params2, Notation.INFIX);
             op3 = new Divides(params3, Notation.INFIX);
             op4 = new Divides(params4, Notation.INFIX);
+            op5 = new Divides(params5, Notation.INFIX);
         }
         catch(IllegalConstruction e) { fail(); }
     }
@@ -125,6 +131,19 @@ class TestDivides {
         catch(IllegalConstruction e) { fail(); }
     }
 
+    @Test
+    void testRealEquals(){
+        // Two similar expressions, constructed separately (and using different constructors) should be equal
+        List<Expression> p = Arrays.asList(
+                new MyNumber(new RealValue(value3BD)),
+                new MyNumber(new RealValue(value4BD)));
+        try {
+            Divides d = new Divides(p, Notation.INFIX);
+            assertEquals(op5, d);
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
     @SuppressWarnings("ConstantConditions")
     @Test
     void testNull() {
@@ -179,6 +198,19 @@ class TestDivides {
         try {
             Divides e = new Divides(p, Notation.INFIX);
             assertEquals(e.hashCode(), op4.hashCode());
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testRealHashCode(){
+        // Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
+        List<Expression> p = Arrays.asList(
+                new MyNumber(new RealValue(value3BD)),
+                new MyNumber(new RealValue(value4BD)));
+        try {
+            Divides e = new Divides(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op5.hashCode());
         }
         catch(IllegalConstruction e) { fail(); }
     }

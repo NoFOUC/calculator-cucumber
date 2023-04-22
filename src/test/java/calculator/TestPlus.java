@@ -4,6 +4,7 @@ package calculator;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,8 +23,17 @@ class TestPlus {
 	private final int denominator3 = 4;
 
 	private final int denominator4 = 5;
-	private Plus op, op2, op3, op4;
-	private List<Expression> params1, params2, params3, params4;
+
+	private final BigDecimal value3BD = new BigDecimal("8.278397");
+
+	private final BigDecimal value4BD = new BigDecimal("6.187802");
+
+	private final BigDecimal value5BD = new BigDecimal("14.466199");
+
+	private final BigDecimal value6BD = new BigDecimal("8.466199");
+
+	private Plus op, op2, op3, op4, op5, op6;
+	private List<Expression> params1, params2, params3, params4, params5, params6;
 
 	@BeforeEach
 	void setUp() {
@@ -35,11 +45,16 @@ class TestPlus {
 				  new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
 				  new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
 						  new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+		  params5 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD))));
+		  params6 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD), new RealValue(value5BD)),
+				  new MyNumber(new RealValue(value4BD), new RealValue(value6BD))));
 
 		  try { op = new Plus(params1);
 			  op2 = new Plus(params2);
 			  op3 = new Plus(params3);
 			  op4 = new Plus(params4);
+			  op5 = new Plus(params5);
+			  op6 = new Plus(params6);
 		  }
 		  catch(IllegalConstruction e) { fail(); }
 	}
@@ -123,6 +138,31 @@ class TestPlus {
 		catch(IllegalConstruction e) { fail(); }
 	}
 
+	@Test
+	void testRealEquals(){
+		ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD))));
+		try {
+			Plus e = new Plus(p1, Notation.INFIX);
+			assertEquals(op5, e);
+			assertEquals(e, e);
+			assertNotEquals(e, new Plus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+		}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
+	@Test
+	void testComplexRealEquals(){
+		ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD), new RealValue(value5BD)),
+				new MyNumber(new RealValue(value4BD), new RealValue(value6BD))));
+		try {
+			Plus e = new Plus(p1, Notation.INFIX);
+			assertEquals(op6, e);
+			assertEquals(e, e);
+			assertNotEquals(e, new Plus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+		}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
 	@SuppressWarnings("ConstantConditions")
 	@Test
 	void testNull() {
@@ -142,6 +182,17 @@ class TestPlus {
 	}
 
 	@Test
+	void testRationalHashCode() {
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+				new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)))));
+		try {
+			Plus e = new Plus(p, Notation.INFIX);
+			assertEquals(e.hashCode(), op3.hashCode());
+		}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
+	@Test
 	void testComplexHashCode() {
 		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1, imaginary1), new MyNumber(value2, imaginary2)));
 		try {
@@ -150,6 +201,41 @@ class TestPlus {
 		}
 		catch(IllegalConstruction e) { fail(); }
 	}
+
+	@Test
+	void testComplexRationalHashCode() {
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+						new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
+				new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
+						new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+		try {
+			Plus e = new Plus(p, Notation.INFIX);
+			assertEquals(e.hashCode(), op4.hashCode());
+		}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
+	@Test
+	void testRealHashCode() {
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD))));
+		try {
+			Plus e = new Plus(p, Notation.INFIX);
+			assertEquals(e.hashCode(), op5.hashCode());
+		}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
+	@Test
+	void testComplexRealHashCode() {
+		ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD), new RealValue(value5BD)),
+				new MyNumber(new RealValue(value4BD), new RealValue(value6BD))));
+		try {
+			Plus e = new Plus(p, Notation.INFIX);
+			assertEquals(e.hashCode(), op6.hashCode());
+		}
+		catch(IllegalConstruction e) { fail(); }
+	}
+
 	@Test
 	void testNullParamList() {
 		params1 = null;

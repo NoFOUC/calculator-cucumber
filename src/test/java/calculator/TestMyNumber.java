@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 class TestMyNumber {
@@ -16,12 +17,21 @@ class TestMyNumber {
 
 	private final int denominator2 = 4;
 
+	private final BigDecimal valueBD1 = new BigDecimal("8.278397");
+
+	private final BigDecimal valueBD2 = new BigDecimal("6.187802");
+
+
 	private MyNumber number;
 	private MyNumber complexNumber;
 
 	private MyNumber rationalNumber;
 
 	private MyNumber rationalComplexNumber;
+
+	private MyNumber realNumber;
+
+	private MyNumber realComplexNumber;
 	
 	@BeforeEach
 	void setUp() {
@@ -29,6 +39,8 @@ class TestMyNumber {
 		complexNumber = new MyNumber(value, imaginary);
 		rationalNumber = new MyNumber(new RationalValue (new IntegerValue(value), new IntegerValue(denominator1)));
 		rationalComplexNumber = new MyNumber(new RationalValue (new IntegerValue(value), new IntegerValue(denominator1)), new RationalValue (new IntegerValue(imaginary), new IntegerValue(denominator2)));
+		realNumber = new MyNumber(new RealValue(valueBD1));
+		realComplexNumber = new MyNumber(new RealValue(valueBD1), new RealValue(valueBD2));
 	}
 
 	@Test
@@ -90,6 +102,37 @@ class TestMyNumber {
 		assertNotEquals(rationalComplexNumber, value); // number is of type MyNumber, while value is of type int, so not equal
 		try {
 			assertNotEquals(new Times(new ArrayList<>()), rationalComplexNumber);
+		}
+		catch (IllegalConstruction e) {fail();}
+	}
+
+	@Test
+	void testRealEquals(){
+		// Two distinct MyNumber, constructed separately (using a different constructor) but containing the same value should be equal
+		assertEquals(new MyNumber(new RealValue(valueBD1)), realNumber);
+		// Two MyNumbers containing a distinct value should not be equal:
+		BigDecimal otherValue = new BigDecimal("7.278397");
+		assertNotEquals(new MyNumber(new RealValue(otherValue)),realNumber);
+		assertEquals(realNumber, realNumber); // Identity check (for coverage, as this should always be true)
+		assertNotEquals(realNumber, value); // number is of type MyNumber, while value is of type int, so not equal
+		try {
+			assertNotEquals(new Times(new ArrayList<>()), realNumber);
+		}
+		catch (IllegalConstruction e) {fail();}
+	}
+
+	@Test
+	void testRealComplexEquals(){
+		// Two distinct MyNumber, constructed separately (using a different constructor) but containing the same value should be equal
+		assertEquals(new MyNumber(new RealValue(valueBD1), new RealValue(valueBD2)), realComplexNumber);
+		// Two MyNumbers containing a distinct value should not be equal:
+		BigDecimal otherValue = new BigDecimal("7.278397");
+		BigDecimal otherImaginary = new BigDecimal("5.187802");
+		assertNotEquals(new MyNumber(new RealValue(otherValue), new RealValue(otherImaginary)),realComplexNumber);
+		assertEquals(realComplexNumber, realComplexNumber); // Identity check (for coverage, as this should always be true)
+		assertNotEquals(realComplexNumber, value); // number is of type MyNumber, while value is of type int, so not equal
+		try {
+			assertNotEquals(new Times(new ArrayList<>()), realComplexNumber);
 		}
 		catch (IllegalConstruction e) {fail();}
 	}

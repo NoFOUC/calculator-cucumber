@@ -3,6 +3,9 @@ package calculator;
 import Converter.ComplexConverter;
 import visitor.Visitor;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
  * which are a special kind of Expressions, just like operations are.
@@ -57,8 +60,15 @@ public class MyNumber implements Expression
      * @param v The integer value to be contained in the object
      */
     public /*constructor*/ MyNumber(AbstractValue v) {
-      value=v;
-      imaginary = new IntegerValue(0);
+
+        if (v instanceof RealValue){
+            value = v;
+            imaginary = new RealValue(new BigDecimal(0));
+        }
+        else {
+            value = v;
+            imaginary = new IntegerValue(0);
+        }
       }
 
     /**

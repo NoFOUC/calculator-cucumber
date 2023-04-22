@@ -40,6 +40,10 @@ public class CalculatorSteps {
 				case "-"	->	op = new Minus(params);
 				case "*"	->	op = new Times(params);
 				case "/"	->	op = new Divides(params);
+				case "%"	->	op = new Modulo(params);
+				case "!" 	->	op = new Factorial(params);
+				case "PRIME" -> op = new PrimeNumbers(params);
+				case "^" 	->	op = new General_Exponential(params);
 				default		->	fail();
 			}
 		} catch (IllegalConstruction e) {

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -132,6 +133,56 @@ class TestNotation {
 		Operation op = null;
 		List<Expression> params = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)), new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator1))),
 				new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2)), new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator2))));
+		try {
+			//construct another type of operation depending on the input value
+			//of the parameterised test
+			switch (symbol) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				case "sqrt"	->	op = new Sqrt(params);
+				case "||"	->	op = new Modulus(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
+	void testRealOutput(String symbol){
+		BigDecimal value1 = new BigDecimal(8.17893828);
+		BigDecimal value2 = new BigDecimal(6.349738);
+		Operation op = null;
+		List<Expression> params = Arrays.asList(new MyNumber(new RealValue(value1)), new MyNumber(new RealValue(value2)));
+		try {
+			//construct another type of operation depending on the input value
+			//of the parameterised test
+			switch (symbol) {
+				case "+"	->	op = new Plus(params);
+				case "-"	->	op = new Minus(params);
+				case "*"	->	op = new Times(params);
+				case "/"	->	op = new Divides(params);
+				case "sqrt"	->	op = new Sqrt(params);
+				case "||"	->	op = new Modulus(params);
+				default		->	fail();
+			}
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
+	@ParameterizedTest
+	@ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
+	void testComplexRealOutput (String symbol){
+		BigDecimal value1 = new BigDecimal(8.19392);
+		BigDecimal imaginary1 = new BigDecimal(6.3742874);
+		BigDecimal value2 = new BigDecimal(6.348774);
+		BigDecimal imaginary2 = new BigDecimal(4.23892);
+		Operation op = null;
+		List<Expression> params = Arrays.asList(new MyNumber(new RealValue(value1), new RealValue(imaginary1)), new MyNumber(new RealValue(value2), new RealValue(imaginary2)));
 		try {
 			//construct another type of operation depending on the input value
 			//of the parameterised test

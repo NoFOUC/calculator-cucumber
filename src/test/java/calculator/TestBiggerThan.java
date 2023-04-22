@@ -3,6 +3,7 @@ package calculator;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,14 +15,20 @@ public class TestBiggerThan {
 
     private final int denominator2 = 3;
 
-    private BiggerThan op, op2;
-    private List<Expression> params, params2;
+    private final BigDecimal value3BD = new BigDecimal("8.278397");
+
+    private final BigDecimal value4BD = new BigDecimal("6.187802");
+
+
+    private BiggerThan op, op2, op3;
+    private List<Expression> params, params2, params3;
 
     @BeforeEach
     void setUp() {
         params = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
         params2 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
                 new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
+        params3 = Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD)));
         try {
             op = new BiggerThan(params);
             op.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
@@ -29,7 +36,8 @@ public class TestBiggerThan {
             op2 = new BiggerThan(params2);
             op2.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
 
-
+            op3 = new BiggerThan(params3);
+            op3.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
         }
         catch(IllegalConstruction e) { fail(); }
     }
@@ -84,6 +92,17 @@ public class TestBiggerThan {
         catch(IllegalConstruction e) { fail(); }
     }
 
+    @Test
+    void testEqualsString3() {
+        // Two similar expressions, constructed separately (and using different constructors) should be equal
+        List<Expression> p = Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD)));
+        try {
+            BiggerThan d = new BiggerThan(p, Notation.INFIX);
+            assertEquals(op3, d);
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
     @SuppressWarnings("ConstantConditions")
     @Test
     void testNull() {
@@ -109,6 +128,17 @@ public class TestBiggerThan {
         try {
             BiggerThan e = new BiggerThan(p, Notation.INFIX);
             assertEquals(e.hashCode(), op2.hashCode());
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testHashCode3() {
+        // Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
+        List<Expression> p = Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD)));
+        try {
+            BiggerThan e = new BiggerThan(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op3.hashCode());
         }
         catch(IllegalConstruction e) { fail(); }
     }

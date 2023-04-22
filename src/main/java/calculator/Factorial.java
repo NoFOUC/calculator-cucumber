@@ -65,7 +65,13 @@ public final class Factorial extends Operation {
             } else if (l.getValue().equals(new IntegerValue(1))) {
                 return new MyNumber(1);
             } else {
-                return new MyNumber(l.getValue().mul(l.getValue().sub(new IntegerValue(1))));
+                // make factorial iterative
+                int temp = 1;
+                Integer l_val = ((IntegerValue) l.getValue()).getValue();
+                for (int i = 2; i <= l_val; i++) {
+                    temp *= i;
+                }
+                return new MyNumber(temp);
             }
         }
     }

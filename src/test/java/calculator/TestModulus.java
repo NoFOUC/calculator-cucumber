@@ -3,6 +3,7 @@ package calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,9 +26,17 @@ public class TestModulus {
     private final int denominator3 = 4;
 
     private final int denominator4 = 5;
-    private Modulus op1, op2, op3, op4;
-    private List<Expression> params1;
-    private List<Expression> params2, params3, params4;
+
+    private final BigDecimal value3BD = new BigDecimal("8.278397");
+
+    private final BigDecimal value4BD = new BigDecimal("6.187802");
+
+    private final BigDecimal value5BD = new BigDecimal("10.483974");
+
+    private final BigDecimal value6BD = new BigDecimal("7.810249");
+
+    private Modulus op1, op2, op3, op4, op5, op6;
+    private List<Expression> params1, params2, params3, params4, params5, params6;
 
     @BeforeEach
     void setUp() {
@@ -43,10 +52,16 @@ public class TestModulus {
                 new MyNumber(
                         new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
                         new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
+        params5 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD))));
+
+        params6 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD), new RealValue(value5BD)),new MyNumber(new RealValue(value4BD), new RealValue(value6BD))));
+
         try { op1 = new Modulus(params1);
             op2 = new Modulus(params2);
             op3 = new Modulus(params3);
             op4 = new Modulus(params4);
+            op5 = new Modulus(params5);
+            op6 = new Modulus(params6);
         }
         catch(IllegalConstruction e) { fail(); }
 
@@ -126,11 +141,35 @@ public class TestModulus {
         catch(IllegalConstruction e) { fail(); }
     }
 
+    @Test
+    void testRealEquals(){
+        ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD))));
+        try {
+            Modulus e = new Modulus(p1, Notation.INFIX);
+            assertEquals(op5, e);
+            assertEquals(e, e);
+            assertNotEquals(e, new Modulus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testComplexRealEquals(){
+        ArrayList<Expression> p1 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD), new RealValue(value5BD)),new MyNumber(new RealValue(value4BD), new RealValue(value6BD))));
+        try {
+            Modulus e = new Modulus(p1, Notation.INFIX);
+            assertEquals(op6, e);
+            assertEquals(e, e);
+            assertNotEquals(e, new Modulus(new ArrayList<>(Arrays.asList(new MyNumber(5, 2), new MyNumber(4, 1))), Notation.INFIX));
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
     @SuppressWarnings("ConstantConditions")
     @Test
     void testNull() {
         assertDoesNotThrow(() -> op1==null);
-        assertDoesNotThrow(() -> op2==null); // Direct way to to test if the null case is handled.
+        assertDoesNotThrow(() -> op2==null); // Direct way to test if the null case is handled.
     }
 
     @Test
@@ -180,6 +219,26 @@ public class TestModulus {
         try {
             Modulus e = new Modulus(p, Notation.INFIX);
             assertEquals(e.hashCode(), op4.hashCode());
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testRealHashCode() {
+        ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD))));
+        try {
+            Modulus e = new Modulus(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op5.hashCode());
+        }
+        catch(IllegalConstruction e) { fail(); }
+    }
+
+    @Test
+    void testComplexRealHashCode() {
+        ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD), new RealValue(value5BD)),new MyNumber(new RealValue(value4BD), new RealValue(value6BD))));
+        try {
+            Modulus e = new Modulus(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op6.hashCode());
         }
         catch(IllegalConstruction e) { fail(); }
     }

@@ -1,6 +1,8 @@
 package calculator;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -67,6 +69,14 @@ public class Main {
 		c.print(e);
 		c.eval(e);
 
+		BigDecimal value3 = new BigDecimal("8.278397");
+		BigDecimal value4 = new BigDecimal("6.187802");
+		List<Expression> params7 = Arrays.asList(
+				new MyNumber(new RealValue(value3)),
+				new MyNumber(new RealValue(value4)));
+
+		c.print(new Divides(params7));
+		c.eval(new Divides(params7));
 	}
 
 	catch(IllegalConstruction exception) {
