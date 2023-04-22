@@ -190,8 +190,8 @@ class TestEvaluator {
             switch (symbol) {
                 case "+" -> assertEquals(new MyNumber(new RealValue(value3.add(value4))), calc.eval(new Plus(params)));
                 case "-" -> assertEquals(new MyNumber(new RealValue(value3.subtract(value4))), calc.eval(new Minus(params)));
-                //case "/" -> assertEquals(new MyNumber(new RealValue(value3.divide(value4))), calc.eval(new Divides(params)));
-                //case "*" -> assertEquals(new MyNumber(new RealValue(value3.multiply(value4))), calc.eval(new Times(params)));
+                case "/" -> assertEquals(new MyNumber(new RealValue(value3.divide(value4, 12, RoundingMode.HALF_UP))), calc.eval(new Divides(params)));
+                case "*" -> assertEquals(new MyNumber(new RealValue(value3.multiply(value4))), calc.eval(new Times(params)));
             }
 
         } catch (IllegalConstruction e) {

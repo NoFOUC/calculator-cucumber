@@ -1,5 +1,6 @@
 package calculator;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /** This class represents the arithmetic multiplication operation "*".
@@ -60,6 +61,12 @@ public final class Times extends Operation
 
         AbstractValue a = a1.mul(a2).sub(b1.mul(b2));
         AbstractValue b = a1.mul(b2).add(b1.mul(a2));
+
+        if (b instanceof RealValue && b.getRawValue() instanceof BigDecimal) {
+            if (((BigDecimal) b.getRawValue()).compareTo(BigDecimal.ZERO) == 0) {
+                b = new RealValue(BigDecimal.valueOf(0));
+            }
+        }
         return new MyNumber(a,b);
     }
 

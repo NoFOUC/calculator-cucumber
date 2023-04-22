@@ -61,11 +61,11 @@ public final class Divides extends Operation
       AbstractValue a = a1.mul(a2).add(b1.mul(b2)).div(a2.mul(a2).add(b2.mul(b2)));
       AbstractValue b = b1.mul(a2).sub(a1.mul(b2)).div(a2.mul(a2).add(b2.mul(b2)));
 
-      if (b.equals(new RealValue(0))) {
-          return new MyNumber(a);
+      if (b instanceof RealValue && b.getRawValue() instanceof BigDecimal) {
+    	  if (((BigDecimal) b.getRawValue()).compareTo(BigDecimal.ZERO) == 0) {
+    		  b = new RealValue(BigDecimal.valueOf(0));
+    	  }
       }
-
-
       return new MyNumber(a,b);
     }
 
