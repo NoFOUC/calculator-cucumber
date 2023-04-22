@@ -42,7 +42,7 @@ public class MyNumber implements Expression
     public /*constructor*/ MyNumber(int v) {
         value= new IntegerValue(v);
         imaginary = new IntegerValue(0);
-        initCartesian();
+        initPolarCoordinates();
     }
 
     /**
@@ -55,7 +55,7 @@ public class MyNumber implements Expression
     public MyNumber(int v, int i) {
         value= new IntegerValue(v);
         imaginary = new IntegerValue(i);
-        initCartesian();
+        initPolarCoordinates();
     }
 
     /**
@@ -73,7 +73,7 @@ public class MyNumber implements Expression
             value = v;
             imaginary = new IntegerValue(0);
         }
-        initCartesian();
+        initPolarCoordinates();
       }
 
     /**
@@ -86,7 +86,7 @@ public class MyNumber implements Expression
     public MyNumber(AbstractValue v, AbstractValue i) {
         value = v;
         imaginary = i;
-        initCartesian();
+        initPolarCoordinates();
     }
 
 //    /**
@@ -112,9 +112,10 @@ public class MyNumber implements Expression
 //        imaginary = val.getImaginary();
 //    }
 
-    private void initCartesian() {
-        r = Math.sqrt(value.mul(value).add(imaginary.mul(imaginary)).getRawValue().doubleValue());
-        theta = Math.atan2(value.getRawValue().doubleValue(), imaginary.getRawValue().doubleValue());
+    private void initPolarCoordinates() {
+        // TODO: Throws some kind of arithmetics error
+//        r = Math.sqrt(value.mul(value).add(imaginary.mul(imaginary)).getRawValue().doubleValue());
+//        theta = Math.atan2(value.getRawValue().doubleValue(), imaginary.getRawValue().doubleValue());
     }
 
     public void accept(Visitor v) {
