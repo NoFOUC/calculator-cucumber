@@ -161,6 +161,8 @@ public class CalculatorController {
         button8.setOnAction((event) -> addNumber(8));
         button9.setOnAction((event) -> addNumber(9));
 
+        buttonComma.setOnAction((event) -> addOperation(","));
+
         buttonPlus.setOnAction((event) -> addOperation("+"));
         buttonMinus.setOnAction((event) -> addOperation("-"));
 
