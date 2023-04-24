@@ -2,6 +2,7 @@ package parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import calculator.IntegerValue;
 import calculator.MyNumber;
 import calculator.RationalValue;
 import calculator.RealValue;
@@ -17,12 +18,16 @@ public class TestParser {
     @BeforeEach
     public void setUp() {
 
+        calcul.add(new ArrayList<Object>(Arrays.asList("exp", "0")));
+        calcul.add("*");
         calcul.add("2");
         calcul.add(".");
         calcul.add("3");
         calcul.add("*");
-        calcul.add(new ArrayList<Object>(Arrays.asList("1", "*", "2")));
+        calcul.add(new ArrayList<Object>(Arrays.asList("1", "*", "3")));
         calcul.add("+");
+        calcul.add(new ArrayList<Object>(Arrays.asList("sqrt", "1")));
+        calcul.add("*");
         calcul.add("2");
         calcul.add(".");
         calcul.add("3");
@@ -33,6 +38,7 @@ public class TestParser {
         calcul.add("2");
         calcul.add("%");
         calcul.add("3");
+
     }
 
 
@@ -40,17 +46,21 @@ public class TestParser {
     public void testParsing () {
 
         try {
-
             MyNumber a = Parser.main(calcul);
+            assertEquals("8.90 + 6.90i",a.toString());
 
+            // pb avec approximation
+            //assertEquals(a, new MyNumber(new RealValue(8.90), new RealValue(6.90)));
 
-            System.out.println(a);
-
-            assertEquals("6.6 + 6.9i",a.toString());
-            assertEquals(a.toString(), new MyNumber(new RealValue(6.6), new RealValue(6.9)).toString());
         } catch (Exception e) {
             fail();
         }
+
+
+    }
+
+    @Test
+    public void testPriority() {
 
 
     }

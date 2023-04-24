@@ -24,7 +24,7 @@ public class Calculator {
      * @param e the arithmetic Expression to be printed
      * @see #printExpressionDetails(Expression) 
      */
-    public void print(Expression e) {
+    public void print(Expression e) throws IllegalConstruction {
         System.out.println("The result of evaluating expression " + e);
         System.out.println("is: " + eval(e) + ".");
         System.out.println();
@@ -35,7 +35,7 @@ public class Calculator {
      * @param e the arithmetic Expression to be printed
      * @see #print(Expression)
      */
-    public void printExpressionDetails(Expression e) {
+    public void printExpressionDetails(Expression e) throws IllegalConstruction {
         print(e);
         System.out.print("It contains " + e.countDepth() + " levels of nested expressions, ");
         System.out.print(e.countOps() + " operations");
@@ -48,7 +48,7 @@ public class Calculator {
      * @param e the arithmetic Expression to be evaluated
      * @return The result of the evaluation
      */
-    public MyNumber eval(Expression e) {
+    public MyNumber eval(Expression e) throws IllegalConstruction {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process

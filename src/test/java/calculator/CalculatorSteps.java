@@ -292,23 +292,30 @@ public class CalculatorSteps {
 		}
 	}
 
-	@Then("the operation evaluates to (\\d+)$")
-	public void thenTheOperationEvaluatesTo(int val) {
-		assertEquals(new MyNumber(val), c.eval(op));
+	@Then("the operation evaluates to (.+)$")
+	public void thenTheOperationEvaluatesTo(String val) throws IllegalConstruction {
+
+		if (val.contains(".")) {
+			assertEquals(new MyNumber(new RealValue(Double.parseDouble(val))), c.eval(op));
+		}
+		else {
+			assertEquals(new MyNumber(Integer.parseInt(val)), c.eval(op));
+		}
+
 	}
 	@Then("the complex operation evaluates to (.+)$")
-	public void thenTheComplexOperationEvaluatesTo(String val) {
+	public void thenTheComplexOperationEvaluatesTo(String val) throws IllegalConstruction {
 		assertEquals(new MyNumber(Integer.parseInt(val.split("\\+")[0]), Integer.parseInt(val.split("\\+")[1].split("i")[0])), c.eval(op));
 	}
 
 	@Then("the rational operation evaluates to (.+)$")
-	public void thenTheRationalOperationEvaluateTo(String val){
+	public void thenTheRationalOperationEvaluateTo(String val) throws IllegalConstruction {
 		assertEquals(new MyNumber(new RationalValue(new IntegerValue(Integer.parseInt(val.split("/")[0])),
 				new IntegerValue(Integer.parseInt(val.split("/")[1])))), c.eval(op));
 	}
 
 	@Then("the complex_rational operation evaluates to (.+)$")
-	public void thenTheComplexRationalOperationEvaluateTo(String val){
+	public void thenTheComplexRationalOperationEvaluateTo(String val) throws IllegalConstruction {
 		assertEquals(new MyNumber(new RationalValue(new IntegerValue(Integer.parseInt(val.split("\\+")[0].split("/")[0])),
 				new IntegerValue(Integer.parseInt(val.split("\\+")[0].split("/")[1]))),
 			new RationalValue(new IntegerValue(Integer.parseInt(val.split("\\+")[1].split("i")[0].split("/")[0])),

@@ -33,7 +33,7 @@ public class RealValue extends AbstractValue {
      */
     public RealValue(BigDecimal value) {
         this.value = value;
-        this.precision = 10;
+        this.precision = 12;
     }
 
     /**
@@ -52,7 +52,7 @@ public class RealValue extends AbstractValue {
      */
     public RealValue(double value) {
         this.value = BigDecimal.valueOf(value);
-        this.precision = 10;
+        this.precision = 12;
     }
 
     /**
@@ -71,7 +71,7 @@ public class RealValue extends AbstractValue {
      */
     public RealValue(int value) {
         this.value = new BigDecimal(value);
-        this.precision = 10;
+        this.precision = 12;
     }
 
     /**
@@ -90,7 +90,7 @@ public class RealValue extends AbstractValue {
      */
     public RealValue(IntegerValue value) {
         this.value = new BigDecimal(value.getValue());
-        this.precision = 10;
+        this.precision = 12;
     }
 
     /**
@@ -154,6 +154,11 @@ public class RealValue extends AbstractValue {
     }
 
     @Override
+    public RealValue toReal() {
+        return this;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null) {
             return false;
@@ -175,6 +180,7 @@ public class RealValue extends AbstractValue {
     @Override
     public String toString() {
         // return the value or the scientific notation of the value if it's too big
+
         if (this.value.compareTo(new BigDecimal(precision)) > 0) {
             return this.value.toEngineeringString();
         } else {

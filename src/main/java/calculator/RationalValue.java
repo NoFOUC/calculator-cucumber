@@ -1,6 +1,8 @@
 package calculator;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
@@ -121,6 +123,22 @@ public class RationalValue extends AbstractValue {
             other = new RationalValue((IntegerValue) other);
         }
         return mul(((RationalValue) other).inverse());
+    }
+
+    @Override
+    public RealValue toReal() throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+        params.add(new MyNumber(this.getNumerator()));
+        params.add(new MyNumber(this.getDenominator()));
+
+        e = new Divides(params);
+
+        return (RealValue) c.eval(e).getValue();
+
     }
 
 

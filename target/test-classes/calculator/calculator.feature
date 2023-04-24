@@ -117,7 +117,7 @@ Feature: Integer Arithmetic Expressions
   Scenario: Exponentiation of a integer numbers
     Given an integer operation '^'
     When I provide a first number 7
-    Then the operation evaluates to 1096
+    Then the operation evaluates to 1096.6331584284583
 
   Scenario: Factorial of an integer number
     Given an integer operation '!'

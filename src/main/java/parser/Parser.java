@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
 public class Parser {
+
+
+    private static final ArrayList<String> beforepriority = new ArrayList<String>
+            (Arrays.asList("sqrt", "exp",  "^", "||", "sin", "cos", "tan", "asin", "acos", "atan"));
 
 
     public static MyNumber main(ArrayList<Object> args) throws IllegalConstruction {
@@ -23,8 +28,9 @@ public class Parser {
 
 
         // call the list to make the priority of the operator and return the result
+        //OLD
         //ArrayList<CustomType> makePriority = makePriority(parsedNumberAndOperator);
-
+        //NEW
         ArrayList<CustomType> makePriority2 = newMakePriority(parsedNumberAndOperator);
 
         return makePriority2.get(0).getMyNumber();
@@ -32,7 +38,7 @@ public class Parser {
     }
 
 
-
+    /*
     public static ArrayList<ArrayList<Object>> parseParenthesis (ArrayList<Object> args) {
 
         // Create 3 list of string before, inside, and after the parenthesis
@@ -84,6 +90,7 @@ public class Parser {
         }
         return parenthesis;
     }
+    */
 
 
     public static ArrayList<CustomType> parseNumberAndOperator (ArrayList<CustomType> args) {
@@ -102,9 +109,6 @@ public class Parser {
 
             if (args.get(i).isString()) {
 
-
-
-
                 // Check if the element is a number
                 if (args.get(i).isString() && (args.get(i).getString()).matches("[0-9]")){
                     temp.add((args.get(i).getString()));
@@ -114,7 +118,6 @@ public class Parser {
                     temp.add(args.get(i).getString());
                     type = TypeEnum.RealValue;
                 }
-
 
                 /**
                  * Here it's the end of a number and the beginning of an operator
@@ -141,12 +144,7 @@ public class Parser {
                             temp =  new ParserList();
                             type = TypeEnum.IntegerValue;
                         }
-                        else if (args.get(i).getString().equals("sqrt")) {
-                            numberAndOperator.add(new CustomType(args.get(i).getString()));
-                            temp =  new ParserList();
-                            type = TypeEnum.IntegerValue;
-                        }
-                        else if (args.get(i).getString().equals("^") || args.get(i).getString().equals("exp")) {
+                        else if (beforepriority.contains(args.get(i).getString())) {
                             numberAndOperator.add(new CustomType(args.get(i).getString()));
                             temp =  new ParserList();
                             type = TypeEnum.IntegerValue;
@@ -194,8 +192,12 @@ public class Parser {
             }
         }
 
-        temp.setType(type);
-        numberAndOperator.add(new CustomType(temp));
+        if (temp.size() != 0 && !(numberAndOperator.get(numberAndOperator.size()-1).equals(temp))){
+            temp.setType(type);
+            numberAndOperator.add(new CustomType(temp));
+        }
+
+
 
 
 
@@ -215,6 +217,10 @@ public class Parser {
 
                     for (int k = 0; k< (args.get(j)).getParserList().size(); k++) {
                         numberString += (args.get(j)).getParserList().get(k);
+                    }
+
+                    if (numberString.equals("")) {
+                        numberString = "0";
                     }
 
                     MyNumber number = new MyNumber(Integer.parseInt(numberString));
@@ -276,12 +282,13 @@ public class Parser {
 
     }
 
-
+/*
     public static ArrayList<CustomType> makePriority (ArrayList<CustomType> args) throws IllegalConstruction {
 
         ArrayList<CustomType> tempPar = new ArrayList<>();
         boolean sqrt = false;
         boolean exp = false;
+
 
         if (args.get(0).isString()){
 
@@ -413,28 +420,71 @@ public class Parser {
         return tempAddMin;
 
     }
-
+*/
     public static ArrayList<CustomType> newMakePriority (ArrayList<CustomType> args) throws IllegalConstruction {
 
-        ArrayList<CustomType> tempPar = new ArrayList<>();
-        boolean sqrt = false;
-        boolean exp = false;
 
-        if (args.get(0).isString()) {
+        if (args.get(0).isString() && beforepriority.contains(args.get(0).getString())) {
 
-            if (args.get(0).getString().equals("sqrt")) {
-                sqrt = true;
+            String operation = args.get(0).getString();
+            args.remove(0);
+            args = newMakePriority(args);
 
-                tempPar.add(new CustomType(args.get(0).getString()));
-                args.remove(0);
-                tempPar.add(new CustomType(args));
+            if (operation.equals("sqrt")) {
 
-            } else if (args.get(0).getString().equals("exp") || args.get(0).getString().equals("^")) {
-                exp = true;
+                args = sqrtParsing(args);
 
-                tempPar.add(new CustomType(args.get(0).getString()));
-                args.remove(0);
-                tempPar.add(new CustomType(args));
+
+            } else if (operation.equals("exp")) {
+
+                args = expParsing(args);
+            }
+            else if (operation.equals("||")) {
+
+                args = modulusParsing(args);
+            }
+
+            //UNUSED
+            /*
+            else if (operation.equals("!")) {
+
+                factoParsing(args);
+            }
+            */
+
+
+            // done for Loic extension
+            /*
+            else if (operation.equals("sin")) {
+
+                sinParsing(args);
+            }
+            else if (operation.equals("cos")) {
+
+                cosParsing(args);
+            }
+            else if (operation.equals("tan")) {
+
+                tanParsing(args);
+            }
+            else if (operation.equals("asin")) {
+
+                asinParsing(args);
+            }
+            else if (operation.equals("acos")) {
+
+                acosParsing(args);
+            }
+            else if (operation.equals("atan")) {
+
+                atanParsing(args);
+            }
+            else if (operation.equals("ln")) {
+
+                lnParsing(args);
+            } */
+            else {
+                new Exception("IllegalConstruction").printStackTrace();
             }
 
         }
@@ -450,7 +500,7 @@ public class Parser {
             }
         }
 
-        ArrayList<String> priority = new ArrayList<String>(Arrays.asList("%", "*", "/", "+", "-"));
+        ArrayList<String> priority = new ArrayList<String>(Arrays.asList("!", "%", "*", "/", "+", "-", "<", ">"));
         ArrayList tempPriority = new ArrayList<CustomType>();
         for (int i = 0; i < priority.size(); i++) {
 
@@ -474,6 +524,9 @@ public class Parser {
                     if (a.equals("%")) {
                         args.add(j-1, new CustomType(modParsing(1, temp).get(0).getMyNumber()));
                     }
+                    else if (a.equals("!")){
+                        args.add(j-1,new CustomType(factoParsing(1, temp).get(0).getMyNumber()));
+                    }
                     else if (a.equals("*")) {
                         args.add(j-1,new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
                     }
@@ -486,9 +539,16 @@ public class Parser {
                     else if (a.equals("-")) {
                         args.add(j-1,new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
                     }
-                    else {
-                        Exception e = new Exception();
+                    else if (a.equals("<")) {
+                        args.add(j-1,new CustomType(lessParsing(1, temp).get(0).getMyNumber()));
                     }
+                    else if (a.equals(">")) {
+                        args.add(j-1,new CustomType(greaterParsing(1, temp).get(0).getMyNumber()));
+                    }
+                    else {
+                        new Exception("IllegalConstruction").printStackTrace();
+                    }
+
 
                     j = j - 1;
 
@@ -632,6 +692,59 @@ public class Parser {
 
     }
 
+    public static ArrayList<CustomType> lessParsing (int i, ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        if (args.get(i).isString() && args.get(i).getString().equals("<")) {
+
+            if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
+                Expression e;
+                Calculator c = new Calculator();
+                params.add(args.get(i - 1).getMyNumber());
+                params.add(args.get(i + 1).getMyNumber());
+
+                e = new LessThan(params);
+
+                CustomType temp = new CustomType(c.eval(e));
+
+                args.set(i - 1, temp);
+                args.remove(i);
+                args.remove(i);
+
+            }
+
+        }
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> greaterParsing (int i, ArrayList<CustomType> args) throws IllegalConstruction{
+        List<Expression> params = new ArrayList<>();
+
+        if (args.get(i).isString() && args.get(i).getString().equals(">")) {
+
+            if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
+                Expression e;
+                Calculator c = new Calculator();
+                params.add(args.get(i - 1).getMyNumber());
+                params.add(args.get(i + 1).getMyNumber());
+
+                e = new BiggerThan(params);
+
+                CustomType temp = new CustomType(c.eval(e));
+
+                args.set(i - 1, temp);
+                args.remove(i);
+                args.remove(i);
+
+            }
+
+        }
+
+        return args;
+    }
+
     public static ArrayList<CustomType> sqrtParsing (ArrayList<CustomType> args) throws IllegalConstruction {
 
         List<Expression> params = new ArrayList<>();
@@ -675,5 +788,170 @@ public class Parser {
 
         return args;
     }
+
+    public static ArrayList<CustomType> modulusParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        e = new Modulus(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> factoParsing (int i, ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(i-1).getMyNumber());
+
+        e = new Factorial(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+
+
+        args.set(0, temp);
+
+
+
+        return args;
+    }
+
+    /*
+    public static ArrayList<CustomType> lnParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        //e = new Ln(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> sinParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        //e = new Sin(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> cosParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        //e = new Cos(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+    public static ArrayList<CustomType> tanParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        //e = new Tan(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> asinParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        //e = new Asin(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> acosParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        //e = new Acos(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> atanParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        //e = new Atan(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+    */
 
 }

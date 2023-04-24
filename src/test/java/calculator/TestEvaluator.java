@@ -42,23 +42,23 @@ class TestEvaluator {
     }
 
     @Test
-    void testEvaluatorMyNumber() {
+    void testEvaluatorMyNumber() throws IllegalConstruction {
         assertEquals(new MyNumber(value1), calc.eval(new MyNumber(value1)));
     }
 
     @Test
-    void testEvaluatorMyComplexNumber() {
+    void testEvaluatorMyComplexNumber() throws IllegalConstruction {
         assertEquals(new MyNumber(value1, imaginary1), calc.eval(new MyNumber(value1, imaginary1)));
     }
 
     @Test
-    void testEvaluatorMyRationalNumber() {
+    void testEvaluatorMyRationalNumber() throws IllegalConstruction {
         assertEquals(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
                 calc.eval(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)))));
     }
 
     @Test
-    void testEvaluatorMyComplexRationalNumber() {
+    void testEvaluatorMyComplexRationalNumber() throws IllegalConstruction {
         assertEquals(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
                         new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
                 calc.eval(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
@@ -66,7 +66,7 @@ class TestEvaluator {
     }
 
     @Test
-    void testEvaluatorMyRealNumber() {
+    void testEvaluatorMyRealNumber() throws IllegalConstruction {
         assertEquals(new MyNumber(new RealValue(value3)),
                 calc.eval(new MyNumber(new RealValue(value3))));
     }

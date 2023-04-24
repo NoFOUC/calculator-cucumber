@@ -132,4 +132,17 @@ public class IntegerValue extends AbstractValue {
         return value;
     }
 
+    /**
+     * methods that return a RealValue and traduct IntegerValue to RealValue
+     */
+    //methods that return a RealValue and traduct IntegerValue to RealValue
+    @Override
+    public RealValue toReal () {
+
+        RealValue real = new RealValue(value);
+
+        return real;
+
+    }
+
 }

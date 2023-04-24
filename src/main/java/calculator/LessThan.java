@@ -52,7 +52,7 @@ public final class LessThan extends Operation {
      * @return 1 if the first integer is less than the second integer, 0 otherwise
      */
     @Override
-    public MyNumber op(MyNumber l, MyNumber r) {
+    public MyNumber op(MyNumber l, MyNumber r) throws IllegalConstruction {
 
         //same as BiggerThan
         if (l.isComplex() || r.isComplex()) {
@@ -60,6 +60,20 @@ public final class LessThan extends Operation {
         }
         else{
 
+            if (l.getValue() instanceof RealValue && !(r.getValue() instanceof RealValue)) {
+
+                if ((l.getValue().comp(r.getValue().toReal())) <= 0){
+                    return new MyNumber(new IntegerValue(1));
+                }
+                return new MyNumber(new IntegerValue(0));
+            }
+            if (r.getValue() instanceof RealValue && !(l.getValue() instanceof RealValue)) {
+
+                if ((r.getValue().comp(l.getValue().toReal())) <= 0){
+                    return new MyNumber(new IntegerValue(1));
+                }
+                return new MyNumber(new IntegerValue(0));
+            }
             if (l.getValue().comp(r.getValue()) <= 0) {
                 return new MyNumber(new IntegerValue(1));
             }

@@ -52,11 +52,26 @@ public final class BiggerThan extends Operation {
      * @return The integer that is the result of the comparison
      */
     @Override
-    public MyNumber op(MyNumber l, MyNumber r) {
+    public MyNumber op(MyNumber l, MyNumber r) throws IllegalConstruction {
         if (l.isComplex() || r.isComplex()) {
             throw new IllegalArgumentException("Comparison of complex numbers is not defined");
         }
         else{
+
+            if (l.getValue() instanceof RealValue && !(r.getValue() instanceof RealValue)) {
+
+                if ((l.getValue().comp(r.getValue().toReal())) >= 0){
+                    return new MyNumber(new IntegerValue(1));
+                }
+                return new MyNumber(new IntegerValue(0));
+            }
+            if (r.getValue() instanceof RealValue && !(l.getValue() instanceof RealValue)) {
+
+                if ((r.getValue().comp(l.getValue().toReal())) >= 0){
+                    return new MyNumber(new IntegerValue(1));
+                }
+                return new MyNumber(new IntegerValue(0));
+            }
             if (l.getValue().comp(r.getValue()) >= 0) {
                 return new MyNumber(new IntegerValue(1));
             }

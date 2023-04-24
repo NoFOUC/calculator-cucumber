@@ -1,5 +1,6 @@
 package calculator;
 
+import converter.ComplexConverter;
 import visitor.Visitor;
 
 import java.math.BigDecimal;
@@ -42,7 +43,6 @@ public class MyNumber implements Expression {
     public /*constructor*/ MyNumber(int v) {
         value= new IntegerValue(v);
         imaginary = new IntegerValue(0);
-        initPolarCoordinates();
     }
 
     /**
@@ -55,7 +55,6 @@ public class MyNumber implements Expression {
     public MyNumber(int v, int i) {
         value= new IntegerValue(v);
         imaginary = new IntegerValue(i);
-        initPolarCoordinates();
     }
 
     /**
@@ -73,7 +72,6 @@ public class MyNumber implements Expression {
             value = v;
             imaginary = new IntegerValue(0);
         }
-        initPolarCoordinates();
       }
 
     /**
@@ -86,36 +84,13 @@ public class MyNumber implements Expression {
     public MyNumber(AbstractValue v, AbstractValue i) {
         value = v;
         imaginary = i;
-        initPolarCoordinates();
     }
 
-//    /**
-//     * Constructor method for a complex number in exponential form
-//     * @param exp The exponential form of the number
-//     */
-//    public MyNumber (MyExp exp) {
-//        MyNumber val = ComplexConverter.exponentialToCartesian(exp);
-//
-//        value = val.getValue();
-//        imaginary = val.getImaginary();
-//
-//    }
-//
-//    /**
-//     * Constructor method for a complex number in polar form
-//     * @param pol The polar form of the number
-//     */
-//    public MyNumber (MyPolar pol) {
-//        MyNumber val = ComplexConverter.polarToCartesian(pol);
-//
-//        value = val.getValue();
-//        imaginary = val.getImaginary();
-//    }
+    public MyNumber(MyExpPol e) {
 
-    private void initPolarCoordinates() {
-        // TODO: Throws some kind of arithmetics error
-//        r = Math.sqrt(value.mul(value).add(imaginary.mul(imaginary)).getRawValue().doubleValue());
-//        theta = Math.atan2(value.getRawValue().doubleValue(), imaginary.getRawValue().doubleValue());
+        MyNumber number = ComplexConverter.exponentialToCartesian(e);
+        value = number.getValue();
+        imaginary = number.getImaginary();
     }
 
     public void accept(Visitor v) {
@@ -152,7 +127,13 @@ public class MyNumber implements Expression {
      * @return True if the number is complex, false otherwise
      */
     public boolean isComplex (){
-        return !imaginary.equals(new IntegerValue(0));
+
+        if (imaginary instanceof RealValue) {
+            return !imaginary.equals(new RealValue(0));
+        }
+        else {
+            return !imaginary.equals(new IntegerValue(0));
+        }
     }
 
     /**

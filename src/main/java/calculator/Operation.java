@@ -90,7 +90,7 @@ public abstract class Operation implements Expression
 	 * @param r	second argument of the binary operation
 	 * @return	result of computing the binary operation
 	 */
-	public abstract MyNumber op(MyNumber l, MyNumber r);
+	public abstract MyNumber op(MyNumber l, MyNumber r) throws IllegalConstruction;
 
 	/**
 	 * Abstract method representing the actual unary arithmetic operation to compute
@@ -115,7 +115,7 @@ public abstract class Operation implements Expression
 	 *
 	 * @param v	The visitor object
 	 */
-	public void accept(Visitor v) {
+	public void accept(Visitor v) throws IllegalConstruction {
 	for(Expression a:args) { a.accept(v); }
 	v.visit(this);
 	}
@@ -175,6 +175,7 @@ public abstract class Operation implements Expression
 	* @return	The String that is the result of the conversion.
 	*/
 	public final String toString(Notation n) {
+
 	   Stream<String> s = args.stream().map(Object::toString);
 	   return switch (n) {
 		   case INFIX -> "( " +

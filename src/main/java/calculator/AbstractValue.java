@@ -66,4 +66,6 @@ public abstract class AbstractValue {
     return this.sub(other).getRawValue().compareTo(BigDecimal.ZERO);
   }
 
+    //methods that return a RealValue and traduct IntegerValue to RealValue
+    public abstract RealValue toReal() throws IllegalConstruction;
 }
