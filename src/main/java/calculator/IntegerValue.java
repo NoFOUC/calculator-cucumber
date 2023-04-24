@@ -66,6 +66,9 @@ public class IntegerValue extends AbstractValue {
         if (other instanceof IntegerValue) {
             return new IntegerValue(value * ((IntegerValue) other).getValue());
         }
+        if (other instanceof RealValue) {
+            return other.mul(this);
+        }
         return null;
     }
 

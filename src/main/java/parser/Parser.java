@@ -2,6 +2,7 @@ package parser;
 
 import calculator.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,9 +10,10 @@ import java.util.List;
 
 public class Parser {
 
-
     private static final ArrayList<String> beforepriority = new ArrayList<String>
-            (Arrays.asList("sqrt", "exp",  "^", "||", "sin", "cos", "tan", "asin", "acos", "atan"));
+            (Arrays.asList("√", "exp", "||", "sin", "cos", "tan", "asin", "acos", "atan"));
+
+    private static final ArrayList<String> priority = new ArrayList<String> (Arrays.asList("!", "%", "*", "/", "+", "-", "<", ">"));
 
 
     public static MyNumber main(ArrayList<Object> args) throws IllegalConstruction {
@@ -192,6 +194,7 @@ public class Parser {
             }
         }
 
+
         if (temp.size() != 0 && !(numberAndOperator.get(numberAndOperator.size()-1).equals(temp))){
             temp.setType(type);
             numberAndOperator.add(new CustomType(temp));
@@ -213,17 +216,24 @@ public class Parser {
 
                 if ((args.get(j)).getParserList().getType() == TypeEnum.IntegerValue) {
 
-                    String numberString = "";
+                    StringBuilder numberString = new StringBuilder();
 
                     for (int k = 0; k< (args.get(j)).getParserList().size(); k++) {
-                        numberString += (args.get(j)).getParserList().get(k);
+                        numberString.append((args.get(j)).getParserList().get(k));
                     }
 
-                    if (numberString.equals("")) {
-                        numberString = "0";
+                    if (numberString.toString().equals("")) {
+                        numberString = new StringBuilder("0");
                     }
 
-                    MyNumber number = new MyNumber(Integer.parseInt(numberString));
+                    MyNumber number;
+
+                    if (numberString.toString().length() > 10) {
+                        number = new MyNumber(new RealValue(new BigDecimal(numberString.toString())));
+                    }
+                    else {
+                        number = new MyNumber(Integer.parseInt(numberString.toString()));
+                    }
 
                     myNumberAndOperator.add(new CustomType(number));
 
@@ -231,39 +241,39 @@ public class Parser {
 
                 if ((args.get(j)).getParserList().getType() == TypeEnum.ComplexValue) {
 
-                    String numberString = "";
+                    StringBuilder numberString = new StringBuilder();
 
                     for (int k = 0; k< (args.get(j)).getParserList().size(); k++) {
-                        numberString += (args.get(j)).getParserList().get(k);
+                        numberString.append((args.get(j)).getParserList().get(k));
                     }
 
-                    MyNumber number = new MyNumber(0, Integer.parseInt(numberString));
+                    MyNumber number = new MyNumber(0, Integer.parseInt(numberString.toString()));
 
                     myNumberAndOperator.add(new CustomType(number));
                 }
 
                 if ((args.get(j)).getParserList().getType() == TypeEnum.RealValue) {
 
-                    String numberString = "";
+                    StringBuilder numberString = new StringBuilder();
 
                     for (int k = 0; k< (args.get(j)).getParserList().size(); k++) {
-                        numberString += (args.get(j)).getParserList().get(k);
+                        numberString.append((args.get(j)).getParserList().get(k));
                     }
 
-                    MyNumber number = new MyNumber(new RealValue(Double.parseDouble(numberString)));
+                    MyNumber number = new MyNumber(new RealValue(Double.parseDouble(numberString.toString())));
 
                     myNumberAndOperator.add(new CustomType(number));
                 }
 
                 if ((args.get(j)).getParserList().getType() == TypeEnum.ComplexRealValue) {
 
-                    String numberString = "";
+                    StringBuilder numberString = new StringBuilder();
 
                     for (int k = 0; k< (args.get(j)).getParserList().size(); k++) {
-                        numberString += (args.get(j)).getParserList().get(k);
+                        numberString.append((args.get(j)).getParserList().get(k));
                     }
 
-                    MyNumber number = new MyNumber(new RealValue(0), new RealValue(Double.parseDouble(numberString)));
+                    MyNumber number = new MyNumber(new RealValue(0), new RealValue(Double.parseDouble(numberString.toString())));
 
                     myNumberAndOperator.add(new CustomType(number));
                 }
@@ -430,21 +440,13 @@ public class Parser {
             args.remove(0);
             args = newMakePriority(args);
 
-            if (operation.equals("sqrt")) {
+            switch (operation) {
+                case "√" -> args = sqrtParsing(args);
+                case "exp" -> args = expParsing(args);
+                case "||" -> args = modulusParsing(args);
 
-                args = sqrtParsing(args);
 
-
-            } else if (operation.equals("exp")) {
-
-                args = expParsing(args);
-            }
-            else if (operation.equals("||")) {
-
-                args = modulusParsing(args);
-            }
-
-            //UNUSED
+                //UNUSED
             /*
             else if (operation.equals("!")) {
 
@@ -453,7 +455,7 @@ public class Parser {
             */
 
 
-            // done for Loic extension
+                // done for Loic extension
             /*
             else if (operation.equals("sin")) {
 
@@ -483,8 +485,7 @@ public class Parser {
 
                 lnParsing(args);
             } */
-            else {
-                new Exception("IllegalConstruction").printStackTrace();
+                default -> new Exception("IllegalConstruction");
             }
 
         }
@@ -500,8 +501,6 @@ public class Parser {
             }
         }
 
-        ArrayList<String> priority = new ArrayList<String>(Arrays.asList("!", "%", "*", "/", "+", "-", "<", ">"));
-        ArrayList tempPriority = new ArrayList<CustomType>();
         for (int i = 0; i < priority.size(); i++) {
 
 
@@ -521,32 +520,14 @@ public class Parser {
                     args.remove(j - 1);
 
                     String a = temp.get(1).getString();
-                    if (a.equals("%")) {
-                        args.add(j-1, new CustomType(modParsing(1, temp).get(0).getMyNumber()));
-                    }
-                    else if (a.equals("!")){
-                        args.add(j-1,new CustomType(factoParsing(1, temp).get(0).getMyNumber()));
-                    }
-                    else if (a.equals("*")) {
-                        args.add(j-1,new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
-                    }
-                    else if (a.equals("/")) {
-                        args.add(j-1,new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
-                    }
-                    else if (a.equals("+")) {
-                        args.add(j-1,new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
-                    }
-                    else if (a.equals("-")) {
-                        args.add(j-1,new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
-                    }
-                    else if (a.equals("<")) {
-                        args.add(j-1,new CustomType(lessParsing(1, temp).get(0).getMyNumber()));
-                    }
-                    else if (a.equals(">")) {
-                        args.add(j-1,new CustomType(greaterParsing(1, temp).get(0).getMyNumber()));
-                    }
-                    else {
-                        new Exception("IllegalConstruction").printStackTrace();
+                    switch (a) {
+                        case "%" -> args.add(j - 1, new CustomType(modParsing(1, temp).get(0).getMyNumber()));
+                        case "!" -> args.add(j - 1, new CustomType(factoParsing(1, temp).get(0).getMyNumber()));
+                        case "*", "/" -> args.add(j - 1, new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
+                        case "+", "-" -> args.add(j - 1, new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
+                        case "<" -> args.add(j - 1, new CustomType(lessParsing(1, temp).get(0).getMyNumber()));
+                        case ">" -> args.add(j - 1, new CustomType(greaterParsing(1, temp).get(0).getMyNumber()));
+                        default -> new Exception("IllegalConstruction");
                     }
 
 
@@ -681,7 +662,7 @@ public class Parser {
 
                 args.set(i - 1, temp);
                 args.remove(i);
-                args.remove(i + 1);
+                args.remove(i);
 
             }
 
