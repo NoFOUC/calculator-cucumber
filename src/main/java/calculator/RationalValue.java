@@ -137,7 +137,16 @@ public class RationalValue extends AbstractValue {
 
         e = new Divides(params);
 
-        return (RealValue) c.eval(e).getValue();
+        AbstractValue result = c.eval(e).getValue();
+
+        RationalValue RV = (RationalValue) result;
+
+        BigDecimal value = new BigDecimal(RV.getNumerator().getValue()).divide(new BigDecimal(RV.getDenominator().getValue()), 12, BigDecimal.ROUND_HALF_UP);
+
+        BigDecimal value2 = new BigDecimal(value.doubleValue());
+
+        return new RealValue(value2);
+
 
     }
 

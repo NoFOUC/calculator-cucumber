@@ -67,7 +67,7 @@ public final class BiggerThan extends Operation {
             }
             if (r.getValue() instanceof RealValue && !(l.getValue() instanceof RealValue)) {
 
-                if ((r.getValue().comp(l.getValue().toReal())) >= 0){
+                if ((l.getValue().toReal().comp(r.getValue())) >= 0){
                     return new MyNumber(new IntegerValue(1));
                 }
                 return new MyNumber(new IntegerValue(0));

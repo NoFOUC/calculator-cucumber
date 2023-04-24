@@ -5,6 +5,7 @@ package calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,5 +52,17 @@ class TestRationalValue {
 		assertEquals("4", number2.toString());
 		assertEquals("(1/4)", number3.toString());
 	}
+
+	@Test
+	void testToReal () throws IllegalConstruction {
+		RationalValue rationalValue = new RationalValue(new IntegerValue(8), new IntegerValue(7));
+
+		assertEquals(new RealValue(new BigDecimal(1.142857142857)), rational1.toReal());
+		assertEquals(new RealValue(4.000000000000), rational2.toReal());
+		assertEquals(new RealValue(0.25), rational3.toReal());
+
+		//assertEquals(rationalValue.toReal(), rational1.toReal());
+	}
+
 
 }

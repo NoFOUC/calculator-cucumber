@@ -587,7 +587,7 @@ public class Parser {
 
                 args.set(i - 1, temp);
                 args.remove(i);
-                args.remove(i + 1);
+                args.remove(i);
 
             }
 

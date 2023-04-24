@@ -78,7 +78,10 @@ public class IntegerValue extends AbstractValue {
             return new RationalValue(this).div(other);
         }
         if (other instanceof IntegerValue) {
-            return new IntegerValue(value / ((IntegerValue) other).getValue());
+            return new RationalValue(new IntegerValue(value), ((IntegerValue) other));
+        }
+        if (other instanceof RealValue) {
+            return new RealValue(value).div(other);
         }
         return null;
     }

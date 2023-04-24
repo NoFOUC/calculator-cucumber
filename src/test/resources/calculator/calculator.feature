@@ -88,13 +88,13 @@ Feature: Integer Arithmetic Expressions
     Given an integer operation '/'
     When I provide a first number 7
     And I provide a second number 5
-    Then the operation evaluates to 1
+    Then the rational operation evaluates to 7/5
 
   Scenario: Dividing two complex numbers
     Given an integer operation '/'
     When I provide a first complex number 7+3i
     And I provide a second complex number 5+5i
-    Then the complex operation evaluates to 1+0i
+    Then the complex_rational operation evaluates to 1/1+2/-5i
 
   Scenario: Dividing two rational numbers
     Given a rational operation '/'
@@ -224,13 +224,13 @@ Feature: Integer Arithmetic Expressions
     Given an integer operation '/'
     When I provide a first number <n1>
     And I provide a second number <n2>
-    Then the operation evaluates to <result>
+    Then the rational operation evaluates to <result>
 
     Examples:
       |n1|n2|result|
-      |35|5|7|
-      |7|5|1|
-      |5|7|0|
+      |35|5|35/5|
+      |7|5|7/5|
+      |5|7|5/7|
 
   Scenario Outline: Evaluating arithmetic operations with two integer parameters
     Given an integer operation <op>

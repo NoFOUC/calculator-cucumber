@@ -26,29 +26,8 @@ public class TestParser {
     @BeforeEach
     public void setUp() {
 
+        calcul = new ArrayList<>();
 
-        calcul.add(new ArrayList<Object>(Arrays.asList("exp", "0")));
-        calcul.add("*");
-        calcul.add(new ArrayList<Object>(Arrays.asList("||", "1", "i")));
-        calcul.add("*");
-        calcul.add("2");
-        calcul.add(".");
-        calcul.add("3");
-        calcul.add("*");
-        calcul.add(new ArrayList<Object>(Arrays.asList("1", "*", "3")));
-        calcul.add("+");
-        calcul.add(new ArrayList<Object>(Arrays.asList("√", "1")));
-        calcul.add("*");
-        calcul.add("2");
-        calcul.add(".");
-        calcul.add("3");
-        calcul.add("i");
-        calcul.add("*");
-        calcul.add("3");
-        calcul.add("+");
-        calcul.add("2");
-        calcul.add("%");
-        calcul.add("3");
 
         s = "1.2+3!*3+73%";
 
@@ -83,11 +62,34 @@ public class TestParser {
 
 
     @Test
-    public void testParsing () {
+    public void testmultipleParsing () {
+
+        calcul.add(new ArrayList<Object>(Arrays.asList("exp", "0")));
+        calcul.add("*");
+        calcul.add(new ArrayList<Object>(Arrays.asList("||", "1", "i")));
+        calcul.add("*");
+        calcul.add("2");
+        calcul.add(".");
+        calcul.add("3");
+        calcul.add("*");
+        calcul.add(new ArrayList<Object>(Arrays.asList("1", "*", "3", "-", "0")));
+        calcul.add("+");
+        calcul.add(new ArrayList<Object>(Arrays.asList("√", "1")));
+        calcul.add("*");
+        calcul.add("2");
+        calcul.add(".");
+        calcul.add("3");
+        calcul.add("i");
+        calcul.add("*");
+        calcul.add("3");
+        calcul.add("+");
+        calcul.add("2");
+        calcul.add("%");
+        calcul.add("3");
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("8.900 + 6.90i",a.toString());
+            assertEquals("8.89999999999999946709294817992486059665679931640625 + 6.89999999999999946709294817992486059665679931640625i",a.toString());
 
         } catch (Exception e) {
             fail();
@@ -97,8 +99,36 @@ public class TestParser {
     }
 
     @Test
-    public void testPriority() {
+    public void testBiggerThanParsing(){
 
+        calcul.add("1");
+        calcul.add(">");
+        calcul.add("2");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("0",a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+
+    }
+
+    @Test
+    public void testLessThanParsing(){
+
+        calcul.add("1");
+        calcul.add("<");
+        calcul.add("2");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("1",a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
 
     }
 

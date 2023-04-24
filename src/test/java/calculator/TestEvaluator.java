@@ -72,7 +72,7 @@ class TestEvaluator {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
+    @ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||", "<", ">"})
     void testEvaluateOperations(String symbol) {
         List<Expression> params = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
         List<Expression> params2 = Arrays.asList(new MyNumber(value1));
@@ -86,9 +86,11 @@ class TestEvaluator {
                 case "+" -> assertEquals(new MyNumber(value1 + value2), calc.eval(new Plus(params)));
                 case "-" -> assertEquals(new MyNumber(value1 - value2), calc.eval(new Minus(params)));
                 case "*" -> assertEquals(new MyNumber(value1 * value2), calc.eval(new Times(params)));
-                case "/" -> assertEquals(new MyNumber(value1 / value2), calc.eval(new Divides(params)));
+                case "/" -> assertEquals(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(value2))), calc.eval(new Divides(params)));
                 case "sqrt" -> assertEquals(new MyNumber(new RealValue (sqrt(value1))), calc.eval(new Sqrt(params2)));
                 case "||" -> assertEquals(new MyNumber(new IntegerValue((int) sqrt(value1 * value1))), calc.eval(new Modulus(params2)));
+                case "<" -> assertEquals(new MyNumber(new IntegerValue(0)), calc.eval(new LessThan(params)));
+                case ">" -> assertEquals(new MyNumber(new IntegerValue(1)), calc.eval(new BiggerThan(params)));
                 default -> fail();
             }
         } catch (IllegalConstruction e) {
@@ -97,7 +99,7 @@ class TestEvaluator {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})
+    @ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||", "<", ">"})
     void testEvaluateOperationsOnComplex(String symbol) {
         List<Expression> params = Arrays.asList(new MyNumber(value1, imaginary1), new MyNumber(value2, imaginary2));
         try {
@@ -109,10 +111,19 @@ class TestEvaluator {
                 case "*" ->
                         assertEquals(new MyNumber(value1 * value2 - imaginary1 * imaginary2, value1 * imaginary2 + value2 * imaginary1), calc.eval(new Times(params)));
                 case "/" ->
-                        assertEquals(new MyNumber((value1 * value2 + imaginary1 * imaginary2) / ((value2 * value2) + (imaginary2 * imaginary2)), ((imaginary1 * value2) - (value1 * imaginary2)) / ((value2 * value2) + (imaginary2 * imaginary2))), calc.eval(new Divides(params)));
+                        assertEquals(new MyNumber(
+                                new RationalValue(
+                                    new IntegerValue(value1 * value2 + imaginary1 * imaginary2),
+                                    new IntegerValue ((value2 * value2) + (imaginary2 * imaginary2))),
+                                new RationalValue (
+                                    new IntegerValue((imaginary1 * value2) - (value1 * imaginary2)) ,
+                                    new IntegerValue ((value2 * value2) + (imaginary2 * imaginary2)))),
+                                calc.eval(new Divides(params)));
                 case "sqrt" ->
                         assertEquals(new MyNumber(new RealValue(Math.sqrt(((value1 * value1 + imaginary1 * imaginary1) + value1) / 2)), new RealValue(Math.sqrt((((value1 * value1 + imaginary1 * imaginary1) - value1) / 2) * imaginary1 / Math.abs(imaginary1)))), calc.eval(new Sqrt(params)));
                 case "||" -> assertEquals(new MyNumber(new RealValue(sqrt(value1 * value1 + imaginary1 * imaginary1))), calc.eval(new Modulus(params)));
+                case "<" -> assertThrows(IllegalArgumentException.class, () -> calc.eval(new LessThan(params)));
+                case ">" -> assertThrows(IllegalArgumentException.class, () -> calc.eval(new BiggerThan(params)));
                 default -> fail();
             }
         } catch (IllegalConstruction e) {
@@ -192,6 +203,36 @@ class TestEvaluator {
                 case "-" -> assertEquals(new MyNumber(new RealValue(value3.subtract(value4))), calc.eval(new Minus(params)));
                 case "/" -> assertEquals(new MyNumber(new RealValue(value3.divide(value4, 12, RoundingMode.HALF_UP))), calc.eval(new Divides(params)));
                 case "*" -> assertEquals(new MyNumber(new RealValue(value3.multiply(value4))), calc.eval(new Times(params)));
+            }
+
+        } catch (IllegalConstruction e) {
+            fail();
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {">1", ">2", "<1", "<2", "/", "*", "+", "-"})
+    void testEvaluateOperationOnRealAndInteger(String symbol) {
+        List<Expression> params = Arrays.asList(
+                new MyNumber(new RealValue(value3)),
+                new MyNumber(new IntegerValue(value1)));
+
+        List<Expression> params2 = Arrays.asList(
+                new MyNumber(new IntegerValue(value1)),
+                new MyNumber(new RealValue(value3)));
+
+        try {
+            // construct another type of operation depending on the input value
+            // of the parameterised test
+            switch (symbol) {
+                case ">1" -> assertEquals(new MyNumber(1), calc.eval(new BiggerThan(params)));
+                case ">2" -> assertEquals(new MyNumber(0), calc.eval(new BiggerThan(params2)));
+                case "<1" -> assertEquals(new MyNumber(0), calc.eval(new LessThan(params)));
+                case "<2" -> assertEquals(new MyNumber(1), calc.eval(new LessThan(params2)));
+                case "/" -> assertEquals(new MyNumber(new RealValue(value3.divide(new BigDecimal(value1), 6, RoundingMode.HALF_UP))), calc.eval(new Divides(params)));
+                case "*" -> assertEquals(new MyNumber(new RealValue(value3.multiply(new BigDecimal(value1)))), calc.eval(new Times(params)));
+                case "+" -> assertEquals(new MyNumber(new RealValue(value3.add(new BigDecimal(value1)))), calc.eval(new Plus(params)));
+                case "-" -> assertEquals(new MyNumber(new RealValue(value3.subtract(new BigDecimal(value1)))), calc.eval(new Minus(params)));
             }
 
         } catch (IllegalConstruction e) {

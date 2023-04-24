@@ -25,19 +25,25 @@ public class TestRealValue {
 
     private double value6 = 3.0;
 
+    private double value7 = 2.0;
 
-    private RealValue real1, real2, real3, real4, real5, real6;
+    private int precision = 5;
 
-    private MyNumber number1, number2, number3, number4, number5, number6;
+
+    private RealValue real1, real2, real3, real4, real5, real6, real7;
+
+    private MyNumber number1, number2, number3, number4, number5, number6, number7;
 
     @BeforeEach
     void setUp() {
         real1 = new RealValue(value1);
         real2 = new RealValue(value2);
         real3 = new RealValue(value3);
-        real4 = new RealValue(value4);
+        real4 = new RealValue(value4, precision);
         real5 = new RealValue(value5);
         real6 = new RealValue(value6);
+        real7 = new RealValue(value7);
+
 
         number1 = new MyNumber(real1);
         number2 = new MyNumber(real2);
@@ -45,6 +51,7 @@ public class TestRealValue {
         number4 = new MyNumber(real4);
         number5 = new MyNumber(real5);
         number6 = new MyNumber(real6);
+        number7 = new MyNumber(real7);
     }
 
     @Test
@@ -55,18 +62,28 @@ public class TestRealValue {
         assertNotEquals(number1, number4);
         assertNotEquals(number1, number5);
         assertNotEquals(number1, number6);
+        assertNotEquals(number1, number7);
 
         assertNotEquals(number2, number3);
         assertNotEquals(number2, number4);
         assertNotEquals(number2, number5);
         assertNotEquals(number2, number6);
+        assertNotEquals(number2, number7);
 
         assertEquals(number3, number5);
         assertNotEquals(number3, number4);
-        assertNotEquals(number3, number6);
+        assertEquals(number3, number6);
+        assertNotEquals(number3, number7);
 
 
         assertNotEquals(number4, number5);
+        assertNotEquals(number4, number6);
+        assertNotEquals(number4, number7);
+
+        assertEquals(number5, number6);
+        assertNotEquals(number5, number7);
+
+        assertNotEquals(number6, number7);
 
         assertEquals(number1, number1);
         assertEquals(number2, number2);
@@ -89,6 +106,7 @@ public class TestRealValue {
     void testToString() {
         assertEquals("8.283974799999999305555320461280643939971923828125", number1.toString());
         assertEquals("6.1838730000000001751914169290103018283843994140625", number2.toString());
+        System.out.println(number3.toString());
         assertEquals("3", number3.toString());
         assertEquals("52", number4.toString());
     }
