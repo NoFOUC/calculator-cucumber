@@ -3,6 +3,7 @@ package parser;
 import calculator.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
@@ -22,10 +23,11 @@ public class Parser {
 
 
         // call the list to make the priority of the operator and return the result
-        ArrayList<CustomType> makePriority = makePriority(parsedNumberAndOperator);
+        //ArrayList<CustomType> makePriority = makePriority(parsedNumberAndOperator);
 
+        ArrayList<CustomType> makePriority2 = newMakePriority(parsedNumberAndOperator);
 
-        return makePriority.get(0).getMyNumber();
+        return makePriority2.get(0).getMyNumber();
 
     }
 
@@ -82,6 +84,7 @@ public class Parser {
         }
         return parenthesis;
     }
+
 
     public static ArrayList<CustomType> parseNumberAndOperator (ArrayList<CustomType> args) {
 
@@ -306,32 +309,63 @@ public class Parser {
             }
         }
 
+        ArrayList<CustomType> tempMod = new ArrayList<>();
 
-        ArrayList<CustomType> tempMultDiv = new ArrayList<>();
         for (int i = 0; i< tempPar.size(); i++) {
 
             // Check if the elemen is a number and if the next element is a string = "*" or "/"
 
             if (tempPar.get(i).isMyNumber()) {
 
-                if (i< args.size()-1 && tempPar.get(i+1).isString()){
+                if (i > args.size()-1 && tempPar.get(i+1).isString()) {
 
-                    if (tempPar.get(i+1).getString() == "*" || tempPar.get(i+1).getString() == "/") {
-                        tempMultDiv = multdivParsing(i+1, tempPar);
-                        if (i+2 >= tempPar.size()-1) {
+                    if (tempPar.get(i + 1).getString() == "%") {
+                        tempMod = modParsing(i + 1, tempPar);
+                        if (i + 2 >= tempPar.size() - 1) {
                             break;
                         }
                     }
                     else {
-                        tempMultDiv.add(tempPar.get(i));
-                        tempMultDiv.add(tempPar.get(i+1));
+                        tempMod.add(tempPar.get(i));
+                        tempMod.add(tempPar.get(i + 1));
                     }
 
                 }
 
             }
             if (i == tempPar.size()-1) {
-                tempMultDiv.add(tempPar.get(i));
+                tempMod.add(tempPar.get(i));
+            }
+
+
+
+        }
+
+        ArrayList<CustomType> tempMultDiv = new ArrayList<>();
+        for (int i = 0; i< tempMod.size(); i++) {
+
+            // Check if the elemen is a number and if the next element is a string = "*" or "/"
+
+            if (tempMod.get(i).isMyNumber()) {
+
+                if (i > args.size()-1 && tempMod.get(i+1).isString()){
+
+                    if (tempMod.get(i+1).getString() == "*" || tempMod.get(i+1).getString() == "/") {
+                        tempMultDiv = multdivParsing(i+1, tempMod);
+                        if (i+2 >= tempMod.size()-1) {
+                            break;
+                        }
+                    }
+                    else {
+                        tempMultDiv.add(tempMod.get(i));
+                        tempMultDiv.add(tempMod.get(i+1));
+                    }
+
+                }
+
+            }
+            if (i == tempMod.size()-1) {
+                tempMultDiv.add(tempMod.get(i));
             }
 
 
@@ -342,11 +376,30 @@ public class Parser {
         ArrayList<CustomType> tempAddMin = new ArrayList<>();
         for (int i = 0; i< tempMultDiv.size(); i++) {
 
-            if (tempMultDiv.get(i).isString()) {
-                tempAddMin = addsubParsing(i, tempMultDiv);
+            if (tempMultDiv.get(i).isMyNumber()) {
+
+                if (i > args.size()-1 && tempMultDiv.get(i+1).isString()){
+
+                    if (tempMultDiv.get(i+1).getString() == "+" || tempMultDiv.get(i+1).getString() == "-") {
+                        tempMultDiv = addsubParsing(i+1, tempMod);
+                        if (i+2 >= tempMultDiv.size()-1) {
+                            break;
+                        }
+                    }
+                    else {
+                        tempAddMin.add(tempMod.get(i));
+                        tempAddMin.add(tempMod.get(i+1));
+                    }
+
+                }
+
+            }
+            if (i == tempMod.size()-1) {
+                tempAddMin.add(tempMod.get(i));
             }
 
         }
+
 
         if (sqrt) {
             sqrtParsing(tempAddMin);
@@ -360,6 +413,99 @@ public class Parser {
         return tempAddMin;
 
     }
+
+    public static ArrayList<CustomType> newMakePriority (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        ArrayList<CustomType> tempPar = new ArrayList<>();
+        boolean sqrt = false;
+        boolean exp = false;
+
+        if (args.get(0).isString()) {
+
+            if (args.get(0).getString() == "sqrt") {
+                sqrt = true;
+
+                tempPar.add(new CustomType(args.get(0).getString()));
+                args.remove(0);
+                tempPar.add(new CustomType(args));
+
+            } else if (args.get(0).getString() == "exp" || args.get(0).getString() == "^") {
+                exp = true;
+
+                tempPar.add(new CustomType(args.get(0).getString()));
+                args.remove(0);
+                tempPar.add(new CustomType(args));
+            }
+
+        }
+
+        for (int i = 0; i< args.size(); i++) {
+
+            // Check if the element is a list and call makePriority on it
+            if (args.get(i).isListOfCustomTypes()) {
+
+                MyNumber t = newMakePriority(args.get(i).getCustomTypes()).get(0).getMyNumber();
+
+                args.set(i, new CustomType(t));
+            }
+        }
+
+        ArrayList<String> priority = new ArrayList<String>(Arrays.asList("%", "*", "/", "+", "-"));
+        ArrayList tempPriority = new ArrayList<CustomType>();
+        for (int i = 0; i < priority.size(); i++) {
+
+
+            for (int j = 1; j < args.size()-1; j++) {
+
+                if (args.get(j).isString() && args.get(j).getString() == priority.get(i)) {
+
+                    ArrayList<CustomType> temp = new ArrayList<CustomType>();
+
+
+                    temp.add(new CustomType(args.get(j - 1).getMyNumber()));
+                    temp.add(new CustomType(args.get(j).getString()));
+                    temp.add(new CustomType(args.get(j + 1).getMyNumber()));
+
+                    args.remove(j - 1);
+                    args.remove(j - 1);
+                    args.remove(j - 1);
+
+                    String a = temp.get(1).getString();
+                    if (a == "%") {
+                        args.add(j-1, new CustomType(modParsing(1, temp).get(0).getMyNumber()));
+                    }
+                    else if (a == "*") {
+                        args.add(j-1,new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
+                    }
+                    else if (a == "/") {
+                        args.add(j-1,new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
+                    }
+                    else if (a == "+") {
+                        args.add(j-1,new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
+                    }
+                    else if (a == "-") {
+                        args.add(j-1,new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
+                    }
+                    else {
+                        Exception e = new Exception();
+                    }
+
+                    j = j - 1;
+
+                }
+
+            }
+
+        }
+
+        return args;
+
+
+    }
+
+
+
+
 
     public static ArrayList<CustomType> multdivParsing (int i, ArrayList<CustomType> args) throws IllegalConstruction {
 
@@ -406,6 +552,33 @@ public class Parser {
 
         }
 
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> modParsing (int i, ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        if (args.get(i).isString() && args.get(i).getString() == "%") {
+
+            if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
+                Expression e;
+                Calculator c = new Calculator();
+                params.add(args.get(i - 1).getMyNumber());
+                params.add(args.get(i + 1).getMyNumber());
+
+                e = new Modulo(params);
+
+                CustomType temp = new CustomType(c.eval(e));
+
+                args.set(i - 1, temp);
+                args.remove(i);
+                args.remove(i);
+
+            }
+
+        }
 
         return args;
     }

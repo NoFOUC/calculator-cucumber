@@ -40,8 +40,14 @@ public class Modulus extends Operation{
         AbstractValue a1 = l.getValue();
         AbstractValue b1 = l.getImaginary();
 
-        int val = (int) Math.sqrt(a1.mul(a1).add(b1.mul(b1)).getRawValue().doubleValue());
-        return new MyNumber(val, 0);
+        double val = Math.sqrt(a1.mul(a1).add(b1.mul(b1)).getRawValue().doubleValue());
+
+        if (l.isComplex()){
+            return new MyNumber(new RealValue(val), new RealValue(0));
+        }
+        else {
+            return new MyNumber(new IntegerValue((int) val), new IntegerValue(0));
+        }
     }
 
     /**

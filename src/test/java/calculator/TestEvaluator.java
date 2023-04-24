@@ -87,8 +87,8 @@ class TestEvaluator {
                 case "-" -> assertEquals(new MyNumber(value1 - value2), calc.eval(new Minus(params)));
                 case "*" -> assertEquals(new MyNumber(value1 * value2), calc.eval(new Times(params)));
                 case "/" -> assertEquals(new MyNumber(value1 / value2), calc.eval(new Divides(params)));
-                case "sqrt" -> assertEquals(new MyNumber((int) sqrt(value1)), calc.eval(new Sqrt(params2)));
-                case "||" -> assertEquals(new MyNumber((int) sqrt(value1 * value1)), calc.eval(new Modulus(params2)));
+                case "sqrt" -> assertEquals(new MyNumber(new RealValue (sqrt(value1))), calc.eval(new Sqrt(params2)));
+                case "||" -> assertEquals(new MyNumber(new IntegerValue((int) sqrt(value1 * value1))), calc.eval(new Modulus(params2)));
                 default -> fail();
             }
         } catch (IllegalConstruction e) {
@@ -111,8 +111,8 @@ class TestEvaluator {
                 case "/" ->
                         assertEquals(new MyNumber((value1 * value2 + imaginary1 * imaginary2) / ((value2 * value2) + (imaginary2 * imaginary2)), ((imaginary1 * value2) - (value1 * imaginary2)) / ((value2 * value2) + (imaginary2 * imaginary2))), calc.eval(new Divides(params)));
                 case "sqrt" ->
-                        assertEquals(new MyNumber((int) Math.sqrt(((value1 * value1 + imaginary1 * imaginary1) + value1) / 2), (int) Math.sqrt(((value1 * value1 + imaginary1 * imaginary1) - value1) / 2) * imaginary1 / Math.abs(imaginary1)), calc.eval(new Sqrt(params)));
-                case "||" -> assertEquals(new MyNumber((int) sqrt(value1 * value1 + imaginary1 * imaginary1)), calc.eval(new Modulus(params)));
+                        assertEquals(new MyNumber(new RealValue(Math.sqrt(((value1 * value1 + imaginary1 * imaginary1) + value1) / 2)), new RealValue(Math.sqrt((((value1 * value1 + imaginary1 * imaginary1) - value1) / 2) * imaginary1 / Math.abs(imaginary1)))), calc.eval(new Sqrt(params)));
+                case "||" -> assertEquals(new MyNumber(new RealValue(sqrt(value1 * value1 + imaginary1 * imaginary1))), calc.eval(new Modulus(params)));
                 default -> fail();
             }
         } catch (IllegalConstruction e) {
