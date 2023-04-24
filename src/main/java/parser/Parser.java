@@ -110,7 +110,7 @@ public class Parser {
                     temp.add((args.get(i).getString()));
                 }
                 // Check if the element is a decimal point and the next element is a number (RealValue)
-                else if (args.get(i).isString() && (args.get(i).getString())=="." && (args.get(i+1).getString()).matches("[0-9]")) {
+                else if (args.get(i).isString() && (args.get(i).getString()).equals(".") && (args.get(i+1).getString()).matches("[0-9]")) {
                     temp.add(args.get(i).getString());
                     type = TypeEnum.RealValue;
                 }
@@ -121,11 +121,11 @@ public class Parser {
                  */
 
                 // Check if the next element is an operator or a parenthesis closing or i for complexValue
-                else if (args.get(i).isString() && (args.get(i).getString())!=".") {
+                else if (args.get(i).isString() && !((args.get(i).getString()).equals("."))) {
 
 
                     // Check if the next element is not a parenthesis closing or i for complexValue
-                    if (args.get(i).getString() != ")" && args.get(i).getString() != "i" ) {
+                    if (!(args.get(i).getString().equals(")")) && !(args.get(i).getString().equals("i")) ) {
 
                         // if the last element was a parenthesis list
                         if (i>0 && args.get(i-1).isListOfCustomTypes()) {
@@ -136,17 +136,17 @@ public class Parser {
 
                         // if the last element was the "i" of complex value
 
-                        else if (i>0 && args.get(i-1).isString() && args.get(i-1).getString() == "i") {
+                        else if (i>0 && args.get(i-1).isString() && args.get(i-1).getString().equals("i")) {
                             numberAndOperator.add(new CustomType(args.get(i).getString()));
                             temp =  new ParserList();
                             type = TypeEnum.IntegerValue;
                         }
-                        else if (args.get(i).getString() == "sqrt") {
+                        else if (args.get(i).getString().equals("sqrt")) {
                             numberAndOperator.add(new CustomType(args.get(i).getString()));
                             temp =  new ParserList();
                             type = TypeEnum.IntegerValue;
                         }
-                        else if (args.get(i).getString() == "^" || args.get(i).getString() == "exp") {
+                        else if (args.get(i).getString().equals("^") || args.get(i).getString().equals("exp")) {
                             numberAndOperator.add(new CustomType(args.get(i).getString()));
                             temp =  new ParserList();
                             type = TypeEnum.IntegerValue;
@@ -163,7 +163,7 @@ public class Parser {
                     }
 
                     // if the element is an "i" of complex value
-                    else if (args.get(i).getString() != ")" && args.get(i).getString() == "i") {
+                    else if (!args.get(i).getString().equals(")") && args.get(i).getString().equals("i")) {
 
                         // if the number is a real value or just an integer value
                         if (type == TypeEnum.RealValue) {
@@ -285,10 +285,10 @@ public class Parser {
 
         if (args.get(0).isString()){
 
-            if (args.get(0).getString()=="sqrt") {
+            if (args.get(0).getString().equals("sqrt")) {
                 sqrt = true;
             }
-            else if (args.get(0).getString()=="exp" || args.get(0).getString()=="^") {
+            else if (args.get(0).getString().equals("exp") || args.get(0).getString().equals("^")) {
                 exp = true;
             }
 
@@ -319,7 +319,7 @@ public class Parser {
 
                 if (i > args.size()-1 && tempPar.get(i+1).isString()) {
 
-                    if (tempPar.get(i + 1).getString() == "%") {
+                    if (tempPar.get(i + 1).getString().equals("%")) {
                         tempMod = modParsing(i + 1, tempPar);
                         if (i + 2 >= tempPar.size() - 1) {
                             break;
@@ -350,7 +350,7 @@ public class Parser {
 
                 if (i > args.size()-1 && tempMod.get(i+1).isString()){
 
-                    if (tempMod.get(i+1).getString() == "*" || tempMod.get(i+1).getString() == "/") {
+                    if (tempMod.get(i+1).getString().equals("*") || tempMod.get(i+1).getString().equals("/")) {
                         tempMultDiv = multdivParsing(i+1, tempMod);
                         if (i+2 >= tempMod.size()-1) {
                             break;
@@ -380,7 +380,7 @@ public class Parser {
 
                 if (i > args.size()-1 && tempMultDiv.get(i+1).isString()){
 
-                    if (tempMultDiv.get(i+1).getString() == "+" || tempMultDiv.get(i+1).getString() == "-") {
+                    if (tempMultDiv.get(i+1).getString().equals("+") || tempMultDiv.get(i+1).getString().equals("-")) {
                         tempMultDiv = addsubParsing(i+1, tempMod);
                         if (i+2 >= tempMultDiv.size()-1) {
                             break;
@@ -422,14 +422,14 @@ public class Parser {
 
         if (args.get(0).isString()) {
 
-            if (args.get(0).getString() == "sqrt") {
+            if (args.get(0).getString().equals("sqrt")) {
                 sqrt = true;
 
                 tempPar.add(new CustomType(args.get(0).getString()));
                 args.remove(0);
                 tempPar.add(new CustomType(args));
 
-            } else if (args.get(0).getString() == "exp" || args.get(0).getString() == "^") {
+            } else if (args.get(0).getString().equals("exp") || args.get(0).getString().equals("^")) {
                 exp = true;
 
                 tempPar.add(new CustomType(args.get(0).getString()));
@@ -457,7 +457,7 @@ public class Parser {
 
             for (int j = 1; j < args.size()-1; j++) {
 
-                if (args.get(j).isString() && args.get(j).getString() == priority.get(i)) {
+                if (args.get(j).isString() && args.get(j).getString().equals(priority.get(i))) {
 
                     ArrayList<CustomType> temp = new ArrayList<CustomType>();
 
@@ -471,19 +471,19 @@ public class Parser {
                     args.remove(j - 1);
 
                     String a = temp.get(1).getString();
-                    if (a == "%") {
+                    if (a.equals("%")) {
                         args.add(j-1, new CustomType(modParsing(1, temp).get(0).getMyNumber()));
                     }
-                    else if (a == "*") {
+                    else if (a.equals("*")) {
                         args.add(j-1,new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
                     }
-                    else if (a == "/") {
+                    else if (a.equals("/")) {
                         args.add(j-1,new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
                     }
-                    else if (a == "+") {
+                    else if (a.equals("+")) {
                         args.add(j-1,new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
                     }
-                    else if (a == "-") {
+                    else if (a.equals("-")) {
                         args.add(j-1,new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
                     }
                     else {
@@ -511,7 +511,7 @@ public class Parser {
 
         List<Expression> params = new ArrayList<>();
 
-        if (args.get(i).isString() && args.get(i).getString() == "*") {
+        if (args.get(i).isString() && args.get(i).getString().equals("*")) {
 
             if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
                 Expression e;
@@ -532,7 +532,7 @@ public class Parser {
 
         }
 
-        else if (args.get(i).isString() && args.get(i).getString() == "/") {
+        else if (args.get(i).isString() && args.get(i).getString().equals("/")) {
 
             if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
                 Expression e;
@@ -560,7 +560,7 @@ public class Parser {
 
         List<Expression> params = new ArrayList<>();
 
-        if (args.get(i).isString() && args.get(i).getString() == "%") {
+        if (args.get(i).isString() && args.get(i).getString().equals("%")) {
 
             if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
                 Expression e;
@@ -587,7 +587,7 @@ public class Parser {
 
         List<Expression> params = new ArrayList<>();
 
-        if (args.get(i).isString() && args.get(i).getString() == "+") {
+        if (args.get(i).isString() && args.get(i).getString().equals("+")) {
 
             if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
                 Expression e;
@@ -607,7 +607,7 @@ public class Parser {
 
         }
 
-        else if (args.get(i).isString() && args.get(i).getString() == "-") {
+        else if (args.get(i).isString() && args.get(i).getString().equals("-")) {
 
             if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
                 Expression e;
