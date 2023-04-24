@@ -37,7 +37,7 @@ jobs:
         generate-branches-badge: true
         generate-summary: true
         
-    - name: Log coverage percentage
+    - name: Ln coverage percentage
       run: |
         echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
         echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"

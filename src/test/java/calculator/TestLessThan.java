@@ -20,14 +20,14 @@ public class TestLessThan {
 
     private final BigDecimal value4BD = new BigDecimal("6.187802");
     private LessThan op, op2, op3;
-    private List<Expression> params, params2, params3;
+    private List<Expression> params;
 
     @BeforeEach
     void setUp() {
         params = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
-        params2 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+        List<Expression> params2 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
                 new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator2))));
-        params3 = Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD)));
+        List<Expression> params3 = Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD)));
         try {
             op = new LessThan(params);
             op.notation = Notation.INFIX; // reset the notation to infix (which is the default) before each test
@@ -52,15 +52,26 @@ public class TestLessThan {
     void testConstructor2() {
         // An other expression than LessThan should not be the same as a LessThan expression
         try {
-            assertNotSame(op, new PrimeNumbers(new ArrayList<>()));
-            assertNotSame(op, new Modulo(new ArrayList<>()));
-            assertNotSame(op, new General_Exponential(new ArrayList<>()));
-            assertNotSame(op, new Factorial(new ArrayList<>()));
-            assertNotSame(op, new BiggerThan(new ArrayList<>()));
             assertNotSame(op, new Plus(new ArrayList<>()));
             assertNotSame(op, new Minus(new ArrayList<>()));
             assertNotSame(op, new Times(new ArrayList<>()));
             assertNotSame(op, new Divides(new ArrayList<>()));
+            assertNotSame(op, new Modulo(new ArrayList<>()));
+            assertNotSame(op, new PrimeNumbers(new ArrayList<>()));
+            assertNotSame(op, new BiggerThan(new ArrayList<>()));
+            assertNotSame(op, new General_Exponential(new ArrayList<>()));
+            assertNotSame(op, new Sqrt(new ArrayList<>()));
+            assertNotSame(op, new Inverse(new ArrayList<>()));
+            assertNotSame(op, new Factorial(new ArrayList<>()));
+            assertNotSame(op, new Ln(new ArrayList<>()));
+            assertNotSame(op, new Cosinus(new ArrayList<>()));
+            assertNotSame(op, new Sinus(new ArrayList<>()));
+            assertNotSame(op, new Tan(new ArrayList<>()));
+            assertNotSame(op, new Cot(new ArrayList<>()));
+            assertNotSame(op, new ArcCos(new ArrayList<>()));
+            assertNotSame(op, new ArcSin(new ArrayList<>()));
+            assertNotSame(op, new ArcTan(new ArrayList<>()));
+            assertNotSame(op, new ArcCot(new ArrayList<>()));
         } catch (IllegalConstruction e) {
             fail();
         }

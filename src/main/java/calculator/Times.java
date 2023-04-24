@@ -7,15 +7,27 @@ import java.util.List;
  * The class extends an abstract superclass Operation.
  * Other subclasses of Operation represent other arithmetic operations.
  * @see Operation
- * @see Minus
  * @see Plus
+ * @see Minus
+ * @see Times
  * @see Divides
- * @see Factorial
- * @see General_Exponential
  * @see Modulo
  * @see PrimeNumbers
  * @see BiggerThan
  * @see LessThan
+ * @see General_Exponential
+ * @see Sqrt
+ * @see Inverse
+ * @see Factorial
+ * @see Ln
+ * @see Cosinus
+ * @see Sinus
+ * @see Tan
+ * @see Cot
+ * @see ArcCos
+ * @see ArcSin
+ * @see ArcTan
+ * @see ArcCot
  */
 public final class Times extends Operation
  {
