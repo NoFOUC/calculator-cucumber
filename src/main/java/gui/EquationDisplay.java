@@ -2,6 +2,9 @@ package gui;
 
 import calculator.Operation;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  * A container for various possible terms of the calculation
  */
@@ -56,6 +59,32 @@ public class EquationDisplay {
 
     }
 
+    public ArrayList<Object> toArrayList(ArrayList<Object> prev) {
+
+        if (value != 10) prev.add(""+value);
+
+        else if (!Objects.equals(closeBracket, "")) {
+            prev.add(operator);
+            ArrayList<Object> sub = new ArrayList<Object>();
+            sub.add("(");
+            child.toArrayList(sub);
+            sub.add(")");
+            prev.add(sub);
+        }
+
+        else if (!Objects.equals(operator, "")) {
+            prev.add(operator);
+        }
+
+        if (next != null) next.toArrayList(prev);
+
+        return prev;
+    }
+
+    public ArrayList<Object> toArrayList() {
+        ArrayList<Object> base = new ArrayList<>();
+        return toArrayList(base);
+    }
     /**
      * Moves the cursor from the current position to the next logical one
      * @return the new cursor

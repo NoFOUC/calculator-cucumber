@@ -154,15 +154,19 @@ public class RealValue extends AbstractValue {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object o) {
+        if (o == null) {
             return false;
         }
-        if (obj == this) {
+        if (o == this) {
             return true;
         }
 
-        if (obj instanceof RealValue other) {
+        if (o instanceof IntegerValue || o instanceof RationalValue) {
+            return value.equals(((AbstractValue) o).getRawValue());
+        }
+
+        if (o instanceof RealValue other) {
             return this.value.equals(other.value);
         }
         return false;

@@ -11,8 +11,8 @@ import java.math.BigDecimal;
  * @see Expression
  * @see Operation
  */
-public class MyNumber implements Expression
-{
+public class MyNumber implements Expression {
+
     private final AbstractValue value;
 
     private final AbstractValue imaginary;

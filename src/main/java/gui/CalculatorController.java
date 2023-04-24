@@ -1,10 +1,14 @@
 package gui;
 
+import calculator.IllegalConstruction;
 import calculator.MyNumber;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import parser.Parser;
+
+import java.util.ArrayList;
 
 public class CalculatorController {
 
@@ -161,7 +165,7 @@ public class CalculatorController {
         button8.setOnAction((event) -> addNumber(8));
         button9.setOnAction((event) -> addNumber(9));
 
-        buttonComma.setOnAction((event) -> addOperation(","));
+        buttonComma.setOnAction((event) -> addOperation("."));
 
         buttonPlus.setOnAction((event) -> addOperation("+"));
         buttonMinus.setOnAction((event) -> addOperation("-"));
@@ -194,11 +198,7 @@ public class CalculatorController {
             cursor = cursor.erase();
             refreshEquationDisplay();
         });
-        buttonEraseAll.setOnAction((event) -> {
-            equationRoot.reset();
-            cursor = equationRoot;
-            refreshEquationDisplay();
-        });
+        buttonEraseAll.setOnAction((event) -> handleEraseAll());
 
         buttonPrecisionUp.setOnAction((e) -> setPrecision(precision+1));
         buttonPrecisionDown.setOnAction((e) -> setPrecision(precision-1));
@@ -210,8 +210,20 @@ public class CalculatorController {
     }
 
     private void calculate() {
-        // TODO Needs the parser to work
-        // TODO Needs to erase the previous equation without updating the view
+
+        ArrayList<Object> processed = equationRoot.toArrayList();
+
+        System.out.println(processed);
+
+        try {
+            MyNumber result = Parser.main(processed);
+            equalsLabel.setText("= "+result);
+
+            equationRoot.reset();
+            cursor = equationRoot;
+        } catch (IllegalConstruction e) {
+            throw new RuntimeException(e); //TODO Error message display and management
+        }
     }
 
     private void setPrecision(int value) {
@@ -266,6 +278,12 @@ public class CalculatorController {
             }
         }
         updateEqualsDisplay();
+    }
+
+    private void handleEraseAll() {
+        equationRoot.reset();
+        cursor = equationRoot;
+        refreshEquationDisplay();
     }
 
 }
