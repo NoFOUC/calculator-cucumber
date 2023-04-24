@@ -125,7 +125,7 @@ public class Parser {
 
 
                     // Check if the next element is not a parenthesis closing or i for complexValue
-                    if (args.get(i).getString() != ")" && !(args.get(i).getString().equals("i")) ) {
+                    if (!(args.get(i).getString().equals(")")) && !(args.get(i).getString().equals("i")) ) {
 
                         // if the last element was a parenthesis list
                         if (i>0 && args.get(i-1).isListOfCustomTypes()) {
@@ -457,7 +457,7 @@ public class Parser {
 
             for (int j = 1; j < args.size()-1; j++) {
 
-                if (args.get(j).isString() && args.get(j).getString() == priority.get(i)) {
+                if (args.get(j).isString() && args.get(j).getString().equals(priority.get(i))) {
 
                     ArrayList<CustomType> temp = new ArrayList<CustomType>();
 
