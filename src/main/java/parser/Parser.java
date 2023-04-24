@@ -121,11 +121,11 @@ public class Parser {
                  */
 
                 // Check if the next element is an operator or a parenthesis closing or i for complexValue
-                else if (args.get(i).isString() && (args.get(i).getString())!=".") {
+                else if (args.get(i).isString() && !((args.get(i).getString()).equals("."))) {
 
 
                     // Check if the next element is not a parenthesis closing or i for complexValue
-                    if (args.get(i).getString() != ")" && args.get(i).getString() != "i" ) {
+                    if (args.get(i).getString() != ")" && !(args.get(i).getString().equals("i")) ) {
 
                         // if the last element was a parenthesis list
                         if (i>0 && args.get(i-1).isListOfCustomTypes()) {
