@@ -173,8 +173,10 @@ public class CalculatorController {
         buttonTimes.setOnAction((event) -> addOperation("*"));
         buttonDivide.setOnAction((event) -> addOperation("/"));
 
-        buttonExp.setOnAction((event) -> addOperation("^"));
-        buttonSqrt.setOnAction((event) -> addOperation("√(", ")"));
+        buttonExp.setOnAction((event) -> addOperation("e^", "(", ")"));
+        buttonSqrt.setOnAction((event) -> addOperation("√"));
+
+//        ["√", ["5", "+", "10"]]
 
         buttonParenthesisOpen.setOnAction((event) -> addOperation("(", ")"));
 
@@ -186,8 +188,8 @@ public class CalculatorController {
         buttonLesserThan.setOnAction((event) -> addOperation("<"));
         buttonBiggerThan.setOnAction((event) -> addOperation(">"));
 
-        buttonToDeg.setOnAction((event) -> addOperation("DEG(",")"));
-        buttonToRad.setOnAction((event) -> addOperation("RAD(",")"));
+        buttonToDeg.setOnAction((event) -> addOperation("DEG", "(",")"));
+        buttonToRad.setOnAction((event) -> addOperation("RAD", "(",")"));
 
 
         buttonMoveRight.setOnAction((event) -> {
@@ -249,6 +251,13 @@ public class CalculatorController {
 
     private void addOperation(String open, String close) {
         EquationDisplay term = new EquationDisplay(open, close);
+        cursor.add(term);
+        cursor = term;
+        refreshEquationDisplay();
+    }
+
+    private void addOperation(String ope, String open, String close) {
+        EquationDisplay term = new EquationDisplay(ope, open, close);
         cursor.add(term);
         cursor = term;
         refreshEquationDisplay();

@@ -14,6 +14,7 @@ public class EquationDisplay {
 
     private String operator = "";
 
+    private String openBracket = "";
     private String closeBracket = "";
 
     private boolean isRoot = false;
@@ -37,8 +38,15 @@ public class EquationDisplay {
         this.operator = operator;
     }
 
-    public EquationDisplay(String operator, String closeBracket) {
+    public EquationDisplay(String operator, String openBracket, String closeBracket) {
         this.operator = operator;
+        this.openBracket = openBracket;
+        this.closeBracket = closeBracket;
+        this.isOpen = true;
+    }
+
+    public EquationDisplay(String openBracket, String closeBracket) {
+        this.openBracket = openBracket;
         this.closeBracket = closeBracket;
         this.isOpen = true;
     }
@@ -55,7 +63,7 @@ public class EquationDisplay {
 
         String number = value == 10 ? "" : ""+value;
 
-        return operator + number + cursorOpen + children + closeBracket + cursorClosed + remainder;
+        return operator + openBracket + number + cursorOpen + children + closeBracket + cursorClosed + remainder;
 
     }
 
@@ -63,12 +71,10 @@ public class EquationDisplay {
 
         if (value != 10) prev.add(""+value);
 
-        else if (!Objects.equals(closeBracket, "")) {
-            prev.add(operator);
-            ArrayList<Object> sub = new ArrayList<Object>();
-            sub.add("(");
+        else if (child != null) {
+            ArrayList<Object> sub = new ArrayList<>();
+            if(!Objects.equals(operator, "")) sub.add(operator);
             child.toArrayList(sub);
-            sub.add(")");
             prev.add(sub);
         }
 
