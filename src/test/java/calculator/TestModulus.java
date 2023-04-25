@@ -36,25 +36,25 @@ public class TestModulus {
     private final BigDecimal value6BD = new BigDecimal("7.810249");
 
     private Modulus op1, op2, op3, op4, op5, op6;
-    private List<Expression> params1, params2, params3, params4, params5, params6;
+    private List<Expression> params1, params2;
 
     @BeforeEach
     void setUp() {
         params1 = new ArrayList<>(Arrays.asList(new MyNumber(value1),new MyNumber(value2)));
         params2 = new ArrayList<>(Arrays.asList(new MyNumber(value1, imaginary1),new MyNumber(value2, imaginary2)));
-        params3 = new ArrayList<>(Arrays.asList(new MyNumber(
+        List<Expression> params3 = new ArrayList<>(Arrays.asList(new MyNumber(
                 new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
                 new MyNumber(
                         new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)))));
-        params4 = new ArrayList<>(Arrays.asList(new MyNumber(
+        List<Expression> params4 = new ArrayList<>(Arrays.asList(new MyNumber(
                 new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
                 new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
                 new MyNumber(
                         new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
                         new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4)))));
-        params5 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD))));
+        List<Expression> params5 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD))));
 
-        params6 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD), new RealValue(value5BD)),new MyNumber(new RealValue(value4BD), new RealValue(value6BD))));
+        List<Expression> params6 = new ArrayList<>(Arrays.asList(new MyNumber(new RealValue(value3BD), new RealValue(value5BD)),new MyNumber(new RealValue(value4BD), new RealValue(value6BD))));
 
         try { op1 = new Modulus(params1);
             op2 = new Modulus(params2);
@@ -73,12 +73,32 @@ public class TestModulus {
         assertThrows(IllegalConstruction.class, () -> op1 = new Modulus(null));
     }
 
+    @SuppressWarnings("AssertBetweenInconvertibleTypes")
     @Test
     void testConstructor2() {
         // A Times expression should not be the same as a Modulus expression
         try {
+            assertNotSame(op1, new Plus(new ArrayList<>()));
+            assertNotSame(op1, new Minus(new ArrayList<>()));
             assertNotSame(op1, new Times(new ArrayList<>()));
-            assertNotSame(op2, new Times(new ArrayList<>()));
+            assertNotSame(op1, new Divides(new ArrayList<>()));
+            assertNotSame(op1, new Modulo(new ArrayList<>()));
+            assertNotSame(op1, new PrimeNumbers(new ArrayList<>()));
+            assertNotSame(op1, new BiggerThan(new ArrayList<>()));
+            assertNotSame(op1, new LessThan(new ArrayList<>()));
+            assertNotSame(op1, new General_Exponential(new ArrayList<>()));
+            assertNotSame(op1, new Sqrt(new ArrayList<>()));
+            assertNotSame(op1, new Inverse(new ArrayList<>()));
+            assertNotSame(op1, new Factorial(new ArrayList<>()));
+            assertNotSame(op1, new Ln(new ArrayList<>()));
+            assertNotSame(op1, new Cosinus(new ArrayList<>()));
+            assertNotSame(op1, new Sinus(new ArrayList<>()));
+            assertNotSame(op1, new Tan(new ArrayList<>()));
+            assertNotSame(op1, new Cot(new ArrayList<>()));
+            assertNotSame(op1, new ArcCos(new ArrayList<>()));
+            assertNotSame(op1, new ArcSin(new ArrayList<>()));
+            assertNotSame(op1, new ArcTan(new ArrayList<>()));
+            assertNotSame(op1, new ArcCot(new ArrayList<>()));
         } catch (IllegalConstruction e) {
             fail();
         }

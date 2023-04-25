@@ -7,14 +7,26 @@ import java.util.List;
  * Other subclasses of Operation represent other arithmetic operations.
  * @see Operation
  * @see Plus
+ * @see Minus
  * @see Times
  * @see Divides
- * @see Factorial
- * @see General_Exponential
  * @see Modulo
- * @see Minus
+ * @see PrimeNumbers
  * @see BiggerThan
  * @see LessThan
+ * @see General_Exponential
+ * @see Sqrt
+ * @see Inverse
+ * @see Factorial
+ * @see Ln
+ * @see Cosinus
+ * @see Sinus
+ * @see Tan
+ * @see Cot
+ * @see ArcCos
+ * @see ArcSin
+ * @see ArcTan
+ * @see ArcCot
  */
 public final class PrimeNumbers extends Operation {
 

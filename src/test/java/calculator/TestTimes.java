@@ -25,15 +25,15 @@ class TestTimes {
 
 	private final int denominator4 = 5;
 	private Times op, op2, op3, op4;
-	private List<Expression> params, params2, params3, params4;
+	private List<Expression> params;
 
 	@BeforeEach
 	void setUp() {
 		  params = Arrays.asList(new MyNumber(value1),new MyNumber(value2));
-		  params2 = Arrays.asList(new MyNumber(value1, imaginary1),new MyNumber(value2, imaginary2));
-		  params3 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
+		  List<Expression> params2 = Arrays.asList(new MyNumber(value1, imaginary1),new MyNumber(value2, imaginary2));
+		  List<Expression> params3 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
 				  new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3))));
-		  params4 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
+		  List<Expression> params4 = Arrays.asList(new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
 		  				  new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2))),
 				  new MyNumber(new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3)),
 						  new RationalValue(new IntegerValue(imaginary2), new IntegerValue(denominator4))));
@@ -51,19 +51,31 @@ class TestTimes {
 		assertThrows(IllegalConstruction.class, () -> op = new Times(null));
 	}
 
+	@SuppressWarnings("AssertBetweenInconvertibleTypes")
 	@Test
 	void testConstructor2() {
 		// A Plus expression should not be the same as a Times expression
 		try {
-			assertNotSame(op, new PrimeNumbers(new ArrayList<>()));
-			assertNotSame(op, new LessThan(new ArrayList<>()));
-			assertNotSame(op, new General_Exponential(new ArrayList<>()));
-			assertNotSame(op, new Factorial(new ArrayList<>()));
-			assertNotSame(op, new BiggerThan(new ArrayList<>()));
 			assertNotSame(op, new Plus(new ArrayList<>()));
 			assertNotSame(op, new Minus(new ArrayList<>()));
-			assertNotSame(op, new Modulo(new ArrayList<>()));
 			assertNotSame(op, new Divides(new ArrayList<>()));
+			assertNotSame(op, new Modulo(new ArrayList<>()));
+			assertNotSame(op, new PrimeNumbers(new ArrayList<>()));
+			assertNotSame(op, new BiggerThan(new ArrayList<>()));
+			assertNotSame(op, new LessThan(new ArrayList<>()));
+			assertNotSame(op, new General_Exponential(new ArrayList<>()));
+			assertNotSame(op, new Sqrt(new ArrayList<>()));
+			assertNotSame(op, new Inverse(new ArrayList<>()));
+			assertNotSame(op, new Factorial(new ArrayList<>()));
+			assertNotSame(op, new Ln(new ArrayList<>()));
+			assertNotSame(op, new Cosinus(new ArrayList<>()));
+			assertNotSame(op, new Sinus(new ArrayList<>()));
+			assertNotSame(op, new Tan(new ArrayList<>()));
+			assertNotSame(op, new Cot(new ArrayList<>()));
+			assertNotSame(op, new ArcCos(new ArrayList<>()));
+			assertNotSame(op, new ArcSin(new ArrayList<>()));
+			assertNotSame(op, new ArcTan(new ArrayList<>()));
+			assertNotSame(op, new ArcCot(new ArrayList<>()));
 		} catch (IllegalConstruction e) {
 			fail();
 		}

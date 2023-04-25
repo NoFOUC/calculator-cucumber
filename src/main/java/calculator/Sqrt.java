@@ -4,6 +4,28 @@ import java.util.List;
 
 /**
  * The square root operation of complex numbers
+ * @see Operation
+ * @see Plus
+ * @see Minus
+ * @see Times
+ * @see Divides
+ * @see Modulo
+ * @see PrimeNumbers
+ * @see BiggerThan
+ * @see LessThan
+ * @see General_Exponential
+ * @see Sqrt
+ * @see Inverse
+ * @see Factorial
+ * @see Ln
+ * @see Cosinus
+ * @see Sinus
+ * @see Tan
+ * @see Cot
+ * @see ArcCos
+ * @see ArcSin
+ * @see ArcTan
+ * @see ArcCot
  */
 public class Sqrt extends Operation {
 

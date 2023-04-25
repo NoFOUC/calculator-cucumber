@@ -35,7 +35,26 @@ public class TestFactorial {
     void testConstructor2() {
         // An other expression than Factorial should not be the same as a Factorial expression
         try {
+            assertNotSame(op, new Plus(new ArrayList<>()));
+            assertNotSame(op, new Minus(new ArrayList<>()));
+            assertNotSame(op, new Times(new ArrayList<>()));
+            assertNotSame(op, new Divides(new ArrayList<>()));
+            assertNotSame(op, new Modulo(new ArrayList<>()));
             assertNotSame(op, new PrimeNumbers(new ArrayList<>()));
+            assertNotSame(op, new BiggerThan(new ArrayList<>()));
+            assertNotSame(op, new LessThan(new ArrayList<>()));
+            assertNotSame(op, new General_Exponential(new ArrayList<>()));
+            assertNotSame(op, new Sqrt(new ArrayList<>()));
+            assertNotSame(op, new Inverse(new ArrayList<>()));
+            assertNotSame(op, new Ln(new ArrayList<>()));
+            assertNotSame(op, new Cosinus(new ArrayList<>()));
+            assertNotSame(op, new Sinus(new ArrayList<>()));
+            assertNotSame(op, new Tan(new ArrayList<>()));
+            assertNotSame(op, new Cot(new ArrayList<>()));
+            assertNotSame(op, new ArcCos(new ArrayList<>()));
+            assertNotSame(op, new ArcSin(new ArrayList<>()));
+            assertNotSame(op, new ArcTan(new ArrayList<>()));
+            assertNotSame(op, new ArcCot(new ArrayList<>()));
             assertNotSame(op, new LessThan(new ArrayList<>()));
             assertNotSame(op, new General_Exponential(new ArrayList<>()));
             assertNotSame(op, new Modulo(new ArrayList<>()));
