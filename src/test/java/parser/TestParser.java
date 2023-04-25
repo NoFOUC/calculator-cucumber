@@ -33,17 +33,15 @@ public class TestParser {
     @Test
     public void testreturn (){
 
-        calcul.add("4");
-        calcul.add("2");
-        calcul.add("/");
-        calcul.add("3");
-        calcul.add("*");
-        calcul.add("2");
+        calcul.add(new ArrayList<Object>(Arrays.asList("√", "1", "+", "2")));
+        calcul.add("+");
+        calcul.add("1");
+        calcul.add("i");
 
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("28" ,a.toString());
+            assertEquals("1.7320508075 + 1i" ,a.toString());
 
         } catch (Exception e) {
             fail();
@@ -79,7 +77,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("8.89999999999999946709294817992486059665679931640625 + 6.89999999999999946709294817992486059665679931640625i",a.toString());
+            assertEquals("8.8999999999 + 6.8999999999i",a.toString());
 
         } catch (Exception e) {
             fail();
@@ -199,7 +197,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("0.64209261593433064607694404912763275206089019775390625", a.toString());
+            assertEquals("0.6420926159", a.toString());
 
         } catch (Exception e) {
             fail();
@@ -247,7 +245,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("1.5707963267948965579989817342720925807952880859375", a.toString());
+            assertEquals("1.5707963267", a.toString());
 
         } catch (Exception e) {
             fail();
@@ -279,7 +277,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("1.5707963267948965579989817342720925807952880859375", a.toString());
+            assertEquals("1.5707963267", a.toString(10));
 
         } catch (Exception e) {
             fail();

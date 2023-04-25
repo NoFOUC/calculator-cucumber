@@ -485,8 +485,6 @@ public class Parser {
             }
         }
 
-        System.out.println(priority);
-
         for (int i = 0; i < priority.size(); i++) {
 
 
@@ -526,7 +524,6 @@ public class Parser {
 
 
                         if (priority.get(i) instanceof ArrayList) {
-                            System.out.println(((ArrayList) priority.get(i)));
                                 if (((ArrayList) priority.get(i)).contains(args.get(j).getString())) {
                                     ArrayList<CustomType> temp = new ArrayList<CustomType>();
 

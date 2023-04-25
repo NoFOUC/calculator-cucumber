@@ -30,15 +30,6 @@ public class CustomType {
         this.customTypes = customTypes;
     }
 
-    // make a fonction that return the value of customType in a array when we have a list of customType without a getter
-    // exemple ArrayList<CustomType> customTypes = new ArrayList<>();
-    // customTypes.add(new CustomType(new MyNumber(new RealValue(1))));
-    // system.out.println(customTypes.get(0))
-    // return MyNumber(new RealValue(1))
-
-
-
-
     public void changeType (MyNumber myNumber) {
         this.myNumber = myNumber;
         this.string = null;

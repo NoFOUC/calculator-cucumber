@@ -4,6 +4,7 @@ import converter.ComplexConverter;
 import visitor.Visitor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
@@ -143,11 +144,47 @@ public class MyNumber implements Expression {
      */
     @Override
     public String toString() {
+
+        //OLD
+        /*
         if (isComplex()) {
             return value + " + " + imaginary + "i";
         }
         else {
             return value.toString();
+        }
+        */
+
+        return this.toString(10);
+
+    }
+
+    /** The methode toString with a parameter length to allow the number to be printed with a certain length
+     *
+     * @param length The length of the number
+     * @return The String that is the result of the conversion.
+     */
+    public String toString(int length) {
+        if (isComplex()) {
+            int lenght_value = length + (value.toString().split("\\.")[0].length()) +1;
+            int lenght_imaginary = length + imaginary.toString().split("\\.")[0].length()+1;
+            if (lenght_value > value.toString().length()){
+                lenght_value = value.toString().length();
+            }
+            if (lenght_imaginary > imaginary.toString().length()){
+                lenght_imaginary = imaginary.toString().length();
+            }
+
+            return value.toString().substring(0, lenght_value) + " + " + imaginary.toString().substring(0, lenght_imaginary) + "i";
+        }
+        else {
+
+            int lenght_value = length + value.toString().split("\\.")[0].length()+ 1;
+
+            if (lenght_value > value.toString().length()){
+                lenght_value = value.toString().length();
+            }
+            return value.toString().substring(0, lenght_value);
         }
     }
 

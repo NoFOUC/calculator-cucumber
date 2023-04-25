@@ -208,8 +208,6 @@ public class TestModulus {
         ArrayList<Expression> p = new ArrayList<>(Arrays.asList(new MyNumber(value1, imaginary1), new MyNumber(value2, imaginary2)));
         try {
             Modulus e = new Modulus(p, Notation.INFIX);
-            System.out.println(e);
-            System.out.println(op2);
             assertEquals(e.hashCode(), op2.hashCode());
         }
         catch(IllegalConstruction e) { fail(); }

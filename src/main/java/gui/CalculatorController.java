@@ -213,8 +213,6 @@ public class CalculatorController {
 
         ArrayList<Object> processed = equationRoot.toArrayList();
 
-//        System.out.println(processed);
-
         try {
             MyNumber result = Parser.main(processed);
             equalsLabel.setText("= "+result);

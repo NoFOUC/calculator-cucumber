@@ -104,9 +104,8 @@ public class TestRealValue {
 
     @Test
     void testToString() {
-        assertEquals("8.283974799999999305555320461280643939971923828125", number1.toString());
-        assertEquals("6.1838730000000001751914169290103018283843994140625", number2.toString());
-        System.out.println(number3.toString());
+        assertEquals("8.2839747999", number1.toString());
+        assertEquals("6.1838730000", number2.toString());
         assertEquals("3", number3.toString());
         assertEquals("52", number4.toString());
     }

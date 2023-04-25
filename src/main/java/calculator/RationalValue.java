@@ -171,7 +171,7 @@ public class RationalValue extends AbstractValue {
         if (denominator.getValue() == 1) {
             return numerator.toString();
         }
-        return "(" + numerator + "/" + denominator + ")";
+        return "(" + numerator.toString() + "/" + denominator.toString() + ")";
     }
 
     /**

@@ -194,10 +194,6 @@ class TestEvaluator {
                 new MyNumber(new RealValue(value4)));
 
         try {
-            System.out.println(new MyNumber(new RealValue(value3.divide(value4, new MathContext(13)))).getImaginary().getClass());
-            System.out.println(calc.eval(new Divides(params)).getImaginary().getClass());
-            // construct another type of operation depending on the input value
-            // of the parameterised test
             switch (symbol) {
                 case "+" -> assertEquals(new MyNumber(new RealValue(value3.add(value4))), calc.eval(new Plus(params)));
                 case "-" -> assertEquals(new MyNumber(new RealValue(value3.subtract(value4))), calc.eval(new Minus(params)));
