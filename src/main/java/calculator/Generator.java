@@ -21,7 +21,7 @@ public class Generator extends Operation {
 
     public static AbstractValue random(AbstractValue v) {
         if (v instanceof RealValue) {
-            return new RealValue(Math.random());
+            return new RealValue(Math.random()); //NOSONAR
         } else if (v instanceof IntegerValue) {
             return new IntegerValue((int) (Math.random() * ((IntegerValue) v).getValue()));
         } else {

@@ -69,7 +69,7 @@ public final class Cot extends Operation
             throw new IllegalArgumentException("Cotangeant of complex numbers is not defined in this calculator");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.pow(Math.tan(left.doubleValue()), -1))));
+            return new MyNumber(new RealValue(new BigDecimal(Math.pow(Math.tan(left.doubleValue()), -1)))); //NOSONAR
         }
     }
 

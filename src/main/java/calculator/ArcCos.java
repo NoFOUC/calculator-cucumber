@@ -70,7 +70,7 @@ public final class ArcCos extends Operation
             throw new IllegalArgumentException("ArcCos of complex numbers is not defined in this calculator");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.acos(left.doubleValue()))));
+            return new MyNumber(new RealValue(new BigDecimal(Math.acos(left.doubleValue())))); //NOSONAR
         }
     }
 

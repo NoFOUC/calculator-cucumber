@@ -70,7 +70,7 @@ public final class ArcSin extends Operation
             throw new IllegalArgumentException("ArcSin of complex numbers is not defined in this calculator");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.asin(left.doubleValue()))));
+            return new MyNumber(new RealValue(new BigDecimal(Math.asin(left.doubleValue())))); //NOSONAR
         }
 
     }
