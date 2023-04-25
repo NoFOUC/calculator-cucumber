@@ -28,7 +28,7 @@ public abstract class Operation implements Expression
 	/**
 	* The neutral element of the operation (e.g. 1 for *, 0 for +)
 	*/
-	protected int neutral;
+	protected double neutral;
 
 	/**
 	* The notation used to render operations as strings.
@@ -220,7 +220,7 @@ public abstract class Operation implements Expression
 	public int hashCode()
 	{
 		int result = 5, prime = 31;
-		result = prime * result + neutral;
+		result = prime * result + Double.valueOf(neutral).hashCode();
 		result = prime * result + symbol.hashCode();
 		result = prime * result + args.hashCode();
 		return result;

@@ -13,6 +13,7 @@ public abstract class AbstractValue {
 
   /**
    * Method for returning the raw value of the number
+   *
    * @return The raw value of the number
    */
   public abstract BigDecimal getRawValue();

@@ -69,8 +69,8 @@ public final class ArcCot extends Operation
         if (b) {
             throw new IllegalArgumentException("ArcCos of complex numbers is not defined in this calculator");
         } else {
-            BigDecimal left = ((RationalValue) l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.atan(left.floatValue()))));
+            BigDecimal left = (l.getValue()).getRawValue();
+            return new MyNumber(new RealValue(new BigDecimal(Math.atan(1.0 / left.doubleValue()))));
             // TODO: Implement the arccotangeant function (not sure of the math)
         }
     }

@@ -69,7 +69,7 @@ public final class Ln extends Operation
         if (b) {
             throw new IllegalArgumentException("Logarithm of complex numbers is not defined in this calculator");
         } else {
-            BigDecimal left = ((RationalValue) l.getValue()).getRawValue();
+            BigDecimal left = (l.getValue()).getRawValue();
             return new MyNumber(new RealValue(new BigDecimal(Math.log(left.doubleValue()))));
         }
     }

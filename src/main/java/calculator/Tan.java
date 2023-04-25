@@ -69,7 +69,7 @@ public final class Tan extends Operation
         if (b) {
             throw new IllegalArgumentException("Tangeant of complex numbers is not defined in this calculator");
         } else {
-            BigDecimal left = ((RationalValue) l.getValue()).getRawValue();
+            BigDecimal left = (l.getValue()).getRawValue();
             return new MyNumber(new RealValue(new BigDecimal(Math.tan(left.doubleValue()))));
         }
     }

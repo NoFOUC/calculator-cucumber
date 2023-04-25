@@ -69,7 +69,7 @@ public final class Inverse extends Operation
         if (b) {
             throw new IllegalArgumentException("Inverse of complex numbers is not defined in this calculator");
         } else {
-            BigDecimal left = ((RationalValue) l.getValue()).getRawValue();
+            BigDecimal left = (l.getValue()).getRawValue();
             return new MyNumber(new RealValue(new BigDecimal(Math.pow(left.doubleValue(), -1))));
         }
     }

@@ -11,7 +11,7 @@ import java.util.List;
 public class Parser {
 
     private static final ArrayList<String> beforepriority = new ArrayList<String>
-            (Arrays.asList("√", "exp", "||", "sin", "cos", "tan", "asin", "acos", "atan"));
+            (Arrays.asList("√", "exp", "||", "sin", "cos", "tan", "cot", "asin", "acos", "atan", "acot"));
 
     private static final ArrayList<String> priority = new ArrayList<String> (Arrays.asList("!", "%", "*", "/", "+", "-", "<", ">"));
 
@@ -444,50 +444,19 @@ public class Parser {
                 case "√" -> args = sqrtParsing(args);
                 case "exp" -> args = expParsing(args);
                 case "||" -> args = modulusParsing(args);
-
-
-                //UNUSED
-            /*
-            else if (operation.equals("!")) {
-
-                factoParsing(args);
-            }
-            */
-
-
-                // done for Loic extension
-            /*
-            else if (operation.equals("sin")) {
-
-                sinParsing(args);
-            }
-            else if (operation.equals("cos")) {
-
-                cosParsing(args);
-            }
-            else if (operation.equals("tan")) {
-
-                tanParsing(args);
-            }
-            else if (operation.equals("asin")) {
-
-                asinParsing(args);
-            }
-            else if (operation.equals("acos")) {
-
-                acosParsing(args);
-            }
-            else if (operation.equals("atan")) {
-
-                atanParsing(args);
-            }
-            else if (operation.equals("ln")) {
-
-                lnParsing(args);
-            } */
+                case "sin" -> args = sinParsing(args);
+                case "cos" -> args = cosParsing(args);
+                case "tan" -> args = tanParsing(args);
+                case "cot" -> args = cotParsing(args);
+                case "asin" -> args = asinParsing(args);
+                case "acos" -> args = acosParsing(args);
+                case "atan" -> args = atanParsing(args);
+                case "acot" -> args = acotParsing(args);
+                case "ln" -> args = lnParsing(args);
                 default -> new Exception("IllegalConstruction");
-            }
 
+
+            }
         }
 
         for (int i = 0; i< args.size(); i++) {
@@ -810,7 +779,7 @@ public class Parser {
         return args;
     }
 
-    /*
+
     public static ArrayList<CustomType> lnParsing (ArrayList<CustomType> args) throws IllegalConstruction {
 
         List<Expression> params = new ArrayList<>();
@@ -820,7 +789,7 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Ln(params);
+        e = new Ln(params);
 
         CustomType temp = new CustomType(c.eval(e));
 
@@ -836,7 +805,7 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Sin(params);
+        e = new Sinus(params);
 
         CustomType temp = new CustomType(c.eval(e));
 
@@ -854,7 +823,7 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Cos(params);
+        e = new Cosinus(params);
 
         CustomType temp = new CustomType(c.eval(e));
 
@@ -871,7 +840,24 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Tan(params);
+        e = new Tan(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+
+    public static ArrayList<CustomType> cotParsing (ArrayList<CustomType> args) throws IllegalConstruction{
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        e = new Cot(params);
 
         CustomType temp = new CustomType(c.eval(e));
 
@@ -889,7 +875,7 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Asin(params);
+        e = new ArcSin(params);
 
         CustomType temp = new CustomType(c.eval(e));
 
@@ -907,7 +893,7 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Acos(params);
+        e = new ArcCos(params);
 
         CustomType temp = new CustomType(c.eval(e));
 
@@ -925,7 +911,7 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Atan(params);
+        e = new ArcTan(params);
 
         CustomType temp = new CustomType(c.eval(e));
 
@@ -933,6 +919,27 @@ public class Parser {
 
         return args;
     }
-    */
+
+    public static ArrayList<CustomType> acotParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        e = new ArcCot(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
+
+
 
 }
+
+

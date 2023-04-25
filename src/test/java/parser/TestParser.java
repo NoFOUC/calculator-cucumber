@@ -132,6 +132,186 @@ public class TestParser {
 
     }
 
+    @Test
+    public void testSin () {
+
+            calcul.add("sin");
+            calcul.add("0");
+            /*
+            calcul.add("3");
+            calcul.add(".");
+            calcul.add("1");
+            calcul.add("4");
+            calcul.add("1");
+            calcul.add("5");
+            calcul.add("9");
+            calcul.add("2");
+            calcul.add("6");
+            calcul.add("5");
+            calcul.add("3");
+            calcul.add("5");
+            calcul.add("8");
+            calcul.add("9");
+            calcul.add("7");
+            calcul.add("9");
+            calcul.add("3");
+            calcul.add("2");
+            calcul.add("3");
+            calcul.add("8");
+            */
+
+
+            try {
+                MyNumber a = Parser.main(calcul);
+                assertEquals("0",a.toString());
+
+            } catch (Exception e) {
+                fail();
+            }
+
+    }
+
+    @Test
+    public void testCos () {
+
+        calcul.add("cos");
+        calcul.add("0");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("1", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testTan () {
+
+        calcul.add("tan");
+        calcul.add("0");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("0", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testCot () {
+
+        calcul.add("cot");
+        calcul.add("1");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("0.64209261593433064607694404912763275206089019775390625", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+
+    public void testSec () {
+
+        calcul.add("sec");
+        calcul.add("0");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("0", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+
+    public void testAsin () {
+
+        calcul.add("asin");
+        calcul.add("0");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("0", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+
+    public void testAcos () {
+
+        calcul.add("acos");
+        calcul.add("0");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("1.5707963267948965579989817342720925807952880859375", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+
+    public void testAtan () {
+
+        calcul.add("atan");
+        calcul.add("0");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("0", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+
+    public void testAcot () {
+
+        calcul.add("acot");
+        calcul.add("0");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("1.5707963267948965579989817342720925807952880859375", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+
+    public void testLn () {
+
+            calcul.add("ln");
+            calcul.add("1");
+
+            try {
+                MyNumber a = Parser.main(calcul);
+                assertEquals("0", a.toString());
+
+            } catch (Exception e) {
+                fail();
+            }
+    }
+
 
 
 

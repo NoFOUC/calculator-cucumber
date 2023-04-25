@@ -55,7 +55,7 @@ public final class Cot extends Operation
     public Cot(List<Expression> elist, Notation n) throws IllegalConstruction {
         super(elist,n);
         symbol = "cot";
-        neutral = 0;
+        neutral = Math.PI/2;
     }
 
     /**
@@ -68,7 +68,7 @@ public final class Cot extends Operation
         if (b) {
             throw new IllegalArgumentException("Cotangeant of complex numbers is not defined in this calculator");
         } else {
-            BigDecimal left = ((RationalValue) l.getValue()).getRawValue();
+            BigDecimal left = (l.getValue()).getRawValue();
             return new MyNumber(new RealValue(new BigDecimal(Math.pow(Math.tan(left.doubleValue()), -1))));
         }
     }

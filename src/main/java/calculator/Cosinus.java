@@ -68,7 +68,7 @@ public final class Cosinus extends Operation
         if (b) {
             throw new IllegalArgumentException("Cosinus of complex numbers is not defined in this calculator");
         } else {
-            BigDecimal left = ((RationalValue) l.getValue()).getRawValue();
+            BigDecimal left = (l.getValue()).getRawValue();
             return new MyNumber(new RealValue(new BigDecimal(Math.cos(left.doubleValue()))));
         }
     }
