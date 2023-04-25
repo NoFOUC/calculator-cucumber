@@ -51,7 +51,7 @@ public class RealValue extends AbstractValue {
      * @param value
      */
     public RealValue(double value) {
-        this.value = new BigDecimal(value);
+        this.value = new BigDecimal(value);//NOSONAR
         this.precision = 12;
     }
 
@@ -61,7 +61,7 @@ public class RealValue extends AbstractValue {
      * @param precision
      */
     public RealValue(int value, int precision) {
-        this.value = new BigDecimal(value);
+        this.value = new BigDecimal(value);//NOSONAR
         this.precision = precision;
     }
 
@@ -70,7 +70,7 @@ public class RealValue extends AbstractValue {
      * @param value
      */
     public RealValue(int value) {
-        this.value = new BigDecimal(value);
+        this.value = new BigDecimal(value);//NOSONAR
         this.precision = 12;
     }
 

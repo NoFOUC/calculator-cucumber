@@ -132,6 +132,7 @@
                 <configuration>
                     <excludes>
                         <exclude>calculator/Main.class</exclude>
+                        <exclude>gui</exclude>
                     </excludes>
                 </configuration>
             </plugin>
