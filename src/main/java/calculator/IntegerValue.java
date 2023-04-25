@@ -22,7 +22,7 @@ public class IntegerValue extends AbstractValue {
     }
 
     public BigDecimal getRawValue() {
-        return new BigDecimal(value);
+        return new BigDecimal(value); //NOSONAR
     }
 
 

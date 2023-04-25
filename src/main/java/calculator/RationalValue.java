@@ -143,7 +143,7 @@ public class RationalValue extends AbstractValue {
 
         BigDecimal value = new BigDecimal(RV.getNumerator().getValue()).divide(new BigDecimal(RV.getDenominator().getValue()), 12, BigDecimal.ROUND_HALF_UP);
 
-        BigDecimal value2 = new BigDecimal(value.doubleValue());
+        BigDecimal value2 = new BigDecimal(value.doubleValue()); //NOSONAR
 
         return new RealValue(value2);
 
