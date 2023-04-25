@@ -174,9 +174,7 @@ public class CalculatorController {
         buttonDivide.setOnAction((event) -> addOperation("/"));
 
         buttonExp.setOnAction((event) -> addOperation("e^", "(", ")"));
-        buttonSqrt.setOnAction((event) -> addOperation("√"));
-
-//        ["√", ["5", "+", "10"]]
+        buttonSqrt.setOnAction((event) -> addOperation("√", "(", ")"));
 
         buttonParenthesisOpen.setOnAction((event) -> addOperation("(", ")"));
 
@@ -215,7 +213,7 @@ public class CalculatorController {
 
         ArrayList<Object> processed = equationRoot.toArrayList();
 
-        System.out.println(processed);
+//        System.out.println(processed);
 
         try {
             MyNumber result = Parser.main(processed);
