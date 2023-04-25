@@ -76,5 +76,5 @@ public final class ArcSin extends Operation
     }
 
     @Override
-    public MyNumber op(MyNumber l, MyNumber r) { return l; }
+    public MyNumber op(MyNumber l, MyNumber r) throws IllegalArgumentException { throw new IllegalArgumentException("ArcSin of two numbers is not defined"); }
 }

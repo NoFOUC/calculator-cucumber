@@ -67,14 +67,14 @@ public final class ArcCot extends Operation
     public MyNumber op(MyNumber l) throws IllegalArgumentException {
         boolean b = l.isComplex();
         if (b) {
-            throw new IllegalArgumentException("ArcCos of complex numbers is not defined in this calculator");
+            throw new IllegalArgumentException("ArcCot of complex numbers is not defined in this calculator");
         } else {
             BigDecimal left = ((RationalValue) l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.atan(left.floatValue()))));
+            return new MyNumber(new RealValue(new BigDecimal(Math.pow(Math.atan(left.floatValue()), -1))));
             // TODO: Implement the arccotangeant function (not sure of the math)
         }
     }
 
     @Override
-    public MyNumber op(MyNumber l, MyNumber r) throws IllegalArgumentException { throw new IllegalArgumentException("Arccos of two numbers is not defined"); }
+    public MyNumber op(MyNumber l, MyNumber r) throws IllegalArgumentException { throw new IllegalArgumentException("Arccot of two numbers is not defined"); }
 }

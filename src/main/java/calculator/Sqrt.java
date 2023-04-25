@@ -27,7 +27,7 @@ import java.util.List;
  * @see ArcTan
  * @see ArcCot
  */
-public class Sqrt extends Operation {
+public final class Sqrt extends Operation {
 
     /**
      * Class constructor specifying a number of Expressions to square root.
@@ -59,9 +59,7 @@ public class Sqrt extends Operation {
      * @return the square root of the complex number
      */
     @Override
-    public MyNumber op(MyNumber l, MyNumber r) {
-        return op(l);
-    }
+    public MyNumber op(MyNumber l, MyNumber r) throws IllegalArgumentException { throw new IllegalArgumentException("Sqrt of two numbers is not defined"); }
 
     /**
      * The actual computation of the square root of a complex number

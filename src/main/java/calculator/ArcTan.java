@@ -75,5 +75,5 @@ public final class ArcTan extends Operation
     }
 
     @Override
-    public MyNumber op(MyNumber l, MyNumber r) { return l; }
+    public MyNumber op(MyNumber l, MyNumber r) throws IllegalArgumentException { throw new IllegalArgumentException("ArcTan of two numbers is not defined"); }
 }
