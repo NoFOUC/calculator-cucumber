@@ -28,38 +28,28 @@ public class TestParser {
 
         calcul = new ArrayList<>();
 
-
-        s = "1.2+3!*3+73%";
-
-        b = new ArrayList<>();
-        for (int i = 0; i < s.length(); i++) {
-            b.add(s.split("")[i]);
-        }
-
-        b.add(new ArrayList<Object>(Arrays.asList("1","0", "0", "!")));
-
-
-
-        /*
-        calcul.add("5");
-        calcul.add("*");
-        calcul.add("1");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        calcul.add("0");
-        */
-
     }
 
+    @Test
+    public void testreturn (){
+
+        calcul.add("4");
+        calcul.add("2");
+        calcul.add("/");
+        calcul.add("3");
+        calcul.add("*");
+        calcul.add("2");
+
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("28" ,a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+
+    }
 
     @Test
     public void testmultipleParsing () {
@@ -312,7 +302,37 @@ public class TestParser {
             }
     }
 
+    @Test
+    public void testPlus () {
 
+        calcul.add("1");
+        calcul.add("+");
+        calcul.add("2");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("3", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void testMinus () {
+
+        calcul.add("1");
+        calcul.add("-");
+        calcul.add("2");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+            assertEquals("-1", a.toString());
+
+        } catch (Exception e) {
+            fail();
+        }
+    }
 
 
 

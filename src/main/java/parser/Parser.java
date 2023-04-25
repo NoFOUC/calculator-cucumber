@@ -2,10 +2,9 @@ package parser;
 
 import calculator.*;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 public class Parser {
@@ -13,8 +12,16 @@ public class Parser {
     private static final ArrayList<String> beforepriority = new ArrayList<String>
             (Arrays.asList("√", "exp", "||", "sin", "cos", "tan", "cot", "asin", "acos", "atan", "acot"));
 
-    private static final ArrayList<String> priority = new ArrayList<String> (Arrays.asList("!", "%", "*", "/", "+", "-", "<", ">"));
 
+    private static final ArrayList<Object> priority = new ArrayList<Object>
+            (Arrays.asList
+                    ("!", "%",
+                    new ArrayList<String>(Arrays.asList("*", "/")),
+                    new ArrayList<String>(Arrays.asList("+", "-")),
+                    new ArrayList<String>(Arrays.asList("<", ">"))
+                    ));
+
+    private static final ArrayList<String> afterpriority = new ArrayList<String> (Arrays.asList("!"));
 
     public static MyNumber main(ArrayList<Object> args) throws IllegalConstruction {
 
@@ -151,7 +158,15 @@ public class Parser {
                             temp =  new ParserList();
                             type = TypeEnum.IntegerValue;
                         }
-                        // if the last element was a number
+                        else if (afterpriority.contains(args.get(i).getString())) {
+                            temp.setType(type);
+                            numberAndOperator.add(new CustomType(temp));
+                            numberAndOperator.add(new CustomType(args.get(i).getString()));
+                            numberAndOperator.add(new CustomType(""));
+
+                            temp =  new ParserList();
+                            type = TypeEnum.IntegerValue;
+                        }
                         else {
                             temp.setType(type);
                             numberAndOperator.add(new CustomType(temp));
@@ -195,7 +210,7 @@ public class Parser {
         }
 
 
-        if (temp.size() != 0 && !(numberAndOperator.get(numberAndOperator.size()-1).equals(temp))){
+        if (temp.size() != 0 && (numberAndOperator.size()==0 || !(numberAndOperator.get(numberAndOperator.size()-1).equals(temp))) ){
             temp.setType(type);
             numberAndOperator.add(new CustomType(temp));
         }
@@ -470,37 +485,75 @@ public class Parser {
             }
         }
 
+        System.out.println(priority);
+
         for (int i = 0; i < priority.size(); i++) {
 
 
-            for (int j = 1; j < args.size()-1; j++) {
+            for (int j = 1; j < args.size(); j++) {
 
-                if (args.get(j).isString() && args.get(j).getString().equals(priority.get(i))) {
+                if (args.get(j).isString()) {
 
-                    ArrayList<CustomType> temp = new ArrayList<CustomType>();
+                    if (priority.get(i) instanceof String && args.get(j).getString().equals(priority.get(i))) {
 
 
-                    temp.add(new CustomType(args.get(j - 1).getMyNumber()));
-                    temp.add(new CustomType(args.get(j).getString()));
-                    temp.add(new CustomType(args.get(j + 1).getMyNumber()));
+                        ArrayList<CustomType> temp = new ArrayList<CustomType>();
 
-                    args.remove(j - 1);
-                    args.remove(j - 1);
-                    args.remove(j - 1);
 
-                    String a = temp.get(1).getString();
-                    switch (a) {
-                        case "%" -> args.add(j - 1, new CustomType(modParsing(1, temp).get(0).getMyNumber()));
-                        case "!" -> args.add(j - 1, new CustomType(factoParsing(1, temp).get(0).getMyNumber()));
-                        case "*", "/" -> args.add(j - 1, new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
-                        case "+", "-" -> args.add(j - 1, new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
-                        case "<" -> args.add(j - 1, new CustomType(lessParsing(1, temp).get(0).getMyNumber()));
-                        case ">" -> args.add(j - 1, new CustomType(greaterParsing(1, temp).get(0).getMyNumber()));
-                        default -> new Exception("IllegalConstruction");
+                        temp.add(new CustomType(args.get(j - 1).getMyNumber()));
+                        temp.add(new CustomType(args.get(j).getString()));
+                        temp.add(new CustomType(args.get(j + 1).getMyNumber()));
+
+                        args.remove(j - 1);
+                        args.remove(j - 1);
+                        args.remove(j - 1);
+
+                        String a = temp.get(1).getString();
+                        switch (a) {
+                            case "%" -> args.add(j - 1, new CustomType(modParsing(1, temp).get(0).getMyNumber()));
+                            case "!" -> args.add(j - 1, new CustomType(factoParsing(1, temp).get(0).getMyNumber()));
+                            case "*", "/" -> args.add(j - 1, new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
+                            case "+", "-" -> args.add(j - 1, new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
+                            case "<", ">"  -> args.add(j - 1, new CustomType(lessGreatParsing(1, temp).get(0).getMyNumber()));
+                            default -> new Exception("IllegalConstruction");
+                        }
+
+
+                        j = j - 1;
                     }
 
+                    else {
 
-                    j = j - 1;
+
+                        if (priority.get(i) instanceof ArrayList) {
+                            System.out.println(((ArrayList) priority.get(i)));
+                                if (((ArrayList) priority.get(i)).contains(args.get(j).getString())) {
+                                    ArrayList<CustomType> temp = new ArrayList<CustomType>();
+
+
+                                    temp.add(new CustomType(args.get(j - 1).getMyNumber()));
+                                    temp.add(new CustomType(args.get(j).getString()));
+                                    temp.add(new CustomType(args.get(j + 1).getMyNumber()));
+
+                                    args.remove(j - 1);
+                                    args.remove(j - 1);
+                                    args.remove(j - 1);
+
+                                    String a = temp.get(1).getString();
+                                    switch (a) {
+                                        case "%" -> args.add(j - 1, new CustomType(modParsing(1, temp).get(0).getMyNumber()));
+                                        case "!" -> args.add(j - 1, new CustomType(factoParsing(1, temp).get(0).getMyNumber()));
+                                        case "*", "/" -> args.add(j - 1, new CustomType(multdivParsing(1, temp).get(0).getMyNumber()));
+                                        case "+", "-" -> args.add(j - 1, new CustomType(addsubParsing(1, temp).get(0).getMyNumber()));
+                                        case "<", ">"  -> args.add(j - 1, new CustomType(lessGreatParsing(1, temp).get(0).getMyNumber()));
+                                        default -> new Exception("IllegalConstruction");
+                                    }
+
+
+                                    j = j - 1;
+                                }
+                        }
+                    }
 
                 }
 
@@ -642,7 +695,7 @@ public class Parser {
 
     }
 
-    public static ArrayList<CustomType> lessParsing (int i, ArrayList<CustomType> args) throws IllegalConstruction {
+    public static ArrayList<CustomType> lessGreatParsing (int i, ArrayList<CustomType> args) throws IllegalConstruction {
 
         List<Expression> params = new ArrayList<>();
 
@@ -666,13 +719,7 @@ public class Parser {
 
         }
 
-        return args;
-    }
-
-    public static ArrayList<CustomType> greaterParsing (int i, ArrayList<CustomType> args) throws IllegalConstruction{
-        List<Expression> params = new ArrayList<>();
-
-        if (args.get(i).isString() && args.get(i).getString().equals(">")) {
+        else if (args.get(i).isString() && args.get(i).getString().equals(">")) {
 
             if (args.get(i - 1).isMyNumber() && args.get(i + 1).isMyNumber()) {
                 Expression e;
@@ -694,7 +741,6 @@ public class Parser {
 
         return args;
     }
-
     public static ArrayList<CustomType> sqrtParsing (ArrayList<CustomType> args) throws IllegalConstruction {
 
         List<Expression> params = new ArrayList<>();
