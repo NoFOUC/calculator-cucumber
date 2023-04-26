@@ -34,7 +34,7 @@ public class Generator extends Operation {
             return new RealValue(Math.random()); //NOSONAR
         } else if (v instanceof RationalValue) {
             return new RationalValue(
-                    new IntegerValue((int) (Math.random() * ((RationalValue) v).getNumerator().getValue())),
+                    new IntegerValue((int) (Math.random() * ((RationalValue) v).getNumerator().getValue())), //NOSONAR
                     new IntegerValue((int) (Math.random() * ((RationalValue) v).getDenominator().getValue()))); //NOSONAR
         }
         else if (v instanceof IntegerValue) {
