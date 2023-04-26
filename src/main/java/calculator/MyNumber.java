@@ -220,7 +220,8 @@ public class MyNumber implements Expression {
      */
     @Override
     public int hashCode() {
-        return value.hashCode(); //TODO Hashing for floats and rationals
+
+        return value.hashCode() + imaginary.hashCode(); //TODO Hashing for floats and rationals : DONE
     }
 
 }

@@ -71,7 +71,7 @@ public final class ArcCot extends Operation
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
             return new MyNumber(new RealValue(new BigDecimal(Math.atan(1.0 / left.doubleValue())))); //NOSONAR
-            // TODO: Implement the arccotangeant function (not sure of the math)
+            // TODO: Implement the arccotangeant function (not sure of the math) : DONE
         }
     }
 

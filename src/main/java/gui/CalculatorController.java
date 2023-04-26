@@ -138,7 +138,7 @@ public class CalculatorController {
     private EquationDisplay cursor;
 
     private int precision;
-    public final int precisionBoundary = 32; // TODO Decide what's the max precision
+    public final int precisionBoundary = 32; // TODO Decide what's the max precision : j'ai mis 10 dans le toString
 
     private MyNumber result;
 
@@ -216,7 +216,7 @@ public class CalculatorController {
         try {
             if (processed.size() == 0) {this.result = new MyNumber(0);} //TODO Error message display and management
             else {this.result = Parser.main(processed);}
-            equalsLabel.setText("= "+result);
+            equalsLabel.setText("= "+result.toString());
 
             equationRoot.reset();
             cursor = equationRoot;

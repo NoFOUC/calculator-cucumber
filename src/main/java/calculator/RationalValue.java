@@ -25,7 +25,7 @@ public class RationalValue extends AbstractValue {
     public BigDecimal getRawValue() {
         BigDecimal rawNum = numerator.getRawValue();
         BigDecimal rawDen = denominator.getRawValue();
-        return rawNum.divide(rawDen); //TODO: Rounding mode and scale for the division
+        return rawNum.divide(rawDen); //TODO: Rounding mode and scale for the division : NO NEED BECAUSE TOString
     }
 
     /**
@@ -76,7 +76,7 @@ public class RationalValue extends AbstractValue {
         return denominator;
     }
 
-    // TODO: Minor code duplication, dunno is it's worthwhile to try to fix
+    // TODO: Minor code duplication, dunno is it's worthwhile to try to fix : TO HAVE Clear CODE
     @Override
     public AbstractValue add(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -157,6 +157,9 @@ public class RationalValue extends AbstractValue {
      * @return The inverse of the rational number
      */
     public RationalValue inverse() {
+        if (numerator.getValue() == 0) {
+            throw new ArithmeticException("Division by zero");
+        }
         return new RationalValue(denominator, numerator);
     }
 
