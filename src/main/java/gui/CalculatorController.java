@@ -220,9 +220,14 @@ public class CalculatorController {
 
             equationRoot.reset();
             cursor = equationRoot;
-        } catch (IllegalConstruction e) {
-            throw new RuntimeException(e); //TODO Error message display and management
         }
+        catch (ArithmeticException e) {
+            equalsLabel.setText("Division by zero");
+        }
+        catch (IllegalConstruction e) {
+            equalsLabel.setText("Illegal construction");
+        }
+
     }
 
     private void setPrecision(int value) {

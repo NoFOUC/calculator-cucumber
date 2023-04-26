@@ -14,6 +14,8 @@ public class CustomType {
 
     private ArrayList<CustomType> customTypes = null;
 
+    public CustomType() {
+    }
     public CustomType(MyNumber myNumber) {
         this.myNumber = myNumber;
     }

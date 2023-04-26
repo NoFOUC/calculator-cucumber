@@ -12,6 +12,13 @@ public class Parser {
     private static final ArrayList<String> beforepriority = new ArrayList<String>
             (Arrays.asList("√", "exp", "||", "sin", "cos", "tan", "cot", "asin", "acos", "atan", "acot"));
 
+    private static final ArrayList<Object> priority_no_subArray = new ArrayList<Object>
+            (Arrays.asList
+                    ("!", "%",
+                            "*", "/",
+                            "+", "-",
+                            "<", ">"
+                    ));
 
     private static final ArrayList<Object> priority = new ArrayList<Object>
             (Arrays.asList
@@ -102,7 +109,7 @@ public class Parser {
     */
 
 
-    public static ArrayList<CustomType> parseNumberAndOperator (ArrayList<CustomType> args) {
+    public static ArrayList<CustomType> parseNumberAndOperator (ArrayList<CustomType> args) throws IllegalConstruction {
 
         //creation of the list of CustomType that will be returned
         // les nombres seront des MyNumber et les opérateurs des String
@@ -127,6 +134,9 @@ public class Parser {
                     temp.add(args.get(i).getString());
                     type = TypeEnum.RealValue;
                 }
+                else if (i == args.size()-1 & args.get(i).isString() && (args.get(i).getString()).equals(".")){
+                    throw new IllegalConstruction();
+                }
 
                 /**
                  * Here it's the end of a number and the beginning of an operator
@@ -146,28 +156,41 @@ public class Parser {
                             type = TypeEnum.IntegerValue;
                         }
 
-                        // if the last element was the "i" of complex value
-
                         else if (i>0 && args.get(i-1).isString() && args.get(i-1).getString().equals("i")) {
                             numberAndOperator.add(new CustomType(args.get(i).getString()));
                             temp =  new ParserList();
                             type = TypeEnum.IntegerValue;
                         }
                         else if (beforepriority.contains(args.get(i).getString())) {
+
+                            if (args.size() == 1) {
+                                throw new IllegalConstruction();
+                            }
+
                             numberAndOperator.add(new CustomType(args.get(i).getString()));
                             temp =  new ParserList();
                             type = TypeEnum.IntegerValue;
                         }
                         else if (afterpriority.contains(args.get(i).getString())) {
-                            temp.setType(type);
-                            numberAndOperator.add(new CustomType(temp));
-                            numberAndOperator.add(new CustomType(args.get(i).getString()));
-                            numberAndOperator.add(new CustomType(""));
 
-                            temp =  new ParserList();
-                            type = TypeEnum.IntegerValue;
+                            if (temp.size() == 0) {
+                                throw new IllegalConstruction();
+                            }
+                            else {
+                                temp.setType(type);
+                                numberAndOperator.add(new CustomType(temp));
+                                numberAndOperator.add(new CustomType(args.get(i).getString()));
+                                numberAndOperator.add(new CustomType(""));
+
+                                temp = new ParserList();
+                                type = TypeEnum.IntegerValue;
+                            }
+
                         }
                         else {
+                            if (i == args.size()-1 && !(args.get(i).getString().matches("[0-9]"))){
+                                throw new IllegalConstruction();
+                            }
                             temp.setType(type);
                             numberAndOperator.add(new CustomType(temp));
                             numberAndOperator.add(new CustomType(args.get(i).getString()));
@@ -180,6 +203,7 @@ public class Parser {
                     // if the element is an "i" of complex value
                     else if (!args.get(i).getString().equals(")") && args.get(i).getString().equals("i")) {
 
+
                         // if the number is a real value or just an integer value
                         if (type == TypeEnum.RealValue) {
                             type = TypeEnum.ComplexRealValue;
@@ -187,6 +211,15 @@ public class Parser {
                         else {
                             type = TypeEnum.ComplexValue;
                         }
+                        if ((i>0 &&  !(args.get(i-1).getString().matches("[0-9]"))) ) {
+                            temp.add("1");
+                            numberAndOperator.add(new CustomType(temp));
+                        }
+                        else if (i==0) {
+                            temp.add("1");
+                            numberAndOperator.add(new CustomType(temp));
+                        }
+
                         temp.setType(type);
                         numberAndOperator.add(new CustomType(temp));
                         temp =  new ParserList();
