@@ -214,7 +214,8 @@ public class CalculatorController {
         ArrayList<Object> processed = equationRoot.toArrayList();
 
         try {
-            MyNumber result = Parser.main(processed);
+            if (processed.size() == 0) {this.result = new MyNumber(0);} //TODO Error message display and management
+            else {this.result = Parser.main(processed);}
             equalsLabel.setText("= "+result);
 
             equationRoot.reset();
