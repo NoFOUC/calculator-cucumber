@@ -1,5 +1,7 @@
 package calculator;
 
+import parser.TypeEnum;
+
 import java.util.List;
 public class Generator extends Operation {
 
@@ -13,16 +15,29 @@ public class Generator extends Operation {
         neutral = 0;
     }
 
+
     public MyNumber op(MyNumber l) {
         AbstractValue real = random(l.getValue());
-        AbstractValue imaginary = random(l.getImaginary());
+        AbstractValue imaginary;
+        if (l.isComplex()) {
+            imaginary = random(l.getImaginary());
+        } else {
+            imaginary = new IntegerValue(0);
+        }
         return new MyNumber(real, imaginary);
+
     }
+
 
     public static AbstractValue random(AbstractValue v) {
         if (v instanceof RealValue) {
             return new RealValue(Math.random()); //NOSONAR
-        } else if (v instanceof IntegerValue) {
+        } else if (v instanceof RationalValue) {
+            return new RationalValue(
+                    new IntegerValue((int) (Math.random() * ((RationalValue) v).getNumerator().getValue())),
+                    new IntegerValue((int) (Math.random() * ((RationalValue) v).getDenominator().getValue()))); //NOSONAR
+        }
+        else if (v instanceof IntegerValue) {
             return new IntegerValue((int) (Math.random() * ((IntegerValue) v).getValue())); //NOSONAR
         } else {
             return null;

@@ -3,6 +3,7 @@ package calculator;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.*;
+import parser.TypeEnum;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,33 +13,39 @@ class TestGenerator {
 
     private final int value1 = 8;
     private final int value2 = 6;
-
-
     private final int denominator1 = 2;
-    private final int denominator3 = 4;
+    private final int denominator2 = 4;
+
+    private final int imaginary1 = 3;
+
+    private final int imaginary2 = 5;
+
+    private final int denominator3 = 5;
 
     private final BigDecimal value3BD = new BigDecimal("8.278397");
 
     private final BigDecimal value4BD = new BigDecimal("6.187802");
 
-    private Generator op;
-    private Generator op3;
-    private Generator op5;
-    private List<Expression> params;
+    private Generator op, op2, op3, op4;
+    private List<Expression> params, params2, params3, params4;
 
     @BeforeEach
     void setUp() {
         params = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
-        List<Expression> params3 = Arrays.asList(new MyNumber(
+        params2 = Arrays.asList(new MyNumber(value1, imaginary1), new MyNumber(value2, imaginary2));
+        params3 = Arrays.asList(new MyNumber(
                         new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1))),
                 new MyNumber(
                         new RationalValue(new IntegerValue(value2), new IntegerValue(denominator3))));
-        List<Expression> params5 = Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD)));
+        params4 = Arrays.asList(new MyNumber(new RealValue(value3BD)), new MyNumber(new RealValue(value4BD)));
+
+
 
         try {
             op = new Generator(params);
+            op2 = new Generator(params2);
             op3 = new Generator(params3);
-            op5 = new Generator(params5);
+            op4 = new Generator(params4);
         } catch (IllegalConstruction e) {
             fail();
         }
@@ -112,7 +119,19 @@ class TestGenerator {
         List<Expression> p = Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD)));
         try {
             Generator e = new Generator(p, Notation.INFIX);
-            assertEquals(op5, e);
+            assertEquals(op4, e);
+        } catch (IllegalConstruction e) {
+            fail();
+        }
+    }
+
+    @Test
+    void testComplexEquals() {
+        // Two similar expressions, constructed separately (and using different constructors) should not be equal
+        List<Expression> p = Arrays.asList(new MyNumber(value1, imaginary1), new MyNumber(value2, imaginary2));
+        try {
+            Generator e = new Generator(p, Notation.INFIX);
+            assertEquals(op2, e);
         } catch (IllegalConstruction e) {
             fail();
         }
@@ -155,7 +174,19 @@ class TestGenerator {
         List<Expression> p = Arrays.asList(new MyNumber(new RealValue(value3BD)),new MyNumber(new RealValue(value4BD)));
         try {
             Generator e = new Generator(p, Notation.INFIX);
-            assertEquals(e.hashCode(), op5.hashCode());
+            assertEquals(e.hashCode(), op4.hashCode());
+        } catch (IllegalConstruction e) {
+            fail();
+        }
+    }
+
+    @Test
+    void testComplexHashCode() {
+        // Two similar expressions, constructed separately (and using different constructors) should have the same hashcode
+        List<Expression> p = Arrays.asList(new MyNumber(value1, imaginary1), new MyNumber(value2, imaginary2));
+        try {
+            Generator e = new Generator(p, Notation.INFIX);
+            assertEquals(e.hashCode(), op2.hashCode());
         } catch (IllegalConstruction e) {
             fail();
         }
