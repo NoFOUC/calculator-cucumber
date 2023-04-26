@@ -181,7 +181,7 @@ public class CalculatorController {
         buttonImaginary.setOnAction((event) -> addOperation("i"));
         buttonFactorial.setOnAction((event) -> addOperation("!"));
         buttonModulo.setOnAction((event) -> addOperation("%"));
-        buttonComplexModulus.setOnAction((event) -> addOperation("||", "||"));
+        buttonComplexModulus.setOnAction((event) -> addOperation("||", "", "||"));
 
         buttonLesserThan.setOnAction((event) -> addOperation("<"));
         buttonBiggerThan.setOnAction((event) -> addOperation(">"));
