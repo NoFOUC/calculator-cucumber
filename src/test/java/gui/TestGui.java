@@ -1,4 +1,3 @@
-/*
 package gui;
 
 import javafx.fxml.FXMLLoader;
@@ -6,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.framework.junit5.ApplicationExtension;
@@ -18,7 +18,7 @@ import static org.testfx.api.FxAssert.verifyThat;
 import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 @ExtendWith(ApplicationExtension.class)
-class ClickableButtonsTest {
+class TestGui {
 
     @Start
     void onStart(Stage stage) throws IOException {
@@ -449,4 +449,3 @@ class ClickableButtonsTest {
     }
 
 }
-*/

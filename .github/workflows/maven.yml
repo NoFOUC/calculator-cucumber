@@ -23,7 +23,7 @@ jobs:
         java-version: 17
         cache: 'maven'
     - name: Build with Maven (including running of all tests)
-      run: mvn -B package --file pom.xml
+      run: mvn -B -P Default package --file pom.xml
       
     - name: Publish Test Report
       if: ${{ always() }}
