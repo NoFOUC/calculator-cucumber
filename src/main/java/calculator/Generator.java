@@ -15,8 +15,7 @@ public class Generator extends Operation {
 
     public MyNumber op(MyNumber l) {
         AbstractValue real = random(l.getValue());
-        AbstractValue imaginary = random(l.getImaginary());
-        return new MyNumber(real, imaginary);
+        return new MyNumber(real);
     }
 
     public static AbstractValue random(AbstractValue v) {
@@ -29,6 +28,5 @@ public class Generator extends Operation {
         }
     }
 
-    public MyNumber op(MyNumber l, MyNumber r) { return null; }
-
+    public MyNumber op(MyNumber l, MyNumber r) throws IllegalArgumentException { throw new IllegalArgumentException("Generator of two numbers is not defined"); }
 }
