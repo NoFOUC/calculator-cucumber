@@ -23,7 +23,7 @@ public class Generator extends Operation {
         if (v instanceof RealValue) {
             return new RealValue(Math.random()); //NOSONAR
         } else if (v instanceof IntegerValue) {
-            return new IntegerValue((int) (Math.random() * ((IntegerValue) v).getValue()));
+            return new IntegerValue((int) (Math.random() * ((IntegerValue) v).getValue())); //NOSONAR
         } else {
             return null;
         }

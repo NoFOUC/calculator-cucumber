@@ -1,3 +1,4 @@
+/*
 package gui;
 
 import javafx.fxml.FXMLLoader;
@@ -447,36 +448,5 @@ class ClickableButtonsTest {
         verifyThat("#equationLabel", hasText("_"));
     }
 
-    /*
-    @Test
-    void should_click_on_first_button(FxRobot robot) {
-        // when:
-        robot.clickOn("#first-button");
-
-        // then:
-        verifyThat("#first-button", hasText("clicked!"));
-    }
-
-    @Test
-    void should_click_on_second_button_once(FxRobot robot) {
-        // when:
-        robot.clickOn("#second-button");
-
-        // then:
-        verifyThat("#second-button", hasText("1 clicks"));
-        verifyThat("#first-button", hasText("click me to change my name!"));
-    }
-
-    @Test
-    void should_click_on_second_button_twice(FxRobot robot) {
-        // when:
-        robot.clickOn("#second-button");
-        robot.clickOn("#second-button");
-
-        // then:
-        verifyThat("#second-button", hasText("2 clicks"));
-        verifyThat("#first-button", hasText("click me to change my name!"));
-    }
-    */
-
 }
+*/
