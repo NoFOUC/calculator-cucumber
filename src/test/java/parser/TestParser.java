@@ -41,7 +41,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("1.7320508075 + 1i" ,a.toString());
+            assertEquals("1.7320508076 + 1i" ,a.toString());
 
         } catch (Exception e) {
             fail();
@@ -77,7 +77,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("8.8999999999 + 6.8999999999i",a.toString());
+            assertEquals("8.9 + 6.9i",a.toString());
 
         } catch (Exception e) {
             fail();
@@ -245,7 +245,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("1.5707963267", a.toString());
+            assertEquals("1.5707963268", a.toString());
 
         } catch (Exception e) {
             fail();
@@ -277,7 +277,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("1.5707963267", a.toString(10));
+            assertEquals("1.5707963268", a.toString(10));
 
         } catch (Exception e) {
             fail();

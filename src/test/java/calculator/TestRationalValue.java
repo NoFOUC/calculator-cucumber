@@ -57,7 +57,7 @@ class TestRationalValue {
 	void testToReal () throws IllegalConstruction {
 		RationalValue rationalValue = new RationalValue(new IntegerValue(8), new IntegerValue(7));
 
-		assertEquals(new RealValue(new BigDecimal(1.142857142857)), rational1.toReal());
+		assertEquals(new RealValue(new BigDecimal("1.142857142857")), rational1.toReal());
 		assertEquals(new RealValue(4.000000000000), rational2.toReal());
 		assertEquals(new RealValue(0.25), rational3.toReal());
 

@@ -1,6 +1,7 @@
 package calculator;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.math.RoundingMode;
 
 /**
@@ -10,7 +11,8 @@ public class RealValue extends AbstractValue {
 
 
     private final BigDecimal value;
-    private int precision;
+
+    private static int globalPrecisionLimit = 5;
 
     @Override
     public BigDecimal getRawValue() {
@@ -20,30 +22,9 @@ public class RealValue extends AbstractValue {
     /**
      * Constructor method
      * @param value
-     * @param precision
-     */
-    public RealValue(BigDecimal value, int precision) {
-        this.value = value;
-        this.precision = precision;
-    }
-
-    /**
-     * Constructor method
-     * @param value
      */
     public RealValue(BigDecimal value) {
         this.value = value;
-        this.precision = 12;
-    }
-
-    /**
-     * Constructor method
-     * @param value
-     * @param precision
-     */
-    public RealValue(double value, int precision) {
-        this.value = BigDecimal.valueOf(value);
-        this.precision = precision;
     }
 
     /**
@@ -51,18 +32,7 @@ public class RealValue extends AbstractValue {
      * @param value
      */
     public RealValue(double value) {
-        this.value = new BigDecimal(value);//NOSONAR
-        this.precision = 12;
-    }
-
-    /**
-     * Constructor method
-     * @param value
-     * @param precision
-     */
-    public RealValue(int value, int precision) {
-        this.value = new BigDecimal(value);//NOSONAR
-        this.precision = precision;
+        this.value = BigDecimal.valueOf(value);
     }
 
     /**
@@ -71,17 +41,6 @@ public class RealValue extends AbstractValue {
      */
     public RealValue(int value) {
         this.value = new BigDecimal(value);//NOSONAR
-        this.precision = 12;
-    }
-
-    /**
-     * Constructor method
-     * @param value
-     * @param precision
-     */
-    public RealValue(IntegerValue value, int precision) {
-        this.value = new BigDecimal(value.getValue());
-        this.precision = precision;
     }
 
     /**
@@ -90,67 +49,50 @@ public class RealValue extends AbstractValue {
      */
     public RealValue(IntegerValue value) {
         this.value = new BigDecimal(value.getValue());
-        this.precision = 12;
-    }
-
-    /**
-     * Getter method to obtain the precision of the value
-     * @return The precision of the value
-     */
-    public int getPrecision() {
-        return precision;
-    }
-
-    /**
-     * Setter method to set the precision of the value
-     * @param precision The precision of the value
-     */
-    public void setPrecision(int precision) {
-        this.precision = precision;
     }
 
     @Override
     public AbstractValue add(AbstractValue other) {
         if (other instanceof IntegerValue) {
-            other = new RealValue((IntegerValue) other, this.precision);
+            other = new RealValue((IntegerValue) other);
         }
         if (other instanceof RationalValue) {
-            other = new RealValue(other.getRawValue(), this.precision);
+            other = new RealValue(other.getRawValue());
         }
-        return new RealValue(this.value.add(other.getRawValue()), this.precision);
+        return new RealValue(this.value.add(other.getRawValue()));
     }
 
     @Override
     public AbstractValue sub(AbstractValue other) {
         if (other instanceof IntegerValue) {
-            other = new RealValue((IntegerValue) other, this.precision);
+            other = new RealValue((IntegerValue) other);
         }
         if (other instanceof RationalValue) {
-            other = new RealValue(other.getRawValue(), this.precision);
+            other = new RealValue(other.getRawValue());
         }
-        return new RealValue(this.value.subtract(other.getRawValue()), this.precision);
+        return new RealValue(this.value.subtract(other.getRawValue()));
     }
 
     @Override
     public AbstractValue mul(AbstractValue other) {
         if (other instanceof IntegerValue) {
-            other = new RealValue((IntegerValue) other, this.precision);
+            other = new RealValue((IntegerValue) other);
         }
         if (other instanceof RationalValue) {
-            other = new RealValue(other.getRawValue(), this.precision);
+            other = new RealValue(other.getRawValue());
         }
-        return new RealValue(this.value.multiply(other.getRawValue()), this.precision);
+        return new RealValue(this.value.multiply(other.getRawValue()));
     }
 
     @Override
     public AbstractValue div(AbstractValue other) {
         if (other instanceof IntegerValue) {
-            other = new RealValue((IntegerValue) other, this.precision);
+            other = new RealValue((IntegerValue) other);
         }
         if (other instanceof RationalValue) {
-            other = new RealValue(other.getRawValue(), this.precision);
+            other = new RealValue(other.getRawValue());
         }
-        return new RealValue(this.value.divide(other.getRawValue(), RoundingMode.HALF_UP), this.precision);
+        return new RealValue(this.value.divide(other.getRawValue(), RoundingMode.HALF_UP));
     }
 
     @Override
@@ -168,11 +110,11 @@ public class RealValue extends AbstractValue {
         }
 
         if (o instanceof IntegerValue || o instanceof RationalValue) {
-            return value.equals(((AbstractValue) o).getRawValue());
+            return value.compareTo(((AbstractValue) o).getRawValue()) == 0;
         }
 
         if (o instanceof RealValue other) {
-            return this.value.equals(other.value);
+            return this.value.compareTo(other.value) == 0;
         }
         return false;
     }
@@ -180,11 +122,12 @@ public class RealValue extends AbstractValue {
     @Override
     public String toString() {
         // return the value or the scientific notation of the value if it's too big
-
-        if (this.value.compareTo(new BigDecimal(precision)) > 0) {
+        if (this.value.abs().compareTo(new BigDecimal(10).pow( globalContractionLimit)) > 0 ||
+            this.value.abs().compareTo(new BigDecimal("0.1").pow(globalContractionLimit)) < 0) {
+            if (this.value.compareTo(BigDecimal.ZERO) == 0) return "0"; // Kind of hack-y but that's the least ugly way of doing it
             return this.value.toEngineeringString();
         } else {
-            return this.value.toString();
+            return this.value.setScale(globalPrecisionLimit, RoundingMode.HALF_UP).stripTrailingZeros().toString();
         }
     }
 
@@ -192,4 +135,9 @@ public class RealValue extends AbstractValue {
     public int hashCode() {
         return this.value.hashCode();
     }
+
+    public static void setGlobalPrecisionLimit(int limit) {
+        globalPrecisionLimit = limit;
+    }
+
 }

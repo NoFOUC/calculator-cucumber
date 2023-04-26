@@ -93,6 +93,10 @@ public class IntegerValue extends AbstractValue {
      */
     @Override
     public String toString() {
+//        System.out.println(Math.pow(10, globalContractionLimit) + "" + value);
+        if (value > (Math.pow(10, globalContractionLimit))) {
+            return new BigDecimal(value).toEngineeringString();
+        }
         return Integer.toString(value);
     }
 

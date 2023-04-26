@@ -1,10 +1,10 @@
 package calculator;
 
-import converter.ComplexConverter;
+import gui.DisplayType;
 import visitor.Visitor;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.math.MathContext;
 
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
@@ -16,12 +16,10 @@ import java.util.ArrayList;
 public class MyNumber implements Expression {
 
     private final AbstractValue value;
-
     private final AbstractValue imaginary;
 
-    private double theta;
-
-    private double r;
+    private RealValue theta;
+    private RealValue r;
 
     /** getter method to obtain the value contained in the object
      *
@@ -87,13 +85,6 @@ public class MyNumber implements Expression {
         imaginary = i;
     }
 
-    public MyNumber(MyExpPol e) {
-
-        MyNumber number = ComplexConverter.exponentialToCartesian(e);
-        value = number.getValue();
-        imaginary = number.getImaginary();
-    }
-
     public void accept(Visitor v) {
       v.visit(this);
     }
@@ -145,46 +136,53 @@ public class MyNumber implements Expression {
     @Override
     public String toString() {
 
-        //OLD
-        /*
         if (isComplex()) {
-            return value + " + " + imaginary + "i";
+            return cartesianString();
         }
         else {
             return value.toString();
         }
-        */
-
-        return this.toString(10);
-
     }
 
-    /** The methode toString with a parameter length to allow the number to be printed with a certain length
+    /** The method toString with a parameter length to allow the number to be printed with a certain length
      *
      * @param length The length of the number
      * @return The String that is the result of the conversion.
      */
     public String toString(int length) {
         if (isComplex()) {
-            int lenght_value = length + (value.toString().split("\\.")[0].length()) +1;
-            int lenght_imaginary = length + imaginary.toString().split("\\.")[0].length()+1;
-            if (lenght_value > value.toString().length()){
-                lenght_value = value.toString().length();
+            int length_value = length + (value.toString().split("\\.")[0].length()) +1;
+            int length_imaginary = length + imaginary.toString().split("\\.")[0].length()+1;
+            if (length_value > value.toString().length()){
+                length_value = value.toString().length();
             }
-            if (lenght_imaginary > imaginary.toString().length()){
-                lenght_imaginary = imaginary.toString().length();
+            if (length_imaginary > imaginary.toString().length()){
+                length_imaginary = imaginary.toString().length();
             }
 
-            return value.toString().substring(0, lenght_value) + " + " + imaginary.toString().substring(0, lenght_imaginary) + "i";
+            return value.toString().substring(0, length_value) + " + " + imaginary.toString().substring(0, length_imaginary) + "i";
         }
         else {
 
-            int lenght_value = length + value.toString().split("\\.")[0].length()+ 1;
+            int length_value = length + value.toString().split("\\.")[0].length()+ 1;
 
-            if (lenght_value > value.toString().length()){
-                lenght_value = value.toString().length();
+            if (length_value > value.toString().length()){
+                length_value = value.toString().length();
             }
-            return value.toString().substring(0, lenght_value);
+            return value.toString().substring(0, length_value);
+        }
+    }
+
+    public String toString(DisplayType displayType) {
+        if (isComplex()) {
+            return switch (displayType) {
+                case CARTESIAN -> cartesianString();
+                case EXPONENTIAL -> exponentialString();
+                default /*POLAR*/ -> polarString();
+            };
+        }
+        else {
+            return value.toString();
         }
     }
 
@@ -221,7 +219,37 @@ public class MyNumber implements Expression {
     @Override
     public int hashCode() {
 
-        return value.hashCode() + imaginary.hashCode(); //TODO Hashing for floats and rationals : DONE
+        return value.hashCode() + imaginary.hashCode();
     }
+
+
+    public RealValue getR() {
+        if (r == null) {
+            r = new RealValue(getValue().mul(getValue()).add(getImaginary()
+                                        .mul(getImaginary())).getRawValue()
+                                        .sqrt(new MathContext(10)));
+        }
+        return r;
+    }
+
+    public RealValue getTheta() {
+        if (theta == null) {
+            theta = new RealValue(BigDecimal.valueOf(Math.atan(getImaginary().div(getValue()).getRawValue().doubleValue())));
+        }
+        return theta;
+    }
+
+    private String polarString() {
+        return getR() + "(cos(" + getTheta() + ") + i sin(" + getTheta() + "))";
+    }
+
+    private String exponentialString() {
+        return getR() + "e^(" + getTheta() + "i)";
+    }
+
+    private String cartesianString() {
+        return value + " + " + imaginary + "i";
+    }
+
 
 }

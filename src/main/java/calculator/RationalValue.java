@@ -1,6 +1,7 @@
 package calculator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -148,9 +149,9 @@ public class RationalValue extends AbstractValue {
 
         RationalValue RV = (RationalValue) result;
 
-        BigDecimal value = new BigDecimal(RV.getNumerator().getValue()).divide(new BigDecimal(RV.getDenominator().getValue()), 12, BigDecimal.ROUND_HALF_UP);
+        BigDecimal value = new BigDecimal(RV.getNumerator().getValue()).divide(new BigDecimal(RV.getDenominator().getValue()), 12, RoundingMode.HALF_UP);
 
-        BigDecimal value2 = new BigDecimal(value.doubleValue()); //NOSONAR
+        BigDecimal value2 = BigDecimal.valueOf(value.doubleValue()); //NOSONAR
 
         return new RealValue(value2);
 

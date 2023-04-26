@@ -42,13 +42,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="700.0" prefWidth="740.0" styleClass="login_root" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CalculatorController">
+<HBox prefHeight="700.0" prefWidth="905.0" styleClass="login_root" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CalculatorController">
    <children>
-      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="770.0" stylesheets="@theme.css" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="850.0" stylesheets="@theme.css" HBox.hgrow="ALWAYS">
         <children>
-            <Pane maxHeight="638.0" maxWidth="430.0" prefHeight="448.0" prefWidth="430.0" styleClass="surface_light_floating">
+            <Pane maxHeight="638.0" maxWidth="564.0" prefHeight="448.0" prefWidth="564.0" styleClass="surface_light_floating">
                <children>
-                  <VBox layoutX="-126.0" layoutY="-101.0" prefHeight="150.0" prefWidth="685.0" styleClass="surface_dark_floating">
+                  <VBox layoutX="-158.0" layoutY="-101.0" prefHeight="150.0" prefWidth="885.0" styleClass="surface_dark_floating">
                      <children>
                         <VBox spacing="10.0" styleClass="surface_light_flat" VBox.vgrow="ALWAYS">
                            <children>
@@ -61,7 +61,7 @@
                                     </Label>
                                 </content>
                               </ScrollPane>
-                              <Label fx:id="equalsLabel" alignment="CENTER_RIGHT" minWidth="640.0" wrapText="true">
+                              <Label fx:id="equalsLabel" alignment="CENTER_RIGHT" minWidth="830.0" wrapText="true" VBox.vgrow="ALWAYS">
                                  <font>
                                     <Font name="System Bold" size="22.0" />
                                  </font>
@@ -79,18 +79,18 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
-                  <FlowPane fx:id="paneOperations" columnHalignment="CENTER" layoutX="91.0" layoutY="79.0" prefHeight="336.0" prefWidth="162.0" styleClass="surface_dark_floating">
+                  <FlowPane fx:id="paneOperations" columnHalignment="CENTER" layoutX="244.0" layoutY="77.0" prefHeight="336.0" prefWidth="162.0" styleClass="surface_dark_floating">
                      <children>
                         <Button fx:id="buttonPlus" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="+" textFill="WHITE" />
                         <Button fx:id="buttonMinus" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="-" textFill="WHITE" />
                         <Button fx:id="buttonTimes" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="*" textFill="WHITE" />
                         <Button fx:id="buttonDivide" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="/" textFill="WHITE" />
-                        <Button fx:id="buttonExp" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="^" textFill="WHITE" />
+                        <Button fx:id="buttonExp" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="exp" textFill="WHITE" />
                         <Button fx:id="buttonSqrt" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="√" textFill="WHITE" />
                         <Button fx:id="buttonParenthesisOpen" ellipsisString="" maxHeight="80.0" maxWidth="160.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="160.0" text="(x)" textFill="WHITE" />
                      </children>
                   </FlowPane>
-                  <FlowPane fx:id="paneExtras" alignment="CENTER" columnHalignment="CENTER" layoutX="-96.0" layoutY="187.0" prefHeight="165.0" prefWidth="164.0" styleClass="surface_dark_floating">
+                  <FlowPane fx:id="paneExtras" alignment="CENTER" columnHalignment="CENTER" layoutX="62.0" layoutY="189.0" prefHeight="165.0" prefWidth="164.0" styleClass="surface_dark_floating">
                      <children>
                         <Button fx:id="buttonImaginary" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="i" textFill="WHITE">
                            <font>
@@ -101,14 +101,22 @@
                         <Button fx:id="buttonFactorial" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="!" textFill="WHITE" />
                         <Button fx:id="buttonBiggerThan" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="&gt;" textFill="WHITE" />
                         <Button fx:id="buttonLesserThan" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="&lt;" textFill="WHITE" />
-                        <Button fx:id="buttonToDeg" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="DEG" textFill="WHITE" />
-                        <Button fx:id="buttonToRad" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="RAD" textFill="WHITE" />
+                        <Button fx:id="buttonLog" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="ln" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonInverse" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="1/x" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
                      </children>
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding>
                   </FlowPane>
-                  <FlowPane fx:id="paneNumbers" layoutX="275.0" layoutY="182.0" prefHeight="322.0" prefWidth="263.0" styleClass="surface_dark_floating">
+                  <FlowPane fx:id="paneNumbers" layoutX="425.0" layoutY="182.0" prefHeight="322.0" prefWidth="263.0" styleClass="surface_dark_floating">
                      <children>
                         <Button fx:id="button1" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="1" textFill="WHITE" />
                         <Button fx:id="button2" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="2" textFill="WHITE" />
@@ -127,7 +135,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </FlowPane>
-                  <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="273.0" layoutY="62.0" prefHeight="105.0" prefWidth="263.0" styleClass="surface_dark_floating">
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="423.0" layoutY="62.0" prefHeight="105.0" prefWidth="263.0" styleClass="surface_dark_floating">
                      <children>
                         <Button fx:id="buttonEraseAll" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="AC" textFill="WHITE" />
                         <Button fx:id="buttonErase" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="C" textFill="WHITE">
@@ -135,7 +143,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonMoveRight" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="▶" textFill="WHITE">
+                        <Button fx:id="buttonMoveRight" ellipsisString="➧" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="➧" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -145,12 +153,12 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </FlowPane>
-                  <FlowPane columnHalignment="CENTER" layoutX="88.0" layoutY="428.0" prefHeight="72.0" prefWidth="164.0" styleClass="surface_dark_floating">
+                  <FlowPane columnHalignment="CENTER" layoutX="243.0" layoutY="428.0" prefHeight="72.0" prefWidth="164.0" styleClass="surface_dark_floating">
                      <children>
                         <Button fx:id="buttonCycleRepresentations" alignment="TOP_LEFT" ellipsisString="" maxHeight="106.0" maxWidth="160.0" minHeight="70.0" minWidth="160.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="160.0" styleClass="button_smaller" text="⟳ | Cart." textFill="WHITE" />
                      </children>
                   </FlowPane>
-                  <HBox layoutX="-94.0" layoutY="59.0" prefHeight="111.0" prefWidth="164.0" spacing="10.0" styleClass="surface_dark_floating">
+                  <HBox layoutX="62.0" layoutY="57.0" prefHeight="111.0" prefWidth="164.0" spacing="10.0" styleClass="surface_dark_floating">
                      <children>
                         <VBox spacing="5.0">
                            <children>
@@ -159,7 +167,7 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="precisionValueLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="65.0" styleClass="surface_light_flat" text="5" textAlignment="CENTER">
+                              <Label fx:id="precisionValueLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="56.0" prefWidth="65.0" styleClass="surface_light_flat" text="6" textAlignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="48.0" />
                                  </font>
@@ -177,6 +185,62 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </HBox>
+                  <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutX="-122.0" layoutY="76.0" prefHeight="165.0" prefWidth="164.0" style="-fx-border-radius: 10 10 0 0; -fx-background-radius: 10 10 0 0;" styleClass="surface_dark_floating">
+                     <children>
+                        <Button fx:id="buttonSin" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="sin" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonAsin" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="asin" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonCos" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="cos" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonAcos" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="acos" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonTan" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="tan" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonAtan" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="atan" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonCotg" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="cotg" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonAcotg" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="acotg" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </FlowPane>
+                  <FlowPane columnHalignment="CENTER" layoutX="-122.0" layoutY="418.0" prefHeight="72.0" prefWidth="164.0" style="-fx-background-radius: 0 0 10 10; -fx-border-radius: 0 0 10 10;" styleClass="surface_dark_floating">
+                     <children>
+                        <Button fx:id="buttonToRad" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="RAD" textFill="WHITE" />
+                        <Button fx:id="buttonToDeg" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="DEG" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </FlowPane>
                </children>
             </Pane>
         </children>

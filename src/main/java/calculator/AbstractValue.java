@@ -11,6 +11,9 @@ import java.math.BigDecimal;
  */
 public abstract class AbstractValue {
 
+  protected static int globalContractionLimit = 6;
+
+
   /**
    * Method for returning the raw value of the number
    *
@@ -69,4 +72,9 @@ public abstract class AbstractValue {
 
     //methods that return a RealValue and traduct IntegerValue to RealValue
     public abstract RealValue toReal() throws IllegalConstruction;
+
+    public static void setGlobalContractionLimit(int breakpoint) {
+    globalContractionLimit = breakpoint;
+  }
+
 }

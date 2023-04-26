@@ -69,12 +69,7 @@ public final class Sinus extends Operation
             throw new IllegalArgumentException("Sinus of complex numbers is not defined in this calculator");
         } else {
             AbstractValue a = l.getValue();
-            if (a instanceof RealValue || a instanceof RationalValue || a instanceof IntegerValue) {
-                return new MyNumber(new RealValue(Math.sin(a.getRawValue().doubleValue())));
-            }
-            else {
-                throw new IllegalArgumentException("Sinus of complex numbers is not defined in this calculator");
-            }
+            return new MyNumber(new RealValue(Math.sin(a.getRawValue().doubleValue())));
         }
     }
 

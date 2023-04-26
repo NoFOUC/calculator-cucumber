@@ -27,9 +27,6 @@ public class TestRealValue {
 
     private double value7 = 2.0;
 
-    private int precision = 5;
-
-
     private RealValue real1, real2, real3, real4, real5, real6, real7;
 
     private MyNumber number1, number2, number3, number4, number5, number6, number7;
@@ -39,7 +36,7 @@ public class TestRealValue {
         real1 = new RealValue(value1);
         real2 = new RealValue(value2);
         real3 = new RealValue(value3);
-        real4 = new RealValue(value4, precision);
+        real4 = new RealValue(value4);
         real5 = new RealValue(value5);
         real6 = new RealValue(value6);
         real7 = new RealValue(value7);
@@ -52,6 +49,8 @@ public class TestRealValue {
         number5 = new MyNumber(real5);
         number6 = new MyNumber(real6);
         number7 = new MyNumber(real7);
+
+        RealValue.setGlobalPrecisionLimit(10);
     }
 
     @Test
@@ -104,8 +103,8 @@ public class TestRealValue {
 
     @Test
     void testToString() {
-        assertEquals("8.2839747999", number1.toString());
-        assertEquals("6.1838730000", number2.toString());
+        assertEquals("8.2839748", number1.toString());
+        assertEquals("6.183873", number2.toString());
         assertEquals("3", number3.toString());
         assertEquals("52", number4.toString());
     }

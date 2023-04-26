@@ -1,7 +1,9 @@
 package gui;
 
+import calculator.AbstractValue;
 import calculator.IllegalConstruction;
 import calculator.MyNumber;
+import calculator.RealValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -132,6 +134,37 @@ public class CalculatorController {
     @FXML
     private Label precisionValueLabel;
 
+    @FXML
+    private Button buttonAcos;
+
+    @FXML
+    private Button buttonAcotg;
+
+    @FXML
+    private Button buttonAsin;
+
+    @FXML
+    private Button buttonAtan;
+
+    @FXML
+    private Button buttonCos;
+
+    @FXML
+    private Button buttonCotg;
+
+    @FXML
+    private Button buttonInverse;
+
+    @FXML
+    private Button buttonSin;
+
+    @FXML
+    private Button buttonTan;
+
+    @FXML
+    private Button buttonLog;
+
+
     // Other variables
 
     private EquationDisplay equationRoot;
@@ -148,7 +181,7 @@ public class CalculatorController {
     private void initialize() {
         equationRoot = new EquationDisplay();
         cursor = equationRoot;
-        precision = 5;
+        precision = 6;
         setupButtons();
     }
 
@@ -173,7 +206,7 @@ public class CalculatorController {
         buttonTimes.setOnAction((event) -> addOperation("*"));
         buttonDivide.setOnAction((event) -> addOperation("/"));
 
-        buttonExp.setOnAction((event) -> addOperation("e^", "(", ")"));
+        buttonExp.setOnAction((event) -> addOperation("exp", "(", ")"));
         buttonSqrt.setOnAction((event) -> addOperation("√", "(", ")"));
 
         buttonParenthesisOpen.setOnAction((event) -> addOperation("(", ")"));
@@ -189,6 +222,20 @@ public class CalculatorController {
         buttonToDeg.setOnAction((event) -> addOperation("DEG", "(",")"));
         buttonToRad.setOnAction((event) -> addOperation("RAD", "(",")"));
 
+        buttonSin.setOnAction((event) -> addOperation("sin", "(",")"));
+        buttonAsin.setOnAction((event) -> addOperation("asin", "(",")"));
+
+        buttonCos.setOnAction((event) -> addOperation("cos", "(",")"));
+        buttonAcos.setOnAction((event) -> addOperation("acos", "(",")"));
+
+        buttonTan.setOnAction((event) -> addOperation("tan", "(",")"));
+        buttonAtan.setOnAction((event) -> addOperation("atan", "(",")"));
+
+        buttonCotg.setOnAction((event) -> addOperation("cotg", "(",")"));
+        buttonAcotg.setOnAction((event) -> addOperation("acotg", "(",")"));
+
+        buttonLog.setOnAction((event) -> addOperation("ln", "(",")"));
+        buttonInverse.setOnAction((event) -> {addNumber(1); addOperation("/");});
 
         buttonMoveRight.setOnAction((event) -> {
             cursor = cursor.moveCursorRight();
@@ -214,18 +261,16 @@ public class CalculatorController {
         ArrayList<Object> processed = equationRoot.toArrayList();
 
         try {
-            if (processed.size() == 0) {this.result = new MyNumber(0);} //TODO Error message display and management
-            else {this.result = Parser.main(processed);}
-            equalsLabel.setText("= "+result.toString());
+            if (processed.size() > 0) {
+                result = Parser.main(processed);
+                equalsLabel.setText("= "+result.toString(displayType));
 
-            equationRoot.reset();
-            cursor = equationRoot;
+                equationRoot.reset();
+                cursor = equationRoot;
+            }
         }
-        catch (ArithmeticException e) {
-            equalsLabel.setText("Division by zero");
-        }
-        catch (IllegalConstruction e) {
-            equalsLabel.setText("Illegal construction");
+        catch (ArithmeticException | IllegalConstruction e) {
+            equalsLabel.setText(e.getMessage());
         }
 
     }
@@ -233,6 +278,7 @@ public class CalculatorController {
     private void setPrecision(int value) {
         if (0 < value && value <= precisionBoundary) {
             precision = value;
+            AbstractValue.setGlobalContractionLimit(precision);
             precisionValueLabel.setText(""+precision);
         }
     }
@@ -270,7 +316,8 @@ public class CalculatorController {
     }
 
     private void updateEqualsDisplay() {
-        if (result != null) equalsLabel.setText(result.toString());
+        if (result != null) equalsLabel.setText(result.toString(displayType));
+        else equalsLabel.setText("");
     }
 
     private void reprRotation() {
