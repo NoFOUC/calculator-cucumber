@@ -27,6 +27,7 @@ public class TestParser {
     public void setUp() {
 
         calcul = new ArrayList<>();
+        RealValue.setGlobalPrecisionLimit(10);
 
     }
 
