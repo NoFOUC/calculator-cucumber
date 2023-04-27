@@ -1,6 +1,7 @@
 package calculator;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 /**
  * MyNumber is a concrete class that represents arithmetic numbers,
@@ -35,7 +36,6 @@ public class IntegerValue extends AbstractValue {
         value = v;
     }
 
-    // TODO: Need to add error handling, maybe implement a new exception for unsupported operations or something ?
     @Override
     public AbstractValue add(AbstractValue other) {
         if (other instanceof RationalValue) {
@@ -95,7 +95,9 @@ public class IntegerValue extends AbstractValue {
     public String toString() {
 //        System.out.println(Math.pow(10, globalContractionLimit) + "" + value);
         if (value > (Math.pow(10, globalContractionLimit))) {
-            return new BigDecimal(value).toEngineeringString();
+            String formatPattern = "0." + "#".repeat(Math.max(0, 5)) + "E0";
+            DecimalFormat df = new DecimalFormat(formatPattern);
+            return df.format(this.value);
         }
         return Integer.toString(value);
     }

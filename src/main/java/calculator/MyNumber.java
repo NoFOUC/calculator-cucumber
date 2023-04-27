@@ -1,6 +1,5 @@
 package calculator;
 
-import gui.DisplayType;
 import visitor.Visitor;
 
 import java.math.BigDecimal;

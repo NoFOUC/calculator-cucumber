@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Test;
+import visitor.DisplayStringVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -202,8 +203,17 @@ public class CalculatorSteps {
 	@Then("^its (.*) notation is (.*)$")
 	public void thenItsNotationIs(String notation, String s) {
 		if (notation.equals("PREFIX")||notation.equals("POSTFIX")||notation.equals("INFIX")) {
-			op.notation = Notation.valueOf(notation);
-			assertEquals(s, op.toString());
+			Notation n = notation.equals("PREFIX") ?  Notation.PREFIX :
+						 notation.equals("POSTFIX") ? Notation.POSTFIX :
+													  Notation.INFIX;
+
+			DisplayStringVisitor display = DisplayStringVisitor.getVisitorForNotation(n, DisplayType.CARTESIAN);
+			try {
+				op.accept(display);
+			} catch (IllegalConstruction e) {
+				fail();
+			}
+			assertEquals(s, display.getDisplayString());
 		}
 		else fail(notation + " is not a correct notation! ");
 	}

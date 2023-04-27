@@ -3,6 +3,7 @@ package calculator;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
  * RealValue is a concrete class that represents real numbers.
@@ -125,7 +126,9 @@ public class RealValue extends AbstractValue {
         if (this.value.abs().compareTo(new BigDecimal(10).pow( globalContractionLimit)) > 0 ||
             this.value.abs().compareTo(new BigDecimal("0.1").pow(globalContractionLimit)) < 0) {
             if (this.value.compareTo(BigDecimal.ZERO) == 0) return "0"; // Kind of hack-y but that's the least ugly way of doing it
-            return this.value.toEngineeringString();
+            String formatPattern = "0." + "#".repeat(Math.max(0, globalPrecisionLimit)) + "E0";
+            DecimalFormat df = new DecimalFormat(formatPattern);
+            return df.format(this.value);
         } else {
             return this.value.setScale(globalPrecisionLimit, RoundingMode.HALF_UP).stripTrailingZeros().toString();
         }

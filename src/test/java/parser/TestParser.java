@@ -2,10 +2,7 @@ package parser;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import calculator.IntegerValue;
-import calculator.MyNumber;
-import calculator.RationalValue;
-import calculator.RealValue;
+import calculator.*;
 import io.cucumber.java.bs.A;
 import org.junit.jupiter.api.*;
 
@@ -441,7 +438,5 @@ public class TestParser {
         }
 
     }
-
-
 
 }

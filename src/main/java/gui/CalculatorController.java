@@ -1,9 +1,6 @@
 package gui;
 
-import calculator.AbstractValue;
-import calculator.IllegalConstruction;
-import calculator.MyNumber;
-import calculator.RealValue;
+import calculator.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -274,7 +271,13 @@ public class CalculatorController {
                 cursor = equationRoot;
             }
         }
-        catch (ArithmeticException | IllegalConstruction e) {
+        catch (ArithmeticException e) {
+            equalsLabel.setText("Division by zero");
+        }
+        catch (IllegalConstruction e) {
+            equalsLabel.setText("Illegal construction");
+        }
+        catch (IllegalArgumentException e) {
             equalsLabel.setText(e.getMessage());
         }
 

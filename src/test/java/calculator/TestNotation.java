@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import visitor.DisplayStringInfix;
+import visitor.DisplayStringPostfix;
+import visitor.DisplayStringPrefix;
+import visitor.DisplayStringVisitor;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -14,30 +18,33 @@ class TestNotation {
 
     /* This is an auxilary method to avoid code duplication.
      */
-	void testNotation(String s,Operation o,Notation n) {
-		assertEquals(s, o.toString(n));
-		o.notation = n;
-		assertEquals(s, o.toString());
+	void testNotation(String s,Operation o, DisplayStringVisitor n) {
+		try {
+			o.accept(n);
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+		assertEquals(s, n.getDisplayString());
 	}
 
 	/* This is an auxilary method to avoid code duplication.
      */
 	void testNotations(String symbol,int value1,int value2,Operation op) {
 		//prefix notation:
-		testNotation(symbol +" (" + value1 + ", " + value2 + ")", op, Notation.PREFIX);
+		testNotation(symbol +" (" + value1 + ", " + value2 + ")", op, new DisplayStringPrefix());
 		//infix notation:
-		testNotation("( " + value1 + " " + symbol + " " + value2 + " )", op, Notation.INFIX);
+		testNotation("( " + value1 + " " + symbol + " " + value2 + " )", op, new DisplayStringInfix());
 		//postfix notation:
-		testNotation("(" + value1 + ", " + value2 + ") " + symbol, op, Notation.POSTFIX);
+		testNotation("(" + value1 + ", " + value2 + ") " + symbol, op, new DisplayStringPostfix());
 	}
 
 	void testComplexNotations(String symbol,int value1, int imaginary1, int value2, int imaginary2, Operation op) {
 		//prefix notation:
-		testNotation(symbol +" (" + value1 +" + " + imaginary1 +"i" + ", " + value2 + " + " + imaginary2 + "i" + ")", op, Notation.PREFIX);
+		testNotation(symbol +" (" + value1 +" + " + imaginary1 +"i" + ", " + value2 + " + " + imaginary2 + "i" + ")", op, new DisplayStringPrefix());
 		//infix notation:
-		testNotation("( " + value1 +" + " + imaginary1 +"i" + " " + symbol + " " + value2 + " + " + imaginary2 + "i" + " )", op, Notation.INFIX);
+		testNotation("( " + value1 +" + " + imaginary1 +"i" + " " + symbol + " " + value2 + " + " + imaginary2 + "i" + " )", op, new DisplayStringInfix());
 		//postfix notation:
-		testNotation("(" + value1 +" + " + imaginary1 +"i" + ", " + value2 + " + " + imaginary2 + "i" + ") " + symbol, op, Notation.POSTFIX);
+		testNotation("(" + value1 +" + " + imaginary1 +"i" + ", " + value2 + " + " + imaginary2 + "i" + ") " + symbol, op, new DisplayStringPostfix());
 	}
 	@ParameterizedTest
 	@ValueSource(strings = {"*", "+", "/", "-", "sqrt", "||"})

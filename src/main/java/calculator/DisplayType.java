@@ -1,4 +1,4 @@
-package gui;
+package calculator;
 
 public enum DisplayType {
 

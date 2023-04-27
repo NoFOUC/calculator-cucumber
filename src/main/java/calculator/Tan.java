@@ -67,7 +67,7 @@ public final class Tan extends Operation
     public MyNumber op(MyNumber l) {
         boolean b = l.isComplex();
         if (b) {
-            throw new IllegalArgumentException("Tangeant of complex numbers is not defined in this calculator");
+            throw new IllegalArgumentException("Tangent of complex numbers is not defined in this calculator");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
             return new MyNumber(new RealValue(new BigDecimal(Math.tan(left.doubleValue())))); //NOSONAR
@@ -76,6 +76,6 @@ public final class Tan extends Operation
 
     @Override
     public MyNumber op(MyNumber l, MyNumber r) throws IllegalArgumentException {
-        throw new IllegalArgumentException("Tangeant of two numbers is not defined");
+        throw new IllegalArgumentException("Tangent of two numbers is not defined");
     }
 }
