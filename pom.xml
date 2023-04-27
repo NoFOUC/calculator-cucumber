@@ -80,35 +80,9 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                    <version>${slf4j.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-java</artifactId>
-                    <version>4.8.3</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>selenium-grid</artifactId>
-                    <version>4.8.3</version>
-                </dependency>
-                <dependency>
-                    <groupId>ch.qos.logback</groupId>
-                    <artifactId>logback-classic</artifactId>
-                    <version>1.4.6</version>
-                </dependency>
-                <dependency>
                     <groupId>org.junit.jupiter</groupId>
                     <artifactId>junit-jupiter-engine</artifactId>
                     <version>5.9.2</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>io.github.bonigarcia</groupId>
-                    <artifactId>webdrivermanager</artifactId>
-                    <version>5.3.2</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
@@ -137,7 +111,7 @@
                             <source>${java.version}</source>
                             <target>${java.version}</target>
                             <excludes>
-                                <exclude>gui/*</exclude>
+                                <exclude>gui/TestGui*</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -152,7 +126,7 @@
                                 </configurationParameters>
                             </properties>
                             <excludes>
-                                <exclude>gui/*</exclude>
+                                <exclude>gui/TestGui*</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
@@ -161,7 +135,7 @@
                         <artifactId>exec-maven-plugin</artifactId>
                         <version>3.1.0</version>
                         <configuration>
-                            <mainClass>calculator.Main</mainClass>
+                            <mainClass>gui.Launcher</mainClass>
                         </configuration>
                     </plugin>
 
@@ -201,7 +175,7 @@
                             <!--needed to prevent module problem-->
                             <detectJavaApiLink>false</detectJavaApiLink>
                             <excludes>
-                                <exclude>gui/*</exclude>
+                                <exclude>gui/TestGui*</exclude>
                             </excludes>
                         </configuration>
                         <executions>
@@ -342,7 +316,6 @@
                     <version>4.0.16-alpha</version>
                     <scope>test</scope>
                 </dependency>
-
             </dependencies>
 
             <build>
