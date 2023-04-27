@@ -60,7 +60,7 @@ class TestGui {
     @Test
     void should_contain_button_exp() {
         // expect:
-        verifyThat("#buttonExp", hasText("^"));
+        verifyThat("#buttonExp", hasText("exp"));
     }
 
     @Test
@@ -204,7 +204,7 @@ class TestGui {
     @Test
     void should_contain_button_MoveRight() {
         // expect:
-        verifyThat("#buttonMoveRight", hasText("▶"));
+        verifyThat("#buttonMoveRight", hasText("➧"));
     }
 
     // watch the file calculator.fxml for the id's of the buttons and the file CalculatorController.java for the methods that are called when the buttons are clicked
@@ -301,7 +301,7 @@ class TestGui {
         // when:
         robot.clickOn("#buttonEquals");
         // then:
-        verifyThat("#equalsLabel", hasText("= 0"));
+        verifyThat("#equalsLabel", hasText(""));
     }
 
     @Test
@@ -365,7 +365,7 @@ class TestGui {
         // when:
         robot.clickOn("#buttonExp");
         // then:
-        verifyThat("#equationLabel", hasText("e^(_)"));
+        verifyThat("#equationLabel", hasText("exp(_)"));
     }
 
     @Test
@@ -382,6 +382,168 @@ class TestGui {
         robot.clickOn("#buttonFactorial");
         // then:
         verifyThat("#equationLabel", hasText("!_"));
+    }
+
+    @Test
+    void should_click_on_buttonImaginary(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonImaginary");
+        // then:
+        verifyThat("#equationLabel", hasText("i_"));
+    }
+
+    @Test
+    void should_click_on_buttonModulo(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonModulo");
+        // then:
+        verifyThat("#equationLabel", hasText("%_"));
+    }
+
+    /*
+    the same for all this action
+    buttonComplexModulus.setOnAction((event) -> addOperation("||", "", "||"));
+
+        buttonLesserThan.setOnAction((event) -> addOperation("<"));
+        buttonBiggerThan.setOnAction((event) -> addOperation(">"));
+
+        buttonToDeg.setOnAction((event) -> addOperation("DEG", "(",")"));
+        buttonToRad.setOnAction((event) -> addOperation("RAD", "(",")"));
+
+        buttonSin.setOnAction((event) -> addOperation("sin", "(",")"));
+        buttonAsin.setOnAction((event) -> addOperation("asin", "(",")"));
+
+        buttonCos.setOnAction((event) -> addOperation("cos", "(",")"));
+        buttonAcos.setOnAction((event) -> addOperation("acos", "(",")"));
+
+        buttonTan.setOnAction((event) -> addOperation("tan", "(",")"));
+        buttonAtan.setOnAction((event) -> addOperation("atan", "(",")"));
+
+        buttonCotg.setOnAction((event) -> addOperation("cotg", "(",")"));
+        buttonAcotg.setOnAction((event) -> addOperation("acotg", "(",")"));
+
+        buttonLog.setOnAction((event) -> addOperation("ln", "(",")"));
+        buttonInverse.setOnAction((event) -> {addNumber(1); addOperation("/");});
+     */
+
+    @Test
+    void should_click_on_buttonComplexModulus(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonComplexModulus");
+        // then:
+        verifyThat("#equationLabel", hasText("||_||"));
+    }
+
+    @Test
+    void should_click_on_buttonLesserThan(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonLesserThan");
+        // then:
+        verifyThat("#equationLabel", hasText("<_"));
+    }
+
+    @Test
+    void should_click_on_buttonBiggerThan(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonBiggerThan");
+        // then:
+        verifyThat("#equationLabel", hasText(">_"));
+    }
+
+    @Test
+    void should_click_on_buttonToDeg(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonToDeg");
+        // then:
+        verifyThat("#equationLabel", hasText("DEG(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonToRad(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonToRad");
+        // then:
+        verifyThat("#equationLabel", hasText("RAD(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonSin(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonSin");
+        // then:
+        verifyThat("#equationLabel", hasText("sin(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonAsin(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonAsin");
+        // then:
+        verifyThat("#equationLabel", hasText("asin(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonCos(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonCos");
+        // then:
+        verifyThat("#equationLabel", hasText("cos(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonAcos(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonAcos");
+        // then:
+        verifyThat("#equationLabel", hasText("acos(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonTan(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonTan");
+        // then:
+        verifyThat("#equationLabel", hasText("tan(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonAtan(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonAtan");
+        // then:
+        verifyThat("#equationLabel", hasText("atan(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonCotg(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonCotg");
+        // then:
+        verifyThat("#equationLabel", hasText("cotg(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonAcotg(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonAcotg");
+        // then:
+        verifyThat("#equationLabel", hasText("acotg(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonLog(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonLog");
+        // then:
+        verifyThat("#equationLabel", hasText("ln(_)"));
+    }
+
+    @Test
+    void should_click_on_buttonInverse(FxRobot robot) {
+        // when:
+        robot.clickOn("#buttonInverse");
+        // then:
+        verifyThat("#equationLabel", hasText("1/_"));
     }
 
     @Test
@@ -431,9 +593,9 @@ class TestGui {
     void should_click_on_button_up_down_precision (FxRobot robot) {
         // when:
         robot.clickOn("#buttonPrecisionUp");
-        verifyThat("#precisionValueLabel", hasText("6"));
+        verifyThat("#precisionValueLabel", hasText("7"));
         robot.clickOn("#buttonPrecisionDown");
-        verifyThat("#precisionValueLabel", hasText("5"));
+        verifyThat("#precisionValueLabel", hasText("6"));
     }
 
     @Test
