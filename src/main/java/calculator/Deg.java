@@ -68,7 +68,7 @@ public final class Deg extends Operation
             throw new IllegalArgumentException("Conversion of degree to radian is not defined for complex numbers");
         }
         else {
-            return new MyNumber(l.getValue().mul(new RealValue(new BigDecimal(180/Math.PI))));
+            return new MyNumber(l.getValue().mul(new RealValue(new BigDecimal(180/Math.PI)))); //NOSONAR
         }
     }
 

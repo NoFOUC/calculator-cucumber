@@ -67,7 +67,7 @@ public final class Rad extends Operation
             throw new IllegalArgumentException("Conversion of degree to radian is not defined for complex numbers");
         }
         else {
-            return new MyNumber(l.getValue().mul(new RealValue(new BigDecimal(Math.PI/180))));
+            return new MyNumber(l.getValue().mul(new RealValue(new BigDecimal(Math.PI/180)))); //NOSONAR
         }
     }
 
