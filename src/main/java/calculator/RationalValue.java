@@ -38,7 +38,7 @@ public class RationalValue extends AbstractValue {
     public /*constructor*/ RationalValue(IntegerValue numerator, IntegerValue denominator) {
         int gcd = euclidAlgorithm(numerator.getValue(), denominator.getValue());
         if (gcd == 0) {
-            throw new ArithmeticException("Division by zero");
+            throw new ArithmeticException("/ by zero");
         }
 
         else {
@@ -166,7 +166,7 @@ public class RationalValue extends AbstractValue {
      */
     public RationalValue inverse() {
         if (numerator.getValue() == 0) {
-            throw new ArithmeticException("Division by zero");
+            throw new ArithmeticException("/ by zero");
         }
         return new RationalValue(denominator, numerator);
     }
