@@ -70,7 +70,7 @@ public final class ArcTan extends Operation
             throw new IllegalArgumentException("ArcTan of complex numbers is not defined in this calculator");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.atan(left.doubleValue())))); //NOSONAR
+            return new MyNumber(new RealValue(new BigDecimal(Math.toDegrees(Math.atan(left.doubleValue()))))); //NOSONAR
         }
     }
 

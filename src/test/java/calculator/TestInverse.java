@@ -81,6 +81,16 @@ class TestInverse {
     }
 
     @Test
+    void testError() throws IllegalConstruction {
+        // It should throw an IllegalArgumentException for the Inverse function if the parameter is 0.
+        List<Expression> p = Arrays.asList(new MyNumber(0), new MyNumber(0));
+
+        Inverse inverse1 = new Inverse(p);
+
+        assertThrows(IllegalArgumentException.class, () -> inverse1.op(new MyNumber(0)));
+    }
+
+    @Test
     void testEquals() {
         // Two similar expressions, constructed separately (and using different constructors) should not be equal
         List<Expression> p = Arrays.asList(new MyNumber(value1), new MyNumber(value2));

@@ -68,9 +68,11 @@ public final class ArcSin extends Operation
         boolean b = l.isComplex();
         if (b) {
             throw new IllegalArgumentException("ArcSin of complex numbers is not defined in this calculator");
+        } else if (l.getValue().getRawValue().compareTo(BigDecimal.ONE) > 0 || l.getValue().getRawValue().compareTo(BigDecimal.ONE.negate()) < 0) {
+            throw new IllegalArgumentException("ArcSin of numbers greater than 1 or smaller than -1 is not defined");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.asin(left.doubleValue())))); //NOSONAR
+            return new MyNumber(new RealValue(new BigDecimal(Math.toDegrees(Math.asin(left.doubleValue()))))); //NOSONAR
         }
 
     }

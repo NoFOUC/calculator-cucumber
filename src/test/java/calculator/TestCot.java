@@ -14,6 +14,7 @@ class TestCot {
     private final int value2 = 6;
 
 
+
     private final int denominator1 = 2;
     private final int denominator3 = 4;
 
@@ -81,6 +82,19 @@ class TestCot {
     }
 
     @Test
+    void testError() throws IllegalConstruction {
+        // It should throw an IllegalArgumentException for the Cot function if the parameter is multiple of 180
+        List<Expression> p = Arrays.asList(new MyNumber(2), new MyNumber(3));
+        List<Expression> p2 = Arrays.asList(new MyNumber(-2), new MyNumber(-3));
+
+        Cot cot1 = new Cot(p);
+        Cot cot2 = new Cot(p2);
+
+        assertThrows(IllegalArgumentException.class, () -> cot1.op(new MyNumber(180)));
+        assertThrows(IllegalArgumentException.class, () -> cot2.op(new MyNumber(360)));
+    }
+
+    @Test
     void testEquals() {
         // Two similar expressions, constructed separately (and using different constructors) should not be equal
         List<Expression> p = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
@@ -120,7 +134,7 @@ class TestCot {
 
     @Test
     void testNull() {
-        assertDoesNotThrow(() -> op==null); // Direct way to to test if the null case is handled.
+        assertDoesNotThrow(() -> op==null); // Direct way to test if the null case is handled.
     }
 
     @Test

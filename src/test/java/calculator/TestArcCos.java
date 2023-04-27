@@ -81,6 +81,19 @@ class TestArcCos {
     }
 
     @Test
+    void testError() throws IllegalConstruction {
+        // It should not be possible to compute arccos of a number greater than 1 or less than -1
+        List<Expression> p = Arrays.asList(new MyNumber(2), new MyNumber(3));
+        List<Expression> p2 = Arrays.asList(new MyNumber(-2), new MyNumber(-3));
+
+        ArcCos acos1 = new ArcCos(p);
+        ArcCos acos2 = new ArcCos(p2);
+
+        assertThrows(IllegalArgumentException.class, () -> acos1.op(new MyNumber(2)));
+        assertThrows(IllegalArgumentException.class, () -> acos2.op(new MyNumber(-2)));
+    }
+
+    @Test
     void testEquals() {
         // Two similar expressions, constructed separately (and using different constructors) should not be equal
         List<Expression> p = Arrays.asList(new MyNumber(value1), new MyNumber(value2));

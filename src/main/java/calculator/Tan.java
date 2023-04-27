@@ -64,18 +64,20 @@ public final class Tan extends Operation
      * @param l The first integer
      * @return The integer that is the result of the subtraction
      */
-    public MyNumber op(MyNumber l) {
+    public MyNumber op(MyNumber l) throws IllegalArgumentException {
         boolean b = l.isComplex();
         if (b) {
-            throw new IllegalArgumentException("Tangent of complex numbers is not defined in this calculator");
+            throw new IllegalArgumentException("Tangeant of complex numbers is not defined in this calculator");
+        } else if (l.getValue().getRawValue().doubleValue() % 180 == 90) {
+            throw new IllegalArgumentException("Tangeant of " + l.getValue().getRawValue().doubleValue() + " is not defined");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.tan(left.doubleValue())))); //NOSONAR
+            return new MyNumber(new RealValue(new BigDecimal(Math.tan(Math.toRadians(left.doubleValue()))))); //NOSONAR
         }
     }
 
     @Override
     public MyNumber op(MyNumber l, MyNumber r) throws IllegalArgumentException {
-        throw new IllegalArgumentException("Tangent of two numbers is not defined");
+        throw new IllegalArgumentException("Tangeant of two numbers is not defined");
     }
 }
