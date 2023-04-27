@@ -155,6 +155,10 @@ class TestMyNumber {
 	void testToString() {
 		assertEquals(Integer.toString(value), number.toString());
 		assertEquals(Integer.toString(value) + " + " + Integer.toString(imaginary) + "i", complexNumber.toString());
+
+		assertEquals(new MyNumber(value, imaginary).toString(5), complexNumber.toString(5));
+
+
 	}
 
 }

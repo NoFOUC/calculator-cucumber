@@ -3,6 +3,8 @@ package calculator;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +24,8 @@ public class TestGeneral_Exponential {
 
     private General_Exponential op, op2, op3;
     private List<Expression> params;
+
+
 
     @BeforeEach
     void setUp() {
@@ -157,4 +161,19 @@ public class TestGeneral_Exponential {
         params = null;
         assertThrows(IllegalConstruction.class, () -> op = new General_Exponential(params));
     }
+
+
+    @Test
+    void testOp () {
+
+        // The string representation should be "General_Exponential"
+
+        assertEquals(new MyNumber(new RealValue(2.7182818285)).toString(), (op.op(new MyNumber(1))).toString());
+        assertEquals(new MyNumber(new RealValue(1)).toString(), (op.op(new MyNumber(1), new MyNumber(2))).toString());
+
+
+    }
+
+
+
 }
