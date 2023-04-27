@@ -87,15 +87,16 @@
                         <Button fx:id="buttonDivide" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="/" textFill="WHITE" />
                         <Button fx:id="buttonExp" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="exp" textFill="WHITE" />
                         <Button fx:id="buttonSqrt" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="√" textFill="WHITE" />
-                        <Button fx:id="buttonParenthesisOpen" ellipsisString="" maxHeight="80.0" maxWidth="160.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="160.0" text="(x)" textFill="WHITE" />
-                     </children>
-                  </FlowPane>
-                  <FlowPane fx:id="paneExtras" alignment="CENTER" columnHalignment="CENTER" layoutX="62.0" layoutY="189.0" prefHeight="165.0" prefWidth="164.0" styleClass="surface_dark_floating">
-                     <children>
                         <Button fx:id="buttonImaginary" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="i" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></Button>
+                        <Button fx:id="buttonParenthesisOpen" ellipsisString="" maxHeight="80.0" maxWidth="160.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="(x)" textFill="WHITE" />
+                     </children>
+                  </FlowPane>
+                  <FlowPane fx:id="paneExtras" alignment="CENTER" columnHalignment="CENTER" layoutX="62.0" layoutY="189.0" prefHeight="165.0" prefWidth="164.0" styleClass="surface_dark_floating">
+                     <children>
+                        <Button fx:id="buttonRng" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="RNG" textFill="WHITE" />
                         <Button fx:id="buttonComplexModulus" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_tiny" text="|x|" textFill="WHITE" />
                         <Button fx:id="buttonModulo" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" styleClass="button_smaller" text="\%" textFill="WHITE" />
                         <Button fx:id="buttonFactorial" ellipsisString="" maxHeight="80.0" maxWidth="80.0" minHeight="80.0" minWidth="80.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" text="!" textFill="WHITE" />

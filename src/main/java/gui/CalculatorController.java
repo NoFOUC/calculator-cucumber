@@ -164,6 +164,9 @@ public class CalculatorController {
     @FXML
     private Button buttonLog;
 
+    @FXML
+    private Button buttonRng;
+
 
     // Other variables
 
@@ -236,6 +239,8 @@ public class CalculatorController {
 
         buttonLog.setOnAction((event) -> addOperation("ln", "(",")"));
         buttonInverse.setOnAction((event) -> {addNumber(1); addOperation("/");});
+
+        buttonRng.setOnAction((event) -> addOperation("RNG", "(",")"));
 
         buttonMoveRight.setOnAction((event) -> {
             cursor = cursor.moveCursorRight();
