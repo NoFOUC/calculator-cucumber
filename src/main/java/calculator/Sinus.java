@@ -63,13 +63,13 @@ public final class Sinus extends Operation
      * @param l The first integer
      * @return The integer that is the result of the subtraction
      */
-    public MyNumber op(MyNumber l) {
+    public MyNumber op(MyNumber l) throws IllegalArgumentException {
 
         if (l.isComplex()) {
             throw new IllegalArgumentException("Sinus of complex numbers is not defined in this calculator");
         } else {
             AbstractValue a = l.getValue();
-            return new MyNumber(new RealValue(Math.sin(a.getRawValue().doubleValue())));
+            return new MyNumber(new RealValue(Math.sin(Math.toRadians(a.getRawValue().doubleValue()))));
         }
     }
 

@@ -63,13 +63,15 @@ public final class Cot extends Operation
      * @param l The first integer
      * @return The integer that is the result of the subtraction
      */
-    public MyNumber op(MyNumber l) {
+    public MyNumber op(MyNumber l) throws IllegalArgumentException {
         boolean b = l.isComplex();
         if (b) {
             throw new IllegalArgumentException("Cotangeant of complex numbers is not defined in this calculator");
+        } else if (l.getValue().getRawValue().doubleValue() % 180 == 0) {
+            throw new IllegalArgumentException("Cotangeant of a multiple of pi is not defined");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
-            return new MyNumber(new RealValue(new BigDecimal(Math.pow(Math.tan(left.doubleValue()), -1)))); //NOSONAR
+            return new MyNumber(new RealValue(new BigDecimal(Math.pow(Math.tan(Math.toRadians(left.doubleValue())), -1)))); //NOSONAR
         }
     }
 

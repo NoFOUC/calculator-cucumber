@@ -81,6 +81,19 @@ class TestTan {
     }
 
     @Test
+    void testError() throws IllegalConstruction {
+        // It should throw an IllegalArgumentException for the tangeant function if the parameter is multiple of 180
+        List<Expression> p = Arrays.asList(new MyNumber(90), new MyNumber(90));
+        List<Expression> p2 = Arrays.asList(new MyNumber(-90), new MyNumber(-90));
+
+        Tan tan1 = new Tan(p);
+        Tan tan2 = new Tan(p2);
+
+        assertThrows(IllegalArgumentException.class, () -> tan1.op(new MyNumber(90)));
+        assertThrows(IllegalArgumentException.class, () -> tan2.op(new MyNumber(-90)));
+    }
+
+    @Test
     void testEquals() {
         // Two similar expressions, constructed separately (and using different constructors) should not be equal
         List<Expression> p = Arrays.asList(new MyNumber(value1), new MyNumber(value2));
