@@ -138,6 +138,20 @@ class TestMyNumber {
 	}
 
 	@Test
+	void testGetR () {
+
+		assertEquals(new MyNumber(new RealValue(Math.sqrt(value*value+ imaginary*imaginary))).toString(8), new MyNumber(complexNumber.getR()).toString(8));
+
+	}
+
+	@Test
+	void testGetTheta () {
+
+		assertEquals(new MyNumber(new RealValue(Math.atan( (double) imaginary/(double)value))).toString(5), new MyNumber(complexNumber.getTheta()).toString(5));
+
+	}
+
+	@Test
 	void testToString() {
 		assertEquals(Integer.toString(value), number.toString());
 		assertEquals(Integer.toString(value) + " + " + Integer.toString(imaginary) + "i", complexNumber.toString());

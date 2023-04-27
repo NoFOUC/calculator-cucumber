@@ -10,7 +10,7 @@ import java.util.*;
 public class Parser {
 
     private static final ArrayList<String> beforepriority = new ArrayList<String>
-            (Arrays.asList("√", "exp", "||", "ln", "RAD", "DEG", "sin", "cos", "tan", "cot", "asin", "acos", "atan", "acot"));
+            (Arrays.asList("RNG","√", "exp", "||", "ln", "RAD", "DEG", "sin", "cos", "tan", "cot", "asin", "acos", "atan", "acot"));
 
     private static final ArrayList<Object> priority_no_subArray = new ArrayList<Object>
             (Arrays.asList
@@ -503,6 +503,7 @@ public class Parser {
                 case "ln" -> args = lnParsing(args);
                 case "RAD" -> args = radParsing(args);
                 case "DEG" -> args = degParsing(args);
+                case "RNG" -> args = genParsing(args);
                 default -> new Exception("IllegalConstruction");
 
 
@@ -1026,11 +1027,11 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Rad(params);
+        e = new Rad(params);
 
-        //CustomType temp = new CustomType(c.eval(e));
+        CustomType temp = new CustomType(c.eval(e));
 
-        args.set(0, new CustomType(new MyNumber(1)));
+        args.set(0, temp);
 
         return args;
     }
@@ -1044,15 +1045,32 @@ public class Parser {
 
         params.add(args.get(0).getMyNumber());
 
-        //e = new Rad(params);
+        e = new Deg(params);
 
-        //CustomType temp = new CustomType(c.eval(e));
+        CustomType temp = new CustomType(c.eval(e));
 
-        args.set(0, new CustomType(new MyNumber(1)));
+        args.set(0, temp);
 
         return args;
     }
 
+    public static ArrayList<CustomType> genParsing (ArrayList<CustomType> args) throws IllegalConstruction {
+
+        List<Expression> params = new ArrayList<>();
+
+        Expression e;
+        Calculator c = new Calculator();
+
+        params.add(args.get(0).getMyNumber());
+
+        e = new Generator(params);
+
+        CustomType temp = new CustomType(c.eval(e));
+
+        args.set(0, temp);
+
+        return args;
+    }
 }
 
 

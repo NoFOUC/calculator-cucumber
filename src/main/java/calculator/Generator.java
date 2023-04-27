@@ -31,11 +31,11 @@ public class Generator extends Operation {
 
     public static AbstractValue random(AbstractValue v) {
         if (v instanceof RealValue) {
-            return new RealValue(Math.random()); //NOSONAR
+            return new RealValue(Math.random() * (v.getRawValue()).doubleValue()); //NOSONAR
         } else if (v instanceof RationalValue) {
             return new RationalValue(
                     new IntegerValue((int) (Math.random() * ((RationalValue) v).getNumerator().getValue())), //NOSONAR
-                    new IntegerValue((int) (Math.random() * ((RationalValue) v).getDenominator().getValue()))); //NOSONAR
+                    new IntegerValue(((RationalValue) v).getDenominator().getValue())); //NOSONAR
         }
         else if (v instanceof IntegerValue) {
             return new IntegerValue((int) (Math.random() * ((IntegerValue) v).getValue())); //NOSONAR

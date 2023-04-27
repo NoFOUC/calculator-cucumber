@@ -333,6 +333,115 @@ public class TestParser {
         }
     }
 
+    @Test
+    public void testDeg () {
+
+            calcul.add("DEG");
+            calcul.add("1");
+
+            try {
+                MyNumber a = Parser.main(calcul);
+                assertEquals("57.2957795131", a.toString());
+
+            } catch (Exception e) {
+                fail();
+            }
+    }
+
+    @Test
+    public void testRad () {
+
+            calcul.add("RAD");
+            calcul.add("1");
+            calcul.add("8");
+            calcul.add("0");
+
+            try {
+                MyNumber a = Parser.main(calcul);
+                assertEquals("3.1415926536", a.toString());
+
+            } catch (Exception e) {
+                fail();
+            }
+    }
+
+    @Test
+    public void testGen() {
+
+        calcul.add("RNG");
+        calcul.add("1");
+        calcul.add("0");
+        calcul.add("0");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+
+            double aDouble = Double.parseDouble(a.toString());
+
+            assertTrue(100.0 >= aDouble, "Error, random is too high");
+            assertTrue(0.0 <= aDouble, "Error, random is too low");
+
+        } catch (Exception e) {
+            fail();
+        }
+
+    }
+
+    @Test
+    public void testGenReal (){
+
+        calcul.add("RNG");
+        calcul.add("1");
+        calcul.add("0");
+        calcul.add("0");
+        calcul.add(".");
+        calcul.add("1");
+
+        try {
+            MyNumber a = Parser.main(calcul);
+
+            double aDouble = Double.parseDouble(a.toString());
+
+            assertTrue(100.1 >= aDouble, "Error, random is too high");
+            assertTrue(0.0 <= aDouble, "Error, random is too low");
+
+        } catch (Exception e) {
+            fail();
+        }
+
+    }
+
+    @Test
+    public void testGenRational (){
+
+        calcul.add("RNG");
+        calcul.add(new ArrayList<Object>(Arrays.asList("2", "0", "1", "/", "2")));
+
+        try {
+            MyNumber a = Parser.main(calcul);
+
+            String aString = a.toString().replace("(", "").replace(")", "");
+            double aDouble = 0.0;
+            if (a.toString().split("/").length < 2) {
+                aDouble = Double.parseDouble(a.toString());
+            }
+            else {
+                double numDouble = Double.parseDouble(aString.split("/")[0]+".0");
+                double denDouble = Double.parseDouble(aString.split("/")[1]+".0");
+
+                aDouble = numDouble / denDouble;
+            }
+
+
+            assertTrue(100.5 >= aDouble, "Error, random is too high");
+            assertTrue(0.0 <= aDouble, "Error, random is too low");
+
+        } catch (Exception e) {
+            fail();
+        }
+
+    }
+
 
 
 }
