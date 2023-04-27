@@ -68,7 +68,7 @@ public final class Tan extends Operation
         boolean b = l.isComplex();
         if (b) {
             throw new IllegalArgumentException("Tangeant of complex numbers is not defined in this calculator");
-        } else if (l.getValue().getRawValue().doubleValue() % 180 == 90) {
+        } else if (l.getValue().getRawValue().doubleValue() % 180 == 90 || l.getValue().getRawValue().doubleValue() % 180 == -90) {
             throw new IllegalArgumentException("Tangeant of " + l.getValue().getRawValue().doubleValue() + " is not defined");
         } else {
             BigDecimal left = (l.getValue()).getRawValue();
