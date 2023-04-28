@@ -24,7 +24,7 @@ public class TestReal {
 
     @Test
     void testToString () {
-        assertEquals("1,5368749293E15", number.toString());
+        assertEquals("1.5368749293E15", number.toString());
     }
 
 

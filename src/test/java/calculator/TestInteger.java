@@ -23,7 +23,9 @@ public class TestInteger {
 
     @Test
     void testToString () {
-        assertEquals("1,72785E9", number.toString());
+
+        assertEquals("1.72785E9", number.toString());
+
     }
 
 
