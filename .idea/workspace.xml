@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.github/badges/branches.svg" beforeDir="false" afterPath="$PROJECT_DIR$/.github/badges/branches.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/badges/jacoco.svg" beforeDir="false" afterPath="$PROJECT_DIR$/.github/badges/jacoco.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,84 +90,7 @@
       <recent name="gui" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.clean cucumber-calculator">
-    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.Launcher" />
-      <module name="calculator-cucumber" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestGeneral_Exponential.testOp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="calculator-cucumber" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="calculator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="calculator" />
-      <option name="MAIN_CLASS_NAME" value="calculator.TestGeneral_Exponential" />
-      <option name="METHOD_NAME" value="testOp" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestInteger.testToString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="calculator-cucumber" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="calculator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="calculator" />
-      <option name="MAIN_CLASS_NAME" value="calculator.TestInteger" />
-      <option name="METHOD_NAME" value="testToString" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestParser.testAcos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="calculator-cucumber" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="parser" />
-      <option name="MAIN_CLASS_NAME" value="parser.TestParser" />
-      <option name="METHOD_NAME" value="testAcos" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestReal.testToString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="calculator-cucumber" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="calculator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="calculator" />
-      <option name="MAIN_CLASS_NAME" value="calculator.TestReal" />
-      <option name="METHOD_NAME" value="testToString" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Maven.compilation cucumber-calculator">
     <configuration name="classic test + GUI cucumber-calculator" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -378,11 +302,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Launcher" />
-      <item itemvalue="JUnit.TestParser.testAcos" />
-      <item itemvalue="JUnit.TestGeneral_Exponential.testOp" />
-      <item itemvalue="JUnit.TestInteger.testToString" />
-      <item itemvalue="JUnit.TestReal.testToString" />
       <item itemvalue="Maven.compilation cucumber-calculator" />
       <item itemvalue="Maven.execution cucumber-calculator" />
       <item itemvalue="Maven.classic test cucumber-calculator" />
@@ -392,15 +311,6 @@
       <item itemvalue="Maven.clean cucumber-calculator" />
       <item itemvalue="Maven.maven.yml execution" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Launcher" />
-        <item itemvalue="JUnit.TestParser.testAcos" />
-        <item itemvalue="JUnit.TestGeneral_Exponential.testOp" />
-        <item itemvalue="JUnit.TestReal.testToString" />
-        <item itemvalue="JUnit.TestInteger.testToString" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -428,7 +338,8 @@
       <workItem from="1682544804763" duration="22366000" />
       <workItem from="1682628254067" duration="25477000" />
       <workItem from="1682702790981" duration="332000" />
-      <workItem from="1682703125617" duration="1884000" />
+      <workItem from="1682703125617" duration="2143000" />
+      <workItem from="1682705376544" duration="46000" />
     </task>
     <task id="LOCAL-00001" summary="Adding a lot of tests">
       <created>1682071233653</created>
