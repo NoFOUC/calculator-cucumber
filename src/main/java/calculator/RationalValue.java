@@ -85,9 +85,6 @@ public class RationalValue extends AbstractValue {
     }
 
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public AbstractValue add(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -101,9 +98,6 @@ public class RationalValue extends AbstractValue {
         return new RationalValue(new IntegerValue(n1 * d2 + n2 * d1), new IntegerValue(d1 * d2));
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public AbstractValue sub(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -117,9 +111,6 @@ public class RationalValue extends AbstractValue {
         return new RationalValue(new IntegerValue(n1 * d2 - n2 * d1), new IntegerValue(d1 * d2));
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public AbstractValue mul(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -134,9 +125,6 @@ public class RationalValue extends AbstractValue {
     }
 
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public AbstractValue div(AbstractValue other) {
         if (other instanceof IntegerValue) {

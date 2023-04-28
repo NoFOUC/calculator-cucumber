@@ -52,9 +52,6 @@ public class RealValue extends AbstractValue {
         this.value = new BigDecimal(value.getValue());
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public AbstractValue add(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -66,9 +63,6 @@ public class RealValue extends AbstractValue {
         return new RealValue(this.value.add(other.getRawValue()));
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public AbstractValue sub(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -80,9 +74,6 @@ public class RealValue extends AbstractValue {
         return new RealValue(this.value.subtract(other.getRawValue()));
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public AbstractValue mul(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -94,9 +85,6 @@ public class RealValue extends AbstractValue {
         return new RealValue(this.value.multiply(other.getRawValue()));
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public AbstractValue div(AbstractValue other) {
         if (other instanceof IntegerValue) {
@@ -108,17 +96,12 @@ public class RealValue extends AbstractValue {
         return new RealValue(this.value.divide(other.getRawValue(), RoundingMode.HALF_UP));
     }
 
-    /**
-     * @inheritDoc
-     */
+
     @Override
     public RealValue toReal() {
         return this;
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
     public boolean equals(Object o) {
         if (o == null) {
@@ -138,9 +121,7 @@ public class RealValue extends AbstractValue {
         return false;
     }
 
-    /**
-     * @inheritDoc
-     */
+
     @Override
     public String toString() {
         // return the value or the scientific notation of the value if it's too big
