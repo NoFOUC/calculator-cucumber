@@ -482,12 +482,15 @@ public class Parser {
     public static ArrayList<CustomType> newMakePriority (ArrayList<CustomType> args) throws IllegalConstruction {
 
 
-        if (args.get(0).isString() && beforepriority.contains(args.get(0).getString())) {
+        if (args.size()>0 && args.get(0).isString() && beforepriority.contains(args.get(0).getString())) {
 
             String operation = args.get(0).getString();
             args.remove(0);
             args = newMakePriority(args);
 
+            if (args.size() == 0){
+                throw new IllegalConstruction();
+            }
             switch (operation) {
                 case "√" -> args = sqrtParsing(args);
                 case "exp" -> args = expParsing(args);
