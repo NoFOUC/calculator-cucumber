@@ -156,7 +156,18 @@ public class MyNumber implements Expression {
             };
         }
         else {
-            return value.toString();
+
+            if (this.value instanceof RealValue){
+                int length_value = ((RealValue) this.value).getGlobalPrecisionLimit() + value.toString().split("\\.")[0].length()+ 1;
+
+                if (length_value > value.toString().length()){
+                    length_value = value.toString().length();
+                }
+                return this.value.toString().substring(0, length_value);
+            }
+            else {
+                return this.value.toString();
+            }
         }
     }
 
@@ -222,6 +233,29 @@ public class MyNumber implements Expression {
     }
 
     private String cartesianString() {
+        if (this.value instanceof RealValue){
+            int length_value = ((RealValue) this.value).getGlobalPrecisionLimit() + value.toString().split("\\.")[0].length()+ 1;
+
+            if (length_value > value.toString().length()){
+                length_value = value.toString().length();
+            }
+            String value = this.value.toString().substring(0, length_value);
+        }
+        else {
+            String value = this.value.toString();
+        }
+        if (this.imaginary instanceof RealValue){
+            int length_value = ((RealValue) this.imaginary).getGlobalPrecisionLimit()  + imaginary.toString().split("\\.")[0].length()+ 1;
+
+            if (length_value > imaginary.toString().length()){
+                length_value = imaginary.toString().length();
+            }
+            String imaginary = this.imaginary.toString().substring(0, length_value);
+        }
+        else {
+            String imaginary = this.imaginary.toString();
+        }
+
         return value + " + " + imaginary + "i";
     }
 

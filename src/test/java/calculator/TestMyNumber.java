@@ -140,7 +140,9 @@ class TestMyNumber {
 	@Test
 	void testGetR () {
 
-		assertEquals(new MyNumber(new RealValue(Math.sqrt(value*value+ imaginary*imaginary))).toString(), new MyNumber(complexNumber.getR()).toString());
+		RealValue real = new RealValue(Math.sqrt(value*value+ imaginary*imaginary));
+		real.setGlobalPrecisionLimit(5);
+		assertEquals(new MyNumber(real).toString(), new MyNumber(complexNumber.getR()).toString());
 
 	}
 

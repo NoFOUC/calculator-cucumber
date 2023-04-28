@@ -20,6 +20,7 @@ public class TestReal {
     @BeforeEach
     void setUp() {
         number = new RealValue(value);
+        number.setGlobalPrecisionLimit(5);
     }
 
     @Test

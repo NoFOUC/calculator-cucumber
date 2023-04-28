@@ -143,4 +143,8 @@ public class RealValue extends AbstractValue {
         globalPrecisionLimit = limit;
     }
 
+    public static int getGlobalPrecisionLimit() {
+        return globalPrecisionLimit;
+    }
+
 }
