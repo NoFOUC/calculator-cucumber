@@ -9,6 +9,9 @@ import parser.Parser;
 
 import java.util.ArrayList;
 
+/**
+ * Main controller for the GUI application
+ */
 public class CalculatorController {
 
     @FXML
@@ -185,6 +188,9 @@ public class CalculatorController {
         setupButtons();
     }
 
+    /**
+     * Method for initializing the button actions of the GUI
+     */
     private void setupButtons() {
 
         button0.setOnAction((event) -> addNumber(0));
@@ -258,6 +264,9 @@ public class CalculatorController {
 
     }
 
+    /**
+     * Method for evaluating the inputted expression
+     */
     private void calculate() {
 
         ArrayList<Object> processed = equationRoot.toArrayList();
@@ -283,6 +292,10 @@ public class CalculatorController {
 
     }
 
+    /**
+     * Modifies the powers of ten breakpoint of the scientific notation display
+     * @param value
+     */
     private void setPrecision(int value) {
         if (0 < value && value <= precisionBoundary) {
             precision = value;
@@ -328,6 +341,9 @@ public class CalculatorController {
         else equalsLabel.setText("");
     }
 
+    /**
+     * Rotates between the three modes of displaying complex numbers in the result field
+     */
     private void reprRotation() {
         switch (displayType) {
             case CARTESIAN -> {

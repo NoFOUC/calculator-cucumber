@@ -7,6 +7,9 @@ import calculator.Operation;
 import java.util.Collections;
 import java.util.LinkedList;
 
+/**
+ * A visitor class for counting the depth of an expression
+ */
 public class DepthCounter extends CounterVisitor {
 
     private int maxDepth;

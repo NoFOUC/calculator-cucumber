@@ -1,18 +1,14 @@
 package gui;
 
-import calculator.MyNumber;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-import java.util.LinkedList;
-
+/**
+ * Main class for loading and launching the GUI calculator layout
+ */
 public class Main extends Application {
 
 

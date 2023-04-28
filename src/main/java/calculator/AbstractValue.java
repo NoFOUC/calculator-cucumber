@@ -3,11 +3,14 @@ package calculator;
 import java.math.BigDecimal;
 
 /**
- * MyNumber is a concrete class that represents arithmetic numbers,
- * which are a special kind of Expressions, just like operations are.
- *
- * @see Expression
- * @see Operation
+An abstract generalized representation of a number serving
+ as a baseline for concrete implementations to be stored in MyNumber
+
+ @see IntegerValue
+ @see RationalValue
+ @see RealValue
+
+ @see MyNumber
  */
 public abstract class AbstractValue {
 

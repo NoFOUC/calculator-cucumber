@@ -2,6 +2,9 @@ package visitor;
 
 import calculator.*;
 
+/**
+ * A visitor class for producing a string sequence representing an expression in the prefix notation
+ */
 public class DisplayStringPrefix extends DisplayStringVisitor {
 
     public DisplayStringPrefix(DisplayType displayType) {

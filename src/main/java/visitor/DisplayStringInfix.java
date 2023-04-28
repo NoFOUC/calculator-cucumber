@@ -5,6 +5,9 @@ import calculator.IllegalConstruction;
 import calculator.MyNumber;
 import calculator.Operation;
 
+/**
+ * A visitor class for producing a string sequence representing an expression in the infix notation
+ */
 public class DisplayStringInfix extends DisplayStringVisitor {
 
 

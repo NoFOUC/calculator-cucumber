@@ -51,6 +51,10 @@ public class EquationDisplay {
         this.isOpen = true;
     }
 
+    /**
+     *
+     * @return the string currently being composed by the user, with cursor indicating the current position
+     */
     @Override
     public String toString() {
 
@@ -67,7 +71,12 @@ public class EquationDisplay {
 
     }
 
-    public ArrayList<Object> toArrayList(ArrayList<Object> prev) {
+    /**
+     * An internal recursive method for the creation of a Parser-readable arraylist
+     * @param prev an arraylist containing previously calculated elements
+     * @return An updated arraylist with the current node and its children included
+     */
+    private ArrayList<Object> toArrayList(ArrayList<Object> prev) {
 
         if (value != 10) prev.add(""+value);
 
@@ -87,6 +96,9 @@ public class EquationDisplay {
         return prev;
     }
 
+    /**
+     * @return unprocessed input expression in a Parser-readable format
+     */
     public ArrayList<Object> toArrayList() {
         ArrayList<Object> base = new ArrayList<>();
         return toArrayList(base);
@@ -119,15 +131,25 @@ public class EquationDisplay {
         return this;
     }
 
-
+    /**
+     * Closes the node, preventing it from gaining more children
+     */
     private void close() {
         isOpen = false;
     }
 
+    /**
+     *
+     * @param cursor True if the current node should display the cursor , False otherwise
+     */
     public void setHasCursor(boolean cursor) {
         hasCursor = cursor;
     }
 
+    /**
+     * Adds a new node to the expression
+     * @param next the node to add
+     */
     public void add(EquationDisplay next) {
         next.setHasCursor(true);
         this.setHasCursor(false);
@@ -144,6 +166,10 @@ public class EquationDisplay {
         else this.next.add(next);
     }
 
+    /**
+     * Erases the current node
+     * @return the predecessor of the node being erased
+     */
     public EquationDisplay erase() {
 
         if (prev != null) {
@@ -177,6 +203,9 @@ public class EquationDisplay {
         this.child = child;
     }
 
+    /**
+     * Completely resets the values of the node, unlinking it from all other nodes
+     */
     public void reset() {
         this.child = null;
         this.parent = null;

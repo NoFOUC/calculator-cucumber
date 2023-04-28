@@ -4,6 +4,9 @@ import calculator.IllegalConstruction;
 import calculator.MyNumber;
 import calculator.Operation;
 
+/**
+ * A visitor class for counting the number of MyNumber-type objects used in an expression
+ */
 public class NumberCounter extends CounterVisitor {
 
     private int count;
