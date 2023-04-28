@@ -6,7 +6,6 @@ import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,24 +41,18 @@ public class TestCalculator {
     @Test
     void testPrint() throws IllegalConstruction {
 
-        calc.print(op);
-
         assertEquals("The result of evaluating expression calculator.Plus@24fcf\n" +
-                "is: 14.", outputStreamCaptor.toString()
-                .trim());
+                "is: 14.", calc.getExpressionResult(op).trim());
 
     }
 
     @Test
     void testPrintExpressionDetails () throws IllegalConstruction {
-
-        calc.printExpressionDetails(op);
-
         assertEquals("The result of evaluating expression calculator.Plus@24fcf\n" +
                 "is: 14.\n" +
                 "\n" +
-                "It contains 1 levels of nested expressions, 1 operations and 2 numbers.", outputStreamCaptor.toString()
-                .trim());
+                "It contains 1 levels of nested expressions, 1 operations and 2 numbers.",
+                calc.getExpressionDetails(op).trim());
 
     }
 

@@ -88,31 +88,6 @@ public class MyNumber implements Expression {
       v.visit(this);
     }
 
-
-    /** The depth of a number expression is always 0
-     *
-     * @return The depth of a number expression
-     */
-    public int countDepth() {
-      return 0;
-    }
-
-    /** The number of operations contained in a number expression is always 0
-     *
-     * @return The number of operations contained in a number expression
-     */
-    public int countOps() {
-      return 0;
-    }
-
-    /** The number of numbers contained in a number expression is always 1
-     *
-     * @return The number of numbers contained in  a number expression
-     */
-    public int countNbs() {
-      return 1;
-    }
-
     /**
      * Check if the number is complex
      * @return True if the number is complex, false otherwise
@@ -143,34 +118,34 @@ public class MyNumber implements Expression {
         }
     }
 
-    /** The method toString with a parameter length to allow the number to be printed with a certain length
-     *
-     * @param length The length of the number
-     * @return The String that is the result of the conversion.
-     */
-    public String toString(int length) {
-        if (isComplex()) {
-            int length_value = length + (value.toString().split("\\.")[0].length()) +1;
-            int length_imaginary = length + imaginary.toString().split("\\.")[0].length()+1;
-            if (length_value > value.toString().length()){
-                length_value = value.toString().length();
-            }
-            if (length_imaginary > imaginary.toString().length()){
-                length_imaginary = imaginary.toString().length();
-            }
-
-            return value.toString().substring(0, length_value) + " + " + imaginary.toString().substring(0, length_imaginary) + "i";
-        }
-        else {
-
-            int length_value = length + value.toString().split("\\.")[0].length()+ 1;
-
-            if (length_value > value.toString().length()){
-                length_value = value.toString().length();
-            }
-            return value.toString().substring(0, length_value);
-        }
-    }
+//    /** The method toString with a parameter length to allow the number to be printed with a certain length
+//     *
+//     * @param length The length of the number
+//     * @return The String that is the result of the conversion.
+//     */
+//    public String toString(int length) {
+//        if (isComplex()) {
+//            int length_value = length + (value.toString().split("\\.")[0].length()) +1;
+//            int length_imaginary = length + imaginary.toString().split("\\.")[0].length()+1;
+//            if (length_value > value.toString().length()){
+//                length_value = value.toString().length();
+//            }
+//            if (length_imaginary > imaginary.toString().length()){
+//                length_imaginary = imaginary.toString().length();
+//            }
+//
+//            return value.toString().substring(0, length_value) + " + " + imaginary.toString().substring(0, length_imaginary) + "i";
+//        }
+//        else {
+//
+//            int length_value = length + value.toString().split("\\.")[0].length()+ 1;
+//
+//            if (length_value > value.toString().length()){
+//                length_value = value.toString().length();
+//            }
+//            return value.toString().substring(0, length_value);
+//        }
+//    }
 
     public String toString(DisplayType displayType) {
         if (isComplex()) {

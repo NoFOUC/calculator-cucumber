@@ -3,6 +3,7 @@ package calculator;
 //Import Junit5 libraries for unit testing:
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
+import visitor.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,20 +40,47 @@ class TestOperation {
 
 	@Test
 	void testCountDepth() {
-		assertEquals(2, o.countDepth());
-		assertEquals(2, o3.countDepth());
+		CounterVisitor counter = new DepthCounter();
+		try {
+			o.accept(counter);
+			assertEquals(3, counter.getCount());
+
+			counter = new DepthCounter();
+			o3.accept(counter);
+			assertEquals(3, counter.getCount());
+		} catch (IllegalConstruction e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testCountOps() {
-		assertEquals(3, o.countOps());
-		assertEquals(3, o3.countOps());
+		CounterVisitor counter = new OperationCounter();
+		try {
+			o.accept(counter);
+			assertEquals(3, counter.getCount());
+
+			counter = new OperationCounter();
+			o3.accept(counter);
+			assertEquals(3, counter.getCount());
+		} catch (IllegalConstruction e) {
+			fail();
+		}
 	}
 
 	@Test
 	void testCountNbs() {
-		assertEquals(Integer.valueOf(6), o.countNbs());
-		assertEquals(Integer.valueOf(6), o3.countNbs());
+		CounterVisitor counter = new NumberCounter();
+		try {
+			o.accept(counter);
+			assertEquals(6, counter.getCount());
+
+			counter = new NumberCounter();
+			o3.accept(counter);
+			assertEquals(6, counter.getCount());
+		} catch (IllegalConstruction e) {
+			fail();
+		}
 	}
 
 }

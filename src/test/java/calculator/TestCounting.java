@@ -5,6 +5,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import visitor.CounterVisitor;
+import visitor.DepthCounter;
+import visitor.NumberCounter;
+import visitor.OperationCounter;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
@@ -43,6 +48,16 @@ class TestCounting {
         e5 = null;
     }
 
+    void testCounting(int expected, Expression e, CounterVisitor counter) {
+        try {
+            e.accept(counter);
+            int count = counter.getCount();
+            assertEquals(expected, count);
+        } catch (IllegalConstruction ex) {
+            fail();
+        }
+    }
+
     @Test
     void testNumberCounting() {
         e = new MyNumber(value1);
@@ -51,41 +66,17 @@ class TestCounting {
         e4 = new MyNumber(new RationalValue(new IntegerValue(value1), new IntegerValue(denominator1)),
                 new RationalValue(new IntegerValue(imaginary1), new IntegerValue(denominator2)));
         e5 = new MyNumber(new RealValue(value3BD));
-        //test whether a number has zero depth (i.e. no nested expressions)
-        assertEquals( 0, e.countDepth());
-        //test whether a number contains zero operations
-        assertEquals(0, e.countOps());
-        //test whether a number contains 1 number
-        assertEquals(1, e.countNbs());
 
-        //test whether a complex number has zero depth (i.e. no nested expressions)
-        assertEquals( 0, e2.countDepth());
-        //test whether a complex number contains zero operations
-        assertEquals(0, e2.countOps());
-        //test whether a complex number contains 1 number
-        assertEquals(1, e2.countNbs());
+        Expression[] expressions = {e, e2, e3, e4, e5};
 
-        //test whether a rational number has zero depth (i.e. no nested expressions)
-        assertEquals( 0, e3.countDepth());
-        //test whether a rational number contains zero operations
-        assertEquals(0, e3.countOps());
-        //test whether a rational number contains 1 number
-        assertEquals(1, e3.countNbs());
-
-        //test whether a complex rational number has zero depth (i.e. no nested expressions)
-        assertEquals( 0, e4.countDepth());
-        //test whether a complex rational number contains zero operations
-        assertEquals(0, e4.countOps());
-        //test whether a complex rational number contains 1 number
-        assertEquals(1, e4.countNbs());
-
-        //test whether a real number has zero depth (i.e. no nested expressions)
-        assertEquals( 0, e5.countDepth());
-        //test whether a real number contains zero operations
-        assertEquals(0, e5.countOps());
-        //test whether a real number contains 1 number
-        assertEquals(1, e5.countNbs());
-
+        for (Expression exp: expressions) {
+            //test whether a number has zero depth (i.e. no nested expressions)
+            testCounting( 0, exp, new DepthCounter());
+            //test whether a number contains zero operations
+            testCounting(0, exp, new OperationCounter());
+            //test whether a number contains 1 number
+            testCounting(1, exp, new NumberCounter());
+        }
     }
 
     @ParameterizedTest
@@ -111,11 +102,11 @@ class TestCounting {
             fail();
         }
         //test whether a binary operation has depth 1
-        assertEquals(1, e.countDepth(),"counting depth of an Operation");
+        testCounting( 1, e, new DepthCounter());
         //test whether a binary operation contains 1 operation
-        assertEquals(1, e.countOps());
+        testCounting(1, e, new OperationCounter());
         //test whether a binary operation contains 2 numbers
-        assertEquals(2, e.countNbs());
+        testCounting(2, e, new NumberCounter());
     }
 
     @ParameterizedTest
@@ -141,12 +132,11 @@ class TestCounting {
             fail();
         }
         //test whether a binary operation has depth 1
-        assertEquals(1, e.countDepth(),"counting depth of an Operation");
+        testCounting( 1, e, new DepthCounter());
         //test whether a binary operation contains 1 operation
-        assertEquals(1, e.countOps());
+        testCounting(1, e, new OperationCounter());
         //test whether a binary operation contains 2 numbers
-        assertEquals(2, e.countNbs());
-
+        testCounting(2, e, new NumberCounter());
     }
 
     @ParameterizedTest
@@ -172,11 +162,11 @@ class TestCounting {
             fail();
         }
         //test whether a binary operation has depth 1
-        assertEquals(1, e.countDepth(),"counting depth of an Operation");
+        testCounting( 1, e, new DepthCounter());
         //test whether a binary operation contains 1 operation
-        assertEquals(1, e.countOps());
+        testCounting(1, e, new OperationCounter());
         //test whether a binary operation contains 2 numbers
-        assertEquals(2, e.countNbs());
+        testCounting(2, e, new NumberCounter());
 
     }
 
@@ -203,11 +193,11 @@ class TestCounting {
             fail();
         }
         //test whether a binary operation has depth 1
-        assertEquals(1, e.countDepth(),"counting depth of an Operation");
+        testCounting( 1, e, new DepthCounter());
         //test whether a binary operation contains 1 operation
-        assertEquals(1, e.countOps());
+        testCounting(1, e, new OperationCounter());
         //test whether a binary operation contains 2 numbers
-        assertEquals(2, e.countNbs());
+        testCounting(2, e, new NumberCounter());
 
     }
 
@@ -234,11 +224,10 @@ class TestCounting {
             fail();
         }
         //test whether a binary operation has depth 1
-        assertEquals(1, e.countDepth(),"counting depth of an Operation");
+        testCounting( 1, e, new DepthCounter());
         //test whether a binary operation contains 1 operation
-        assertEquals(1, e.countOps());
+        testCounting(1, e, new OperationCounter());
         //test whether a binary operation contains 2 numbers
-        assertEquals(2, e.countNbs());
-
+        testCounting(2, e, new NumberCounter());
     }
 }

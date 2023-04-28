@@ -1,6 +1,6 @@
 package calculator;
 
-import visitor.Evaluator;
+import visitor.*;
 
 /**
  * This class represents the core logic of a Calculator.
@@ -22,25 +22,32 @@ public class Calculator {
     /**
      * Prints an arithmetic expression provided as input parameter.
      * @param e the arithmetic Expression to be printed
-     * @see #printExpressionDetails(Expression) 
+     * @see #getExpressionDetails(Expression)
      */
-    public void print(Expression e) throws IllegalConstruction {
-        System.out.println("The result of evaluating expression " + e);
-        System.out.println("is: " + eval(e) + ".");
-        System.out.println();
+    public String getExpressionResult(Expression e) throws IllegalConstruction {
+        String res = "";
+        res += "The result of evaluating expression " + e + "\n";
+        res += "is: " + eval(e) + ".\n\n";
+        return res;
     }
 
     /**
      * Prints verbose details of an arithmetic expression provided as input parameter.
      * @param e the arithmetic Expression to be printed
-     * @see #print(Expression)
+     * @see #getExpressionResult(Expression)
      */
-    public void printExpressionDetails(Expression e) throws IllegalConstruction {
-        print(e);
-        System.out.print("It contains " + e.countDepth() + " levels of nested expressions, ");
-        System.out.print(e.countOps() + " operations");
-        System.out.println(" and " + e.countNbs() + " numbers.");
-        System.out.println();
+    public String getExpressionDetails(Expression e) throws IllegalConstruction {
+        String res = getExpressionResult(e);
+        CounterVisitor counter = new DepthCounter();
+        e.accept(counter);
+        res += "It contains " + counter.getCount() + " levels of nested expressions, ";
+        counter = new OperationCounter();
+        e.accept(counter);
+        res += counter.getCount() + " operations";
+        counter = new NumberCounter();
+        e.accept(counter);
+        res += " and " + counter.getCount() + " numbers.\n\n";
+        return res;
     }
 
     /**

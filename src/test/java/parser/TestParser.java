@@ -275,7 +275,7 @@ public class TestParser {
 
         try {
             MyNumber a = Parser.main(calcul);
-            assertEquals("9E+1", a.toString(10));
+            assertEquals("9E+1", a.toString());
 
         } catch (Exception e) {
             fail();
