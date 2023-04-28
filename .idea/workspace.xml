@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9a0f9a5b-385f-4293-9df9-9c0d5fa1485a" name="Changes" comment="README updates">
+      <change beforePath="$PROJECT_DIR$/.github/badges/branches.svg" beforeDir="false" afterPath="$PROJECT_DIR$/.github/badges/branches.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/badges/jacoco.svg" beforeDir="false" afterPath="$PROJECT_DIR$/.github/badges/jacoco.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/MoreIntegerOperation" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2OeLxvoecsTRoUuu2UQAP9mZN7g" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/noafoucoux/Documents/Cours/ma1/soft_evol/calculator-cucumber&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="gui" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/images" />
+      <recent name="$PROJECT_DIR$/src/main/java/calculator" />
+      <recent name="$PROJECT_DIR$/src/test/java/calculator" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="gui" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Maven.clean cucumber-calculator">
+    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="gui.Launcher" />
+      <module name="calculator-cucumber" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGeneral_Exponential.testOp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator-cucumber" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="calculator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="calculator" />
+      <option name="MAIN_CLASS_NAME" value="calculator.TestGeneral_Exponential" />
+      <option name="METHOD_NAME" value="testOp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestInteger.testToString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator-cucumber" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="calculator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="calculator" />
+      <option name="MAIN_CLASS_NAME" value="calculator.TestInteger" />
+      <option name="METHOD_NAME" value="testToString" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestParser.testAcos" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator-cucumber" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="parser" />
+      <option name="MAIN_CLASS_NAME" value="parser.TestParser" />
+      <option name="METHOD_NAME" value="testAcos" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestReal.testToString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="calculator-cucumber" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="calculator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="calculator" />
+      <option name="MAIN_CLASS_NAME" value="calculator.TestReal" />
+      <option name="METHOD_NAME" value="testToString" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="classic test + GUI cucumber-calculator" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="test" />
+                <option value="-P" />
+                <option value="GUI" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="classic test cucumber-calculator" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="test" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="clean cucumber-calculator" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="compilation cucumber-calculator" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="compile" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="execution cucumber-calculator" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="exec:java" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="jar file cucumber-calculator" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="javadoc cucumber-calculator" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="javadoc:javadoc" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="maven.yml execution" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="-B" />
+                <option value="-P" />
+                <option value="Default" />
+                <option value="package" />
+                <option value="--file" />
+                <option value="pom.xml" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Launcher" />
+      <item itemvalue="JUnit.TestParser.testAcos" />
+      <item itemvalue="JUnit.TestGeneral_Exponential.testOp" />
+      <item itemvalue="JUnit.TestInteger.testToString" />
+      <item itemvalue="JUnit.TestReal.testToString" />
+      <item itemvalue="Maven.compilation cucumber-calculator" />
+      <item itemvalue="Maven.execution cucumber-calculator" />
+      <item itemvalue="Maven.classic test cucumber-calculator" />
+      <item itemvalue="Maven.classic test + GUI cucumber-calculator" />
+      <item itemvalue="Maven.javadoc cucumber-calculator" />
+      <item itemvalue="Maven.jar file cucumber-calculator" />
+      <item itemvalue="Maven.clean cucumber-calculator" />
+      <item itemvalue="Maven.maven.yml execution" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Launcher" />
+        <item itemvalue="JUnit.TestParser.testAcos" />
+        <item itemvalue="JUnit.TestGeneral_Exponential.testOp" />
+        <item itemvalue="JUnit.TestReal.testToString" />
+        <item itemvalue="JUnit.TestInteger.testToString" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9a0f9a5b-385f-4293-9df9-9c0d5fa1485a" name="Changes" comment="" />
+      <created>1681916350422</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681916350422</updated>
+      <workItem from="1681916352260" duration="20586000" />
+      <workItem from="1682057960950" duration="1292000" />
+      <workItem from="1682061580898" duration="66000" />
+      <workItem from="1682061654974" duration="2323000" />
+      <workItem from="1682063986959" duration="8271000" />
+      <workItem from="1682087646285" duration="32130000" />
+      <workItem from="1682246106856" duration="36519000" />
+      <workItem from="1682338975920" duration="4626000" />
+      <workItem from="1682345280245" duration="27182000" />
+      <workItem from="1682399680466" duration="11560000" />
+      <workItem from="1682424180794" duration="16868000" />
+      <workItem from="1682492219160" duration="31000" />
+      <workItem from="1682492257487" duration="474000" />
+      <workItem from="1682492735646" duration="23174000" />
+      <workItem from="1682530255171" duration="6209000" />
+      <workItem from="1682544804763" duration="22366000" />
+      <workItem from="1682628254067" duration="25477000" />
+      <workItem from="1682702790981" duration="332000" />
+      <workItem from="1682703125617" duration="1884000" />
+    </task>
+    <task id="LOCAL-00001" summary="Adding a lot of tests">
+      <created>1682071233653</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682071233653</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Merge of Real Number + Adding test on Real Number &#10;TODO !!! TestEvaluator !!! change precision to check equality for Divise and TImes">
+      <created>1682166896007</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1682166896007</updated>
+    </task>
+    <task id="LOCAL-00003" summary="adding RealNumber and correction of error">
+      <created>1682167247532</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682167247532</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Correction of error on sonarcloud for BigDecimal in RealValue">
+      <created>1682168149642</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1682168149642</updated>
+    </task>
+    <task id="LOCAL-00005" summary="adding testEvaluator on Real for division and times">
+      <created>1682172785421</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1682172785421</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Adding Parser and correction for sqrt to have Real Value not Integer">
+      <created>1682265925418</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1682265925418</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Adding new version of parser + Real gestion on modulus ans correction of TestEvaluator">
+      <created>1682329200174</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1682329200174</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Correction of &quot;==&quot; to equals">
+      <created>1682330355159</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1682330355159</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Correction of &quot;!=&quot; to !...equals">
+      <created>1682330550523</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1682330550523</updated>
+    </task>
+    <task id="LOCAL-00010" summary="oops forget 2 &quot;==&quot;">
+      <created>1682330777998</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1682330777998</updated>
+    </task>
+    <task id="LOCAL-00011" summary="- Correction of Bigger than to accept Real, same for Calculator cucumber, same for General_Exponential, same for LessThan&#10;- Adding ComplexConverter &#10;- Adding Throws IllegalConstruction in some methods&#10;- Adding Class MyExpPol for easier transformation of Complex&#10;- Upgrading Parser + adding test for code coverage&#10;- Adding Function toReal to convert all type to MyNumber of RealValue">
+      <created>1682353869815</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1682353869815</updated>
+    </task>
+    <task id="LOCAL-00012" summary="- Correction Parser&#10;- Adding gestion of Real in Integer Value &#10;- TestParser">
+      <created>1682367131411</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1682367131411</updated>
+    </task>
+    <task id="LOCAL-00013" summary="- Correction of &gt; or &lt;&#10;- Correction of division of integer = Rationnal&#10;- Correction of division of Rational = Rationnal&#10;- Adaptation Cucumber Test&#10;- Adaptaton of JUnit test">
+      <created>1682375033816</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1682375033816</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Correction of SonarCloud error">
+      <created>1682399513548</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1682399513548</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Try something on sonarcloud for branch unused exclusion + gui">
+      <created>1682400611089</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1682400611089</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Deleting gui from test coverage for the moment">
+      <created>1682408106782</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1682408106782</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Merging Loic extension + adaptation parser">
+      <created>1682413221163</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1682413221163</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Correction of parser priority + test">
+      <created>1682449609028</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1682449609028</updated>
+    </task>
+    <task id="LOCAL-00019" summary="toString with parameter + correction of the test">
+      <created>1682456275562</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1682456275562</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Correction of error of SonarCloud BigDecimal">
+      <created>1682456688018</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1682456688018</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Adding TestGUI + correction SONARCLOUD">
+      <created>1682500877369</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1682500877369</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Commenting TestGUI">
+      <created>1682501493114</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1682501493114</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Excluding GUI to the main branch jacoco report">
+      <created>1682501832227</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1682501832227</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Answer to TODO + correction of Calculator Controler for equalsLabel.setText after Equalsbutton">
+      <created>1682505176492</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1682505176492</updated>
+    </task>
+    <task id="LOCAL-00025" summary="correction of ||1+2i_|| =">
+      <created>1682506113357</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1682506113357</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Merging TestGenerator to Main branch">
+      <created>1682507367832</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1682507367832</updated>
+    </task>
+    <task id="LOCAL-00027" summary="- Correction Generator for every type of number and adding test&#10;- pom.xml scope of testfx modification">
+      <created>1682508907984</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1682508907984</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Adding Exception for division by zero and Illegal Construction">
+      <created>1682518366829</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1682518366829</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Correction of SONARCLOUD Nº647">
+      <created>1682519033082</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1682519033082</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Creation of profile in pom file for GUI testing + rename TestGUI class">
+      <created>1682545704830</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1682545704830</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Correction of Parser for Ln and Parsing for DEG and RAD">
+      <created>1682546995052</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1682546995052</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Correction of the Main Class from calculator.Main to calculator.launcher">
+      <created>1682576535788</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1682576535788</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Adding Some testGUI to convert all the button and functionnalities&#10;+ exclude gui Main and Launcher">
+      <created>1682577624108</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1682577624108</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Correction difference of error for division by zero">
+      <created>1682578243911</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1682578243911</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Adding Rad and Deg + UnitTest">
+      <created>1682581685649</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1682581685649</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Correction of SONARCLOUD Nº7342">
+      <created>1682581890859</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1682581890859</updated>
+    </task>
+    <task id="LOCAL-00037" summary="- Correction of generator&#10;- Parser Change GEN to RNG&#10;- Adding test">
+      <created>1682587208772</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1682587208772</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Correction of Tan for error TestTan">
+      <created>1682630129884</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1682630129884</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Adding some random test">
+      <created>1682633544573</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1682633544573</updated>
+    </task>
+    <task id="LOCAL-00040" summary="correction of error in test">
+      <created>1682660935154</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1682660935154</updated>
+    </task>
+    <task id="LOCAL-00041" summary="adding test &#10;pom file for jar creation">
+      <created>1682672516535</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1682672516535</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Correction of test With GlobalPrecisionValue">
+      <created>1682684149673</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1682684149673</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Correction Parser for Exp(Exp(_))">
+      <created>1682694330023</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1682694330023</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Modification for getRessources for mvn install on command line">
+      <created>1682696067633</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1682696067633</updated>
+    </task>
+    <task id="LOCAL-00045" summary="README updates">
+      <created>1682703260126</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1682703260126</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commenting TestGUI" />
+    <MESSAGE value="Excluding GUI to the main branch jacoco report" />
+    <MESSAGE value="Answer to TODO + correction of Calculator Controler for equalsLabel.setText after Equalsbutton" />
+    <MESSAGE value="correction of ||1+2i_|| =" />
+    <MESSAGE value="Merging TestGenerator to Main branch" />
+    <MESSAGE value="- Correction Generator for every type of number and adding test&#10;- pom.xml scope of testfx modification" />
+    <MESSAGE value="Adding Exception for division by zero and Illegal Construction" />
+    <MESSAGE value="Correction of SONARCLOUD Nº" />
+    <MESSAGE value="Correction of SONARCLOUD Nº647" />
+    <MESSAGE value="Creation of profile in pom file for GUI testing + rename TestGUI class" />
+    <MESSAGE value="Correction of Parser for Ln and Parsing for DEG and RAD" />
+    <MESSAGE value="Correction of the Main Class from calculator.Main to calculator.launcher" />
+    <MESSAGE value="Adding Some testGUI to convert all the button and functionnalities&#10;+ exclude gui Main and Launcher" />
+    <MESSAGE value="Correction difference of error for division by zero" />
+    <MESSAGE value="Adding Rad and Deg + UnitTest" />
+    <MESSAGE value="Correction of SONARCLOUD Nº7342" />
+    <MESSAGE value="- Correction of generator&#10;- Parser Change GEN to RNG&#10;- Adding test" />
+    <MESSAGE value="Correction of Tan for error TestTan" />
+    <MESSAGE value="Adding some random test" />
+    <MESSAGE value="correction of error in test" />
+    <MESSAGE value="adding test &#10;pom file for jar creation" />
+    <MESSAGE value="Correction of test With GlobalPrecisionValue" />
+    <MESSAGE value="Correction Parser for Exp(Exp(_))" />
+    <MESSAGE value="Modification for getRessources for mvn install on command line" />
+    <MESSAGE value="README updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="README updates" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/Operation.java</url>
+          <line>148</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/Main.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/LessThan.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestEvaluator.java</url>
+          <line>231</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestRealValue.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/Sinus.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/ArcCos.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>563</line>
+          <option name="timeStamp" value="145" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/parser/TestParser.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="150" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/parser/TestParser.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/parser/TestParser.java</url>
+          <line>277</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/MyNumber.java</url>
+          <line>119</line>
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestNotation.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/parser/TestParser.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="163" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>698</line>
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>216</line>
+          <option name="timeStamp" value="178" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>875</line>
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>1034</line>
+          <option name="timeStamp" value="189" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/parser/TestParser.java</url>
+          <line>339</line>
+          <option name="timeStamp" value="193" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/calculator/Deg.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="194" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/parser/TestParser.java</url>
+          <line>356</line>
+          <option name="timeStamp" value="195" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/parser/TestParser.java</url>
+          <line>373</line>
+          <option name="timeStamp" value="196" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/parser/TestParser.java</url>
+          <line>425</line>
+          <option name="timeStamp" value="203" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="206" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestTan.java</url>
+          <line>92</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>520</line>
+          <option name="timeStamp" value="214" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/CalculatorController.java</url>
+          <line>276</line>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestNotation.java</url>
+          <line>40</line>
+          <properties class="calculator.TestNotation" method="testComplexNotations">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/calculator/TestNotation.java</url>
+          <line>76</line>
+          <properties class="calculator.TestNotation" method="testComplexOutput">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="160" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/gui/EquationDisplay.java</url>
+          <line>172</line>
+          <properties class="gui.EquationDisplay" method="erase">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="parser.CustomType" memberName="parserList" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/calculator_cucumber$TestParser_testParsing__1_.ic" NAME="TestParser.testParsing (1) Coverage Results" MODIFIED="1682253460719" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>parser.*</FILTER>
+    </SUITE>
+  </component>
+</project>
