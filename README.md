@@ -9,6 +9,10 @@ Test coverage: ![Coverage](.github/badges/jacoco.svg)
 
 <img src="images/calculator.png" width="750">
 
+## DEMO vidéo
+
+https://youtu.be/4OWkMvh7Z80
+
 ## How to use the calculator
 
 All The instructions below are for the command line but they are also available for the IDE by adding these commands 
